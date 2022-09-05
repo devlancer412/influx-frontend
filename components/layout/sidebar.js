@@ -4,19 +4,19 @@ import { useDispatch } from "react-redux";
 import { Button, Nav } from "react-bootstrap";
 
 const Sidebar = ({display}) => {
+  debugger
+  console.log("display : ", display);
   const dispatch = useDispatch();
   useEffect(() => {
   }, []);
   return (
     <>
-    {/* {
-      display == true && 
-    } */}
-    <div className="sidebar-layout">
+    {
+      display === true && <div className="sidebar-layout" style={{ display: 'block' }}>
       <Nav className="flex-column pt-2">
         <Nav.Item className="activem menu-item-list">
           <Nav.Link href="/discover" className="menu-item-area">
-            <img src="/img/compaign_icon.png" 
+            <img src="/img/ant-design_compass-outlined.png" 
             className="menu-item">
             </img>
             <span className="menu-item-subject">Discover</span>
@@ -119,6 +119,8 @@ const Sidebar = ({display}) => {
         </Nav.Item>
       </Nav>
     </div>
+    }
+    
       
     </>
   );

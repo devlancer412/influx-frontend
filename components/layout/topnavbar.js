@@ -16,7 +16,7 @@ const TopNavBar = ({ showSideBar }) => {
             className="hamburger-icon"
             ></img>
           </div>
-          <img src="/img/site_logo.png" 
+          <img src="/img/site_logo_update.png" 
           className="site-logo"
           ></img>
         </div>
