@@ -4,7 +4,7 @@ import {
   authenticate,
   checkServerSideCookie,
 } from "../redux/actions/authActions";
-import Layout from "../components/layout";
+import Layout from "../components/layout/index";
 import { wrapper } from "../redux";
 import Router from "next/router";
 

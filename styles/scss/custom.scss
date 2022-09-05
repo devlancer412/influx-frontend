@@ -1,4 +1,12 @@
 @import 'bootstrap/scss/bootstrap.scss';
+@import './variables/sizes.scss';
+@import './variables/colors.scss';
+
+@import './background.scss';
+@import './topnavbar.scss';
+@import './sidebar.scss';
+@import './discover.module.scss';
+
 
 .marketing {
   margin: 4rem 0;
@@ -13,8 +21,32 @@
   user-select: none;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+.test {
+  color: red !important;
+}
+
+.test:hover {
+  cursor: pointer;
+}
+
+
+
+@media (min-width: $xxl) {
+
+}
+
+@media (min-width: $xl) {
+
+}
+
+@media (min-width: $md) {
+  
+}
+
+@media (min-width: $sm) {
+  
+}
+
+@media (min-width: $xs) {
+  
 }

@@ -1,5 +1,6 @@
-$primary-color: #64ff00;
-$bg-color: rgba(0, 0, 0, 0.4);
+// $primary-color: #64ff00;
+// $bg-color: rgba(0, 0, 0, 0.4);
+@import './variables/colors.scss';
 
 .main {
   min-height: 100vh;
@@ -25,7 +26,7 @@ $bg-color: rgba(0, 0, 0, 0.4);
 }
 
 .bgTrans {
-  background-color: $bg-color;
+  background-color: $secondary-color;
 }
 
 .floatEnd {

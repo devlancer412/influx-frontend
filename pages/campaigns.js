@@ -5,15 +5,12 @@ import Layout from "../components/layout/index";
 import jwt from "jwt-decode";
 import { wrapper } from "../redux";
 
-const Whoami = ({ user, token }) => {
+const Campaigns = ({ }) => {
   return (
-    <Layout title="Who Am I" isAuthenticated={token}>
-      {(token && (
-        <div>
-          <h2>Who am i</h2>
-        </div>
-      )) ||
-        "Please sign in"}
+    <Layout title="Campaigns">
+      <div>
+        <span>Test</span>
+      </div>
     </Layout>
   );
 };
@@ -24,16 +21,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const token = context.store.getState().authentication.token;
     if (token) {
       const data = jwt(token);
-      // const response = await axios.get(
-      //   `/api/user/${data._id}`,
-      //   {
-      //     headers: {
-      //       authorization: `Bearer ${token}`,
-      //       contentType: "application/json",
-      //     },
-      //   }
-      // );
-      // const user = response.data;
       const user = "test";
       return {
         props: {
@@ -45,4 +32,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
   }
 );
 
-export default Whoami;
+export default Campaigns;

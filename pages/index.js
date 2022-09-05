@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { getPosts } from "../redux/actions/fooActions";
 import { wrapper } from "../redux";
-import Layout from "../components/layout";
+import Layout from "../components/layout/index";
 import {Modal, Button} from 'react-bootstrap';
 import { checkServerSideCookie } from "../redux/actions/authActions";
+import '../styles/scss/index.module.scss';
 
 const Index = ({ foo, token }) => {
   const [show, setShow] = useState(false);
@@ -12,7 +13,7 @@ const Index = ({ foo, token }) => {
 
   return (
     <Layout isAuthenticated={token}>
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div>
@@ -40,7 +41,7 @@ const Index = ({ foo, token }) => {
             </Modal>
           </div>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 };
