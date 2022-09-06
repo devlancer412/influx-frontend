@@ -42,8 +42,8 @@
   .social-link {
     background-color: $inf-modal-color;
     height: 342px;
-    top: 23px;
     border-radius: 10px;
+    position: relative;
   }
 
   .search-input {
@@ -135,8 +135,21 @@
     margin-top: 70px;
   }
 
+  .link-area {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .link-select-group {
     width: 100%;
+    margin-top: 2vh;
+    display: flex;
+  }
+  .link-title {
+    font-size: $font-lg;
+    color: white;
+
   }
 
   //   Responsive Design
@@ -181,7 +194,6 @@
 
     .social-link {
       height: 250px;
-      top: 23px;
       border-radius: 10px;
     }
 
@@ -214,7 +226,6 @@
 
     .social-link {
       height: 300px;
-      top: 23px;
       border-radius: 10px;
     }
 
@@ -230,15 +241,14 @@
     width: 74%;
 
     .user-info {
-      height: 341px;
+      height: 35vh;
       top: 23px;
       margin-left: 50px;
       border-radius: 10px;
     }
 
     .social-link {
-      height: 342px;
-      top: 23px;
+      height: 35vh;
       border-radius: 10px;
     }
 
@@ -247,6 +257,9 @@
       margin-left: 36px;
       font-weight: 600;
       font-size: $font-xl;
+    }
+    .link-select-group {
+      margin-top: 3vh;
     }
   }
 }

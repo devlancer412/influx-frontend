@@ -62,7 +62,7 @@ const Card = ({ name, followers, icon }) => {
             <span className="followers-count">$1000-5000$</span>
           </div>
           <div className="select">
-            <img src="img/select.png" className="select-image"></img>
+            <img src="img/Rectangle 55.png" className="select-image"></img>
           </div>
         </div>
       </div>
