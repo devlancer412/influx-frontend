@@ -6,9 +6,9 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className='w-screen flex flex-col'>
       <Navbar />
-      <div className='flex flex-row'>
+      <div className='flex flex-row bg-[#082129]'>
         <Sidebar />
-        {children}
+        <div className='flex-1'>{children}</div>
       </div>
     </div>
   );
