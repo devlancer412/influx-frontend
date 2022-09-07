@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+      },
+      backgroundPosition: {
+        'fragment': 'left top, left bottom'
       }
     },
   },
