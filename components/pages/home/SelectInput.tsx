@@ -69,7 +69,7 @@ const SelectInput: React.FC<Props> = ({
                             <></>
                           )}
                         </div>
-                        <p className='text-[10px] text-white capitalize text-start ml-[10px]'>
+                        <p className='text-[12px] text-white capitalize text-start ml-[10px]'>
                           {item}
                         </p>
                       </div>
