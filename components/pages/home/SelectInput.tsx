@@ -18,8 +18,13 @@ const SelectInput: React.FC<Props> = ({
   const [search, setSearch] = useState<string>('');
 
   return (
-    <div className='relative w-full my-[7px] bg-[#124B5280] rounded-[5px] py-[8px] px-[16px] text-[#FFFFFF66] text-[10px]'>
-      {value ? value : placeholder}
+    <div className='relative w-full my-[7px] bg-[#124B5280] rounded-[5px] py-[8px] px-[16px] text-[#FFFFFF66] text-[14px]'>
+      <div
+        className='w-full hover:cursor-pointer'
+        onClick={() => setSubMenu(true)}
+      >
+        {value ? value : placeholder}
+      </div>
       <FaAngleDown
         size={11}
         className='absolute top-1/2 -translate-y-1/2 right-[16px] hover:cursor-pointer'
@@ -51,7 +56,7 @@ const SelectInput: React.FC<Props> = ({
                   .map((item: string) =>
                     item !== '' ? (
                       <div
-                        className='w-full flex flex-row items-center my-[5px] hover:cursor-pointer'
+                        className='w-full flex flex-row items-center my-[10px] hover:cursor-pointer'
                         onClick={() => {
                           onChange(item);
                           setSubMenu(false);
@@ -64,7 +69,7 @@ const SelectInput: React.FC<Props> = ({
                             <></>
                           )}
                         </div>
-                        <p className='text-[6px] text-white capitalize text-start ml-[10px]'>
+                        <p className='text-[10px] text-white capitalize text-start ml-[10px]'>
                           {item}
                         </p>
                       </div>
