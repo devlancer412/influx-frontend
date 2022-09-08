@@ -116,6 +116,13 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
         </div>
         <div className='w-full h-4 bg-[#10E98C]' />
       </div>
+      {premium ? (
+        <div className='absolute top-0 right-0'>
+          <Image src='/images/ribbon.png' width={100} height={100} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
