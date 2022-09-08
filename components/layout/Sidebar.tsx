@@ -70,43 +70,43 @@ const Sidebar: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className='flex flex-col w-[326px] bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px]'>
-      <div className='w-full grid gap-y-4 grid-cols-1 mt-[156px]'>
+    <div className='flex flex-col bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px]'>
+      <div className='w-full grid gap-y-4 grid-cols-1 mt-[150px]'>
         {pages.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
-              className={`w-full pl-[62px] py-[20px] ${
+              className={`w-full pl-[30px] py-[15px] ${
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={28} height={28} />
-              <h3 className='text-white font-poppins text-[20px] leading-[28px] ml-[26px]'>
+              <Image src={page.iconUrl} width={25} height={25} />
+              <h3 className='text-white font-poppins leading-[28px] ml-[20px] text-[16px]'>
                 {page.title}
               </h3>
             </div>
           </Link>
         ))}
       </div>
-      <div className='w-full grid gap-y-4 grid-cols-1 mt-[128px]'>
+      <div className='w-full grid gap-y-4 grid-cols-1 mt-[100px]'>
         <Link href='/comingsoon'>
           <div className='flex flex-col items-start'>
             <div
-              className={`w-full pl-[50px] py-[20px] ${
+              className={`w-full pl-[20px] py-[20px] ${
                 router.pathname === '/comingsoon'
                   ? 'bg-[#D9D9D9] bg-opacity-30'
                   : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src='/icons/comingsoon.png' width={25} height={25} />
-              <h3 className='text-white font-poppins text-[24px] leading-[36px] ml-[26px] font-semibold'>
+              <Image src='/icons/comingsoon.png' width={23} height={23} />
+              <h3 className='text-white font-poppins leading-[36px] ml-[20px] font-semibold text-[20px]'>
                 Coming Soon
               </h3>
             </div>
-            <div className='grid grid-cols-1 gap-y-5 mt-[22px] text-start pl-[62px] opacity-80'>
+            <div className='grid grid-cols-1 gap-y-5 mt-[22px] text-start pl-[30px] opacity-80'>
               {comingsoons.map((title: string) => (
                 <h3
                   key={title}
-                  className='text-white font-poppins text-[20px] leading-[30px] font-semibold hover:cursor-pointer'
+                  className='text-white font-poppins leading-[30px] font-semibold hover:cursor-pointe text-[16px]'
                 >
                   {title}
                 </h3>
@@ -119,12 +119,12 @@ const Sidebar: React.FC = () => {
         {subpages.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
-              className={`w-full pl-[62px] py-[20px] ${
+              className={`w-full pl-[30px] py-[15px] ${
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={28} height={28} />
-              <h3 className='text-white font-poppins text-[20px] leading-[28px] ml-[26px]'>
+              <Image src={page.iconUrl} width={25} height={25} />
+              <h3 className='text-white font-poppins leading-[28px] ml-[20px] text-[16px]'>
                 {page.title}
               </h3>
             </div>
@@ -132,8 +132,8 @@ const Sidebar: React.FC = () => {
         ))}
       </div>
       <div className='w-full py-[20px] bg-[#D9D9D9] bg-opacity-50 flex flex-row justify-center items-center hover:cursor-pointer mt-[37px]'>
-        <Image src='/icons/logout.png' width={30} height={30} />
-        <h3 className='text-white font-poppins text-[24px] leading-[36px] ml-[12px] font-semibold'>
+        <Image src='/icons/logout.png' width={25} height={25} />
+        <h3 className='text-white font-poppins text-[20px] leading-[36px] ml-[12px] font-semibold'>
           Log Out
         </h3>
       </div>
