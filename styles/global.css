@@ -127,3 +127,19 @@
   font-weight: 250;
   font-style: italic;
 }
+
+
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: black;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #10E98CB3;
+  border-radius: 100vh;
+}

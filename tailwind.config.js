@@ -10,7 +10,7 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
       },
       backgroundPosition: {
-        'fragment': 'left top, left bottom'
+        'fragment': 'left top, left bottom, right bottom'
       }
     },
   },

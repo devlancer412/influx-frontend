@@ -23,6 +23,154 @@ import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import SelectInput from '../components/pages/home/SelectInput';
 import { AudienceLocations } from './../store/slices/filterSlice';
+import InfluenceList from '../components/pages/home/InfluenceList';
+
+const testInput = [
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_2.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: true,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_3.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_4.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_5.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_2.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: true,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_3.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_4.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_5.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    name: 'Alice',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+];
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -37,6 +185,7 @@ export default function Home() {
     tagsFilter,
   } = useSelector((store: RootState) => store.filter);
   const users = useSelector((store: RootState) => store.users);
+  const [influences, setInfluences] = useState<any[]>(testInput);
 
   return (
     <div className='w-full flex flex-col font-poppins'>
@@ -81,7 +230,7 @@ export default function Home() {
             </div>
             <div className='relative w-[70%] bg-[#243034] rounded-[10px] p-4 pl-[43px] pt-[30px] grid grid-cols-1 gap-y-10 shadow-[0_4px_4px_0px_#24303440]'>
               <div className='w-full h-full flex flex-row justify-between'>
-                <div className='flex flex-col w-[35%]'>
+                <div className='flex flex-col w-[35%] justify-around'>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
                       <h3 className='font-semibold text-[12px] text-white capitalize'>
@@ -161,7 +310,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='w-[50%] flex flex-col justify-between'>
-                  <div className='flex flex-col w-[70%]'>
+                  <div className='flex flex-col w-[70%] justify-around'>
                     <div className='flex flex-col items-start'>
                       <div className='flex flex-row justify-start items-center'>
                         <h3 className='font-semibold text-[12px] text-white capitalize'>
@@ -237,6 +386,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div className='flex flex-row items-center mt-[65px] mb-[45px] px-[80px] w-full'>
+        <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
+        <Image src='/images/splitermark.png' width={65} height={61} />
+        <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
+      </div>
+      <div className='flex flex-col px-[23px]'>
+        <InfluenceList influences={influences} />
       </div>
     </div>
   );
