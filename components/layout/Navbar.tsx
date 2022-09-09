@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Navbar: React.FC = () => {
   return (
-    <div className='w-full h-[56px] bg-[#404040] flex flex-row pr-[58px] pl-[30px] justify-between items-center'>
+    <div className='w-full h-[56px] bg-[#404040] flex flex-row pr-[58px] pl-[25px] justify-between items-center'>
       <Link href='/'>
         <div className='hover:cursor-pointer'>
           <Image src='/images/mark.png' width='180' height='56' />

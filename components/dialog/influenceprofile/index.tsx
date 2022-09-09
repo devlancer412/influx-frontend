@@ -4,8 +4,10 @@ import TagsSlideShow from './TagsSlideShow';
 import Link from 'next/link';
 
 import { BsPlusCircle, BsChat } from 'react-icons/bs';
+import { FaTimes } from 'react-icons/fa';
 
 import EngagementChart from './EngagementChart';
+import useDialog from '../../../hooks/useDialog';
 
 const chartData = [
   {
@@ -61,8 +63,16 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   bottomPrice,
   premium,
 }) => {
+  const { hideDialog } = useDialog();
+
   return (
-    <div className='w-[1000px] p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] max-h-[90vh] overflow-y-auto scrollbar'>
+    <div className='relative w-[1000px] p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] max-h-[90vh] overflow-y-auto scrollbar'>
+      <div
+        className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
+        onClick={hideDialog}
+      >
+        <FaTimes />
+      </div>
       <div className='flex flex-col items-center font-poppins'>
         <h1 className='font-bold text-[36px] text-white mb-[45px] z-20'>
           Influencer Profile
