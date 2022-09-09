@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <div id='modal-root' className='absolute top-0 left-0'></div>
     </Providers>
   );
 }

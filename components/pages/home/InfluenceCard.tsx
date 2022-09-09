@@ -1,8 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import useDialog from '../../../hooks/useDialog';
+import InfluenceProfile from '../../dialog/influenceprofile';
 type InfluenceProps = {
   name: string;
+  nickName: string;
   imageUrl: string;
   youtube?: string;
   telegram?: string;
@@ -16,6 +19,7 @@ type InfluenceProps = {
 
 const InfluenceCard: React.FC<InfluenceProps> = ({
   name,
+  nickName,
   imageUrl,
   youtube,
   telegram,
@@ -26,8 +30,30 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
   bottomPrice,
   premium,
 }) => {
+  const { showDialog } = useDialog();
   return (
-    <div className='relative flex flex-col items-center bg-[#243034]'>
+    <div
+      className='relative flex flex-col items-center bg-[#243034] hover:cursor-pointer'
+      onClick={() =>
+        showDialog(
+          <InfluenceProfile
+            {...{
+              name,
+              nickName,
+              imageUrl,
+              youtube,
+              telegram,
+              twitter,
+              followers,
+              er,
+              topPrice,
+              bottomPrice,
+              premium,
+            }}
+          />
+        )
+      }
+    >
       <h3 className='w-full text-center text-[white]  text-4 leading-6 py-[7px] bg-[#D9D9D966]'>
         {name}
       </h3>
@@ -41,7 +67,7 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
         <div className='flex flex-col flex-1 items-center'>
           <div className='flex flex-col items-stretch w-fit'>
             <p className='text-white text-[14px] font-semibold mb-[10px]'>
-              @influence
+              @{nickName}
             </p>
             <div className='flex flex-row w-full justify-around items-center'>
               {youtube ? (
@@ -118,7 +144,7 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
       </div>
       {premium ? (
         <div className='absolute top-0 right-0'>
-          <Image src='/images/ribbon.png' width={100} height={100} />
+          <Image src='/images/ribbon.png' width={90} height={100} />
         </div>
       ) : (
         <></>

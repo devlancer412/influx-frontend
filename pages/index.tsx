@@ -28,6 +28,7 @@ import InfluenceList from '../components/pages/home/InfluenceList';
 const testInput = [
   {
     name: 'Alice',
+    nickName: 'Influence',
     imageUrl: '/img/user_1.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -39,7 +40,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Bob',
+    nickName: 'Influence',
     imageUrl: '/img/user_2.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -51,7 +53,8 @@ const testInput = [
     premium: true,
   },
   {
-    name: 'Alice',
+    name: 'Vault',
+    nickName: 'Influence',
     imageUrl: '/img/user_3.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -64,6 +67,7 @@ const testInput = [
   },
   {
     name: 'Alice',
+    nickName: 'Influence',
     imageUrl: '/img/user_4.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -75,7 +79,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Bob',
+    nickName: 'Influence',
     imageUrl: '/img/user_5.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -87,7 +92,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Vault',
+    nickName: 'Influence',
     imageUrl: '/img/user_1.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -100,6 +106,7 @@ const testInput = [
   },
   {
     name: 'Alice',
+    nickName: 'Influence',
     imageUrl: '/img/user_1.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -111,7 +118,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Bob',
+    nickName: 'Influence',
     imageUrl: '/img/user_2.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -123,7 +131,8 @@ const testInput = [
     premium: true,
   },
   {
-    name: 'Alice',
+    name: 'Vault',
+    nickName: 'Influence',
     imageUrl: '/img/user_3.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -136,6 +145,7 @@ const testInput = [
   },
   {
     name: 'Alice',
+    nickName: 'Influence',
     imageUrl: '/img/user_4.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -147,7 +157,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Bob',
+    nickName: 'Influence',
     imageUrl: '/img/user_5.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
@@ -159,7 +170,8 @@ const testInput = [
     premium: false,
   },
   {
-    name: 'Alice',
+    name: 'Vault',
+    nickName: 'Influence',
     imageUrl: '/img/user_1.png',
     youtube: 'https://fakeurl/',
     telegram: 'https://fakeurl/',
