@@ -77,24 +77,22 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           <p className='text-[24px] text-white leading-[36px] opacity-80'>
             @{nickName}
           </p>
-          <table className='table-auto w-full text-[24px] leading-[36px]'>
-            <thead className='font-semibold text-white'>
-              <tr>
-                <th className='py-2'>Followers</th>
-                <th className='py-2'>ER</th>
-                <th className='py-2'>Price Range</th>
-              </tr>
-            </thead>
-            <tbody className='font-extrabold text-[#10E98C]'>
-              <tr>
-                <th className='py-2'>{followers}K</th>
-                <th className='py-2'>{er}</th>
-                <th className='py-2'>
-                  ${bottomPrice}-${topPrice}
-                </th>
-              </tr>
-            </tbody>
-          </table>
+          <div className='w-[500px] grid grid-cols-3 gap-0 text-[24px] leading-[36px] font-semibold mt-2'>
+            <div className='flex flex-col items-center'>
+              <h3 className='text-white mb-3'>Followers</h3>
+              <h3 className='text-[#10E98C]'>{followers}K</h3>
+            </div>
+            <div className='flex flex-col items-center'>
+              <h3 className='text-white mb-3'>ER</h3>
+              <h3 className='text-[#10E98C]'>{er}K</h3>
+            </div>
+            <div className='flex flex-col items-center'>
+              <h3 className='text-white mb-3'>Price Range</h3>
+              <h3 className='text-[#10E98C]'>
+                ${bottomPrice}-${topPrice}
+              </h3>
+            </div>
+          </div>
           <div className='rounded-[10px] py-[13px] px-[83px] bg-[#FFFF00] text-black font-semibold text-[14px] leading-[21px] mt-5'>
             This influencer does paid promotions
           </div>
