@@ -71,42 +71,42 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className='flex flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px]'>
-      <div className='w-full grid gap-y-1 grid-cols-1'>
+      <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
         {pages.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
-              className={`w-full pl-[30px] py-[10px] ${
+              className={`w-full pl-[30px] py-[1vh] ${
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={25} height={25} />
-              <h3 className='text-white font-poppins leading-[28px] ml-[20px] text-[16px]'>
+              <Image src={page.iconUrl} width={20} height={20} />
+              <h3 className='text-white font-poppins leading-[28px] ml-[20px] text-[1.7vh]'>
                 {page.title}
               </h3>
             </div>
           </Link>
         ))}
       </div>
-      <div className='w-full grid gap-y-1 grid-cols-1'>
+      <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
         <Link href='/comingsoon'>
           <div className='flex flex-col items-start'>
             <div
-              className={`w-full pl-[20px] py-[10px] ${
+              className={`w-full pl-[30px] py-[1vh] ${
                 router.pathname === '/comingsoon'
                   ? 'bg-[#D9D9D9] bg-opacity-30'
                   : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src='/icons/comingsoon.png' width={23} height={23} />
-              <h3 className='text-white font-poppins leading-[36px] ml-[20px] font-semibold text-[20px]'>
+              <Image src='/icons/comingsoon.png' width={20} height={20} />
+              <h3 className='text-white font-poppins leading-[2.5vh] ml-[20px] font-semibold text-[1.7vh]'>
                 Coming Soon
               </h3>
             </div>
-            <div className='grid grid-cols-1 gap-y-5 mt-[15px] text-start pl-[30px] opacity-80'>
+            <div className='grid grid-cols-1 gap-y-5 mt-[10px] text-start pl-[40px] opacity-80'>
               {comingsoons.map((title: string) => (
                 <h3
                   key={title}
-                  className='text-white font-poppins leading-[30px] font-semibold hover:cursor-pointe text-[16px]'
+                  className='text-white font-poppins leading-[2vh] font-semibold hover:cursor-pointe text-[1.5vh]'
                 >
                   {title}
                 </h3>
@@ -115,7 +115,7 @@ const Sidebar: React.FC = () => {
           </div>
         </Link>
       </div>
-      <div className='w-full grid gap-y-1 grid-cols-1'>
+      <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
         {subpages.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
@@ -123,17 +123,17 @@ const Sidebar: React.FC = () => {
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={25} height={25} />
-              <h3 className='text-white font-poppins leading-[28px] ml-[20px] text-[16px]'>
+              <Image src={page.iconUrl} width={20} height={20} />
+              <h3 className='text-white font-poppins leading-[2.5vh] ml-[20px] text-[1.7vh]'>
                 {page.title}
               </h3>
             </div>
           </Link>
         ))}
       </div>
-      <div className='w-full py-[20px] bg-[#D9D9D9] bg-opacity-50 flex flex-row justify-center items-center hover:cursor-pointer'>
-        <Image src='/icons/logout.png' width={25} height={25} />
-        <h3 className='text-white font-poppins text-[20px] leading-[36px] ml-[12px] font-semibold'>
+      <div className='w-full py-[15px] bg-[#D9D9D9] bg-opacity-50 flex flex-row justify-center items-center hover:cursor-pointer'>
+        <Image src='/icons/logout.png' width={20} height={20} />
+        <h3 className='text-white font-poppins text-[20px] leading-[2.5vh] ml-[12px] font-semibold'>
           Log Out
         </h3>
       </div>

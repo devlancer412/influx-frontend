@@ -10,7 +10,7 @@ const CampaignList: React.FC = () => {
       <ul className='font-semibold text-[24px] leading-[36px] text-white capitalize list-disc list-inside mb-[43px]'>
         <li>Discover the biggest list of over vetted crypto influencers</li>
       </ul>
-      <div className='w-full grid grid-cols-1 gap-[60px] max-h-[1400px] px-[13px] overflow-y-auto scrollbar'>
+      <div className='w-full grid grid-cols-1 gap-[60px] px-[13px]'>
         {campaigns.map((campaign) => (
           <CampaignCard {...campaign} />
         ))}
