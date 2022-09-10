@@ -3,63 +3,24 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useDialog from '../../../hooks/useDialog';
 import InfluenceProfile from '../../dialog/influenceprofile';
-type InfluenceProps = {
-  name: string;
-  nickName: string;
-  imageUrl: string;
-  youtube?: string;
-  telegram?: string;
-  twitter?: string;
-  followers: number;
-  er: 'Good' | 'Normal' | 'Bad';
-  topPrice: number;
-  bottomPrice: number;
-  premium: boolean;
+
+type Props = {
+  influence: Influence;
 };
 
-const InfluenceCard: React.FC<InfluenceProps> = ({
-  name,
-  nickName,
-  imageUrl,
-  youtube,
-  telegram,
-  twitter,
-  followers,
-  er,
-  topPrice,
-  bottomPrice,
-  premium,
-}) => {
+const InfluenceCard: React.FC<Props> = ({ influence}) => {
   const { showDialog } = useDialog();
   return (
     <div
       className='relative flex flex-col items-center bg-[#243034] hover:cursor-pointer'
-      onClick={() =>
-        showDialog(
-          <InfluenceProfile
-            {...{
-              name,
-              nickName,
-              imageUrl,
-              youtube,
-              telegram,
-              twitter,
-              followers,
-              er,
-              topPrice,
-              bottomPrice,
-              premium,
-            }}
-          />
-        )
-      }
+      onClick={() => showDialog(<InfluenceProfile {...influence} />)}
     >
       <h3 className='w-full text-center text-[white]  text-4 leading-6 py-[7px] bg-[#D9D9D966]'>
-        {name}
+        {influence?.name}
       </h3>
       <div className='w-full flex flex-row items-center py-[29px] px-[23px]'>
         <Image
-          src={imageUrl}
+          src={influence?.imageUrl}
           width={98}
           height={98}
           className='rounded-full mr-8'
@@ -67,11 +28,11 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
         <div className='flex flex-col flex-1 items-center'>
           <div className='flex flex-col items-stretch w-fit'>
             <p className='text-white text-[14px] font-semibold mb-[10px]'>
-              @{nickName}
+              @{influence?.nickName}
             </p>
             <div className='flex flex-row w-full justify-around items-center'>
-              {youtube ? (
-                <Link href={youtube}>
+              {influence?.youtube ? (
+                <Link href={influence?.youtube}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
                     <Image
                       src='/icons/youtube.png'
@@ -84,8 +45,8 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
               ) : (
                 <></>
               )}
-              {telegram ? (
-                <Link href={telegram}>
+              {influence?.telegram ? (
+                <Link href={influence?.telegram}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
                     <Image
                       src='/icons/telegram.png'
@@ -98,8 +59,8 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
               ) : (
                 <></>
               )}
-              {twitter ? (
-                <Link href={twitter}>
+              {influence?.twitter ? (
+                <Link href={influence?.twitter}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
                     <Image
                       src='/icons/twitter.png'
@@ -120,19 +81,19 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>Followers</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
-            {followers}K
+            {influence?.followers}K
           </p>
         </div>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>ER</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
-            {er}
+            {influence?.er}
           </p>
         </div>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white'>
           <>Price Range</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
-            ${bottomPrice}-${topPrice}
+            ${influence?.bottomPrice}-${influence?.topPrice}
           </p>
         </div>
       </div>
@@ -142,7 +103,7 @@ const InfluenceCard: React.FC<InfluenceProps> = ({
         </div>
         <div className='w-full h-4 bg-[#10E98C]' />
       </div>
-      {premium ? (
+      {influence?.premium ? (
         <div className='absolute top-0 right-0'>
           <Image src='/images/ribbon.png' width={90} height={100} />
         </div>

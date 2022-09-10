@@ -2,14 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 
-type Campaign = {
-  id: number;
-  name: string;
-  influencers: number;
-  averageEngagementRate: 'Good' | 'Normal' | 'Bad';
-  budget: number;
-};
-
 const CampaignCard: React.FC<Campaign> = ({
   id,
   name,
@@ -23,7 +15,7 @@ const CampaignCard: React.FC<Campaign> = ({
         <h3 className='w-full bg-[#00A0B0] py-[6px] text-[16px] leading-[24px] text-white capitalize font-medium text-center rounded-t-[10px]'>
           {name}
         </h3>
-        <Link href={`/campagin/${id}`}>
+        <Link href={`/campaign/${id}`}>
           <div className='absolute w-5 h-5 flex justify-center items-center bg-[#41666FB3] top-1/2 -translate-y-1/2 right-2 rounded-full hover:cursor-pointer'>
             <FaEllipsisV size={12} color='white' />
           </div>
