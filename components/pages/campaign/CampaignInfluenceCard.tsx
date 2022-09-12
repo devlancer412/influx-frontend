@@ -9,7 +9,7 @@ type Props = {
 
 const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
   return (
-    <div className='relative flex flex-row items-center bg-[#314146] h-[120px]'>
+    <div className='relative flex flex-row items-center bg-[#314146] h-[120px] overflow-hidden'>
       <div className='flex flex-row w-1/2 justify-around items-center'>
         <div className='flex flex-row w-1/2 items-center justify-around py-[29px] px-[23px]'>
           <Image
@@ -119,6 +119,14 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
       <div className='absolute w-5 h-5 flex justify-center items-center bg-[#41666FB3] top-[14px] right-8 rounded-full hover:cursor-pointer'>
         <FaEllipsisV size={12} color='white' />
       </div>
+      {influence.premium ? (
+        <div className='absolute top-[17px] bg-[#FFFF00] -left-[46px] flex flex-row justify-center items-center py-1 w-[150px] text-[12px] text-black font-medium -rotate-[45deg]'>
+          <div className='mr-1'>VIP</div>
+          <Image src='/icons/crown.png' width={12} height={12} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
