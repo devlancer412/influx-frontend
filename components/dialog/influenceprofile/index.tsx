@@ -128,15 +128,18 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             <div className='w-[500px] grid grid-cols-3 gap-[53px] mt-7'>
               {youtube ? (
                 <Link href={youtube}>
-                  <div className='py-[10px] w-[132px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-center items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-[10px] w-[160px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/youtube.png'
                       width={16}
                       height={16}
                       objectFit='contain'
                     />
-                    <h3 className='text-white font-semibold text-[16px] capitalize ml-[7px]'>
+                    <h3 className='text-white font-semibold text-[16px] leading-[20px] capitalize ml-[7px]'>
                       youtube
+                    </h3>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                      2M
                     </h3>
                   </div>
                 </Link>
@@ -145,7 +148,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
               {telegram ? (
                 <Link href={telegram}>
-                  <div className='py-[10px] w-[132px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-center items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-[10px] w-[160px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/telegram.png'
                       width={16}
@@ -155,6 +158,9 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <h3 className='text-white font-semibold text-[16px] capitalize ml-[7px]'>
                       telegram
                     </h3>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                      119K
+                    </h3>
                   </div>
                 </Link>
               ) : (
@@ -162,7 +168,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
               {twitter ? (
                 <Link href={twitter}>
-                  <div className='py-[10px] w-[132px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-center items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-[10px] w-[160px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/twitter.png'
                       width={16}
@@ -171,6 +177,9 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     />
                     <h3 className='text-white font-semibold text-[16px] capitalize ml-[7px]'>
                       twitter
+                    </h3>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                      119K
                     </h3>
                   </div>
                 </Link>
