@@ -9,7 +9,7 @@ type Props = {
 
 const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
   return (
-    <div className='relative flex flex-row items-center bg-[#243034] h-[120px]'>
+    <div className='relative flex flex-row items-center bg-[#314146] h-[120px]'>
       <div className='flex flex-row w-1/2 justify-around items-center'>
         <div className='flex flex-row w-1/2 items-center justify-around py-[29px] px-[23px]'>
           <Image
