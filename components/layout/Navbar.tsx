@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
   return (
     <div className='w-full h-[56px] bg-[#404040] flex flex-row pr-[58px] pl-[25px] justify-between items-center'>
       <Link href='/'>
-        <div className='hover:cursor-pointer'>
+        <div className='hover:cursor-pointer h-full flex flex-row items-center'>
           <Image src='/images/mark.png' width='180' height='56' />
         </div>
       </Link>

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 const CampaignList: React.FC = () => {
-  const campaigns = useSelector((store: RootState) => store.campains);
+  const campaigns = useSelector((store: RootState) => store.campaigns);
   return (
     <div className='pl-[48px] pr-[33px] py-[75px] flex flex-col font-poppins'>
       <ul className='font-semibold text-[24px] leading-[36px] text-white capitalize list-disc list-inside mb-[43px]'>

@@ -54,7 +54,7 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
       <div className='pl-10 w-full overflow-x-hidden mt-8 mb-[30px]'>
         <div className='float-lefft w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10'>
           {influences.map((influence, index) => (
-            <InfluenceCard key={index} {...influence} />
+            <InfluenceCard key={index} influence={influence} />
           ))}
         </div>
       </div>

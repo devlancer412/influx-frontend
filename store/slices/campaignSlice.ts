@@ -1,82 +1,75 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export type Campaign = {
-  id: number;
-  name: string;
-  influencers: number;
-  averageEngagementRate: 'Good' | 'Normal' | 'Bad';
-  budget: number;
-};
 type CampaignsState = Campaign[];
 
 const initialState: CampaignsState = [
   {
     id: 0,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 1,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 2,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 3,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 4,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 5,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 6,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 7,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 8,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
   },
   {
     id: 7,
-    name: 'Text Campagin 1',
+    name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
