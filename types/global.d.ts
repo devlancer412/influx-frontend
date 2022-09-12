@@ -1,3 +1,10 @@
+import {
+  Categories,
+  Regions,
+  Chains,
+  Attributes,
+  EsBudgets,
+} from '../constant';
 export {};
 
 declare global {
@@ -23,5 +30,41 @@ declare global {
     topPrice: number;
     bottomPrice: number;
     premium: boolean;
+  }
+
+  type Category = typeof Categories[number];
+  type Region = typeof Regions[number];
+  type Chain = typeof Chains[number];
+  type Attribute = typeof Attributes[number];
+  type ExBudget = typeof EsBudgets[number];
+
+  interface LaunchSetting {
+    name: string;
+    setted: boolean;
+    value: string;
+    placeholder: string;
+  }
+
+  interface BrandProfile {
+    name: string;
+    avatar: string;
+    website: string;
+    description: string;
+    channels: {
+      twitter?: string;
+      instagram?: string;
+      discord?: string;
+      youtube?: string;
+    };
+    mainTgChannel: string;
+    category: Category | '';
+    region: Region | '';
+    chain: Chain | '';
+    attribute: Attribute | '';
+    esBudget: ExBudget | '';
+    launchSettings: LaunchSetting[];
+    isWL: boolean;
+    isAirdrop: boolean;
+    isPremint: boolean;
   }
 }

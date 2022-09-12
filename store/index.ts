@@ -4,6 +4,7 @@ import filterSlice from './slices/filterSlice';
 import usersSlice from './slices/usersSlice';
 import campaignSlice from './slices/campaignSlice';
 import influencesSlice from './slices/influencesSlice';
+import profileSlice from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     users: usersSlice,
     campaigns: campaignSlice,
     influences: influencesSlice,
+    brandProfile: profileSlice,
   },
 });
 
