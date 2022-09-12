@@ -11,7 +11,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
       </div> */}
       <div className='w-screen h-screen flex flex-col z-10 bg-[#082129]'>
         <Navbar />
-        <div className='flex flex-row h-[calc(100vh-56px)] items-stretch bg-[url("/images/bg_fragment1.png"),url("/images/bg_fragment2.png"),url("/images/bg-fragment3.png")] bg-no-repeat bg-fragment'>
+        <div className='flex flex-row h-[calc(100vh-56px)] items-stretch bg-[url("/images/bg_fragment1.png"),url("/images/bg_fragment2.png"),url("/images/bg-fragment3.png")] bg-no-repeat bg-fragment bg-30%'>
           <Sidebar />
           <div className='flex-1 h-full overflow-y-scroll scrollbar'>
             {children}
