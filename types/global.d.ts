@@ -75,4 +75,16 @@ declare global {
     discounted?: number;
     benifits: string[];
   };
+
+  type SocialFilterProps = {
+    iconUrl: string;
+    title: string;
+    selected: boolean;
+  };
+
+  type MenuProps = {
+    title: string;
+    iconUrl: string;
+    url: string;
+  };
 }

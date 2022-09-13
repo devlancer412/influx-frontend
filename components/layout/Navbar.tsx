@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { isMobile } from 'react-device-detect';
 
 type Props = {
   toggleSidebar: () => void;
@@ -17,13 +16,9 @@ const Navbar: React.FC<Props> = ({ toggleSidebar }) => {
       <div className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] hidden md:block'>
         List your influencers
       </div>
-      {isMobile ? (
-        <div className='absolute left-[33px]' onClick={toggleSidebar}>
-          <Image src='/icons/menu.svg' width={26} height={10} />
-        </div>
-      ) : (
-        <></>
-      )}
+      <div className='absolute left-[33px] md:hidden' onClick={toggleSidebar}>
+        <Image src='/icons/menu.svg' width={26} height={10} />
+      </div>
     </div>
   );
 };

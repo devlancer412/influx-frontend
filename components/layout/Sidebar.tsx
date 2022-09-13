@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { isMobile } from 'react-device-detect';
 
-type MenuProps = {
-  title: string;
-  iconUrl: string;
-  url: string;
-};
-
-const pages: MenuProps[] = [
+const menus: MenuProps[] = [
   {
     title: 'Discover',
     iconUrl: '/icons/cover.png',
@@ -39,7 +33,7 @@ const pages: MenuProps[] = [
   },
 ];
 
-const subpages: MenuProps[] = [
+const submenus: MenuProps[] = [
   {
     title: 'I am an Influencer',
     iconUrl: '/icons/campaign.png',
@@ -68,21 +62,13 @@ const comingsoons: string[] = [
   'Canpaign BOOSTER',
 ];
 
-type Props = {
-  hideSidebar: boolean;
-};
-
-const Sidebar: React.FC<Props> = ({ hideSidebar }) => {
+const Sidebar: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div
-      className={`flex flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-screen h-[calc(100vh-56px)] fixed md:relative md:w-[240px] z-10 ${
-        hideSidebar && isMobile ? '-translate-x-full' : 'translate-x-0'
-      } transition-transform`}
-    >
+    <div className='flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px] hidden md:flex'>
       <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
-        {pages.map((page: MenuProps) => (
+        {menus.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
               className={`w-full pl-[30px] py-[1vh] ${
@@ -126,7 +112,7 @@ const Sidebar: React.FC<Props> = ({ hideSidebar }) => {
         </Link>
       </div>
       <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
-        {subpages.map((page: MenuProps) => (
+        {submenus.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
             <div
               className={`w-full pl-[30px] py-[10px] ${
