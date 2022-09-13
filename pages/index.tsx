@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { isMobile } from 'react-device-detect';
+import { MdOutlinePriceCheck } from 'react-icons/md';
+import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
+import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
+
 import SocialSelect from '../components/pages/home/SocialSelect';
 import { RootState } from '../store/index';
 import {
@@ -17,9 +22,6 @@ import {
   Tags,
   setTagsFilter,
 } from '../store/slices/filterSlice';
-import { MdOutlinePriceCheck } from 'react-icons/md';
-import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
-import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import SelectInput from '../components/pages/home/SelectInput';
 import { AudienceLocations } from './../store/slices/filterSlice';
@@ -43,8 +45,11 @@ export default function Home() {
   return (
     <div className='w-full flex flex-col font-poppins'>
       <div className='flex flex-col p-[58px]'>
-        <ul className='font-semibold text-[24px] leading-[36px] text-white capitalize list-disc list-inside'>
-          <li>Discover the biggest list of over vetted crypto influencers</li>
+        <ul className='font-semibold text-[20px] md:text-[24px] leading-[30px] md:leading-[36px] text-white list-none md:list-disc list-inside uppercase md:capitalize'>
+          <li>
+            Discover {isMobile ? <br /> : <></>} the biggest list of over vetted
+            crypto influencers
+          </li>
         </ul>
         <div className='flex flex-col items-end'>
           <div className='flex flex-row items-center mb-[13px]'>

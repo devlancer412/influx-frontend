@@ -79,19 +79,22 @@ const PlanAndBilling: NextPage = () => {
           </div>
         ))}
       </div>
-      <div className='flex flex-row items-center mt-[63px] mb-[5px] w-full'>
+      <div className='flex flex-row items-center mt-[63px] w-full'>
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
         <Image src='/images/splitermark.png' width={65} height={61} />
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
       </div>
-      <h1 className='w-full font-extrabold text-[40px] leading-[60px] text-white mb-1'>
-        Optional Services
-      </h1>
-      <p className='w-full text-[16px] leading-[24px] text-[#CCCCCC] mb-[30px]'>
-        List in the exclusive VIP club
-      </p>
-      <div className='w-full bg-[#304146] border border-white px-[51px] py-[17px] flex flex-col items-center'>
-        <div className='w-full grid grid-cols-2 gap-x-0 gap-y-[34px] py-10'>
+      <div className='w-full bg-[#304146] border border-white px-[51px] py-[34px] flex flex-col items-center my-[62px]'>
+        <h1 className='w-full font-extrabold text-[40px] leading-[60px] text-white mb-1 ml-[41px]'>
+          Optional Services
+          <span className='font-bold text-[40px] leading-[60px] text-[#10E98C] ml-[17px]'>
+            $500
+          </span>
+        </h1>
+        <p className='w-full text-[16px] leading-[24px] text-[#CCCCCC] ml-[41px]'>
+          List in the exclusive VIP club
+        </p>
+        <div className='w-full grid grid-cols-2 gap-x-0 gap-y-[22px] my-10'>
           {optionalServices.map((service, index) => (
             <div
               key={service}
@@ -106,15 +109,12 @@ const PlanAndBilling: NextPage = () => {
             </div>
           ))}
         </div>
-        <h1 className='font-bold text-[40px] leading-[60px] text-white mb-4'>
-          $500
-        </h1>
         <div className='grid grid-cols-2 gap-[25px]'>
           <div className='bg-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-black text-[15px] leading-[22px] text-center'>
             Get Listed
           </div>
           <div className='border border-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-white text-[15px] leading-[22px] text-center'>
-            Get Listed
+            Contact Us
           </div>
         </div>
       </div>

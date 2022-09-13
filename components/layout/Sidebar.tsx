@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { isMobile } from 'react-device-detect';
 
 type MenuProps = {
   title: string;
@@ -66,11 +68,19 @@ const comingsoons: string[] = [
   'Canpaign BOOSTER',
 ];
 
-const Sidebar: React.FC = () => {
+type Props = {
+  hideSidebar: boolean;
+};
+
+const Sidebar: React.FC<Props> = ({ hideSidebar }) => {
   const router = useRouter();
 
   return (
-    <div className='flex flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px]'>
+    <div
+      className={`flex flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-screen h-[calc(100vh-56px)] fixed md:relative md:w-[240px] z-10 ${
+        hideSidebar && isMobile ? '-translate-x-full' : 'translate-x-0'
+      } transition-transform`}
+    >
       <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
         {pages.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>
