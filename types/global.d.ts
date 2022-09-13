@@ -67,4 +67,12 @@ declare global {
     isAirdrop: boolean;
     isPremint: boolean;
   }
+
+  type Billing = {
+    name: string;
+    price: number;
+    per: string;
+    discounted?: number;
+    benifits: string[];
+  };
 }
