@@ -11,10 +11,10 @@ const BillingCard: React.FC<Billing> = ({
 }) => {
   return (
     <div className='w-full border border-white bg-[#304146] px-[31px] py-[23px] flex flex-col items-start'>
-      <h1 className='font-extrabold text-[32px] leading-[48px] text-white mb-[10px]'>
+      <h1 className='font-bold text-[32px] leading-[48px] text-white mb-[10px]'>
         {name}
       </h1>
-      <h2 className='font-semibold text-[36px] leading-[54px] text-[#10E98C]'>
+      <h2 className='font-medium text-[36px] leading-[54px] text-[#10E98C]'>
         ${price}
         <span className='ml-[13px] text-[14px] leading-[21px] text-[#CCCCCC]'>
           {per}
