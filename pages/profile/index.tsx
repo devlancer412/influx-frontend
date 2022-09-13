@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
   }, [_profile]);
 
   return (
-    <div className='w-full px-[70px] py-[23px] flex justify-center items-center'>
+    <div className='w-full px-[70px] py-[23px] flex justify-center items-center font-poppins'>
       <div className='w-full max-w-[980px] flex flex-col items-center overflow-hidden'>
         <h1 className='w-full font-semibold text-[32px] leading-[42px] capitalize text-white text-center mb-5'>
           Brand Profile
