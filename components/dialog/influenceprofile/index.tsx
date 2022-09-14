@@ -87,9 +87,9 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           <p className='text-white opacity-80 text-[14px] leading-[21px] md:text-[24px] md:leading-[36px]'>
             @{nickName}
           </p>
-          <div className='w-[90%] max-w-[500px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[14px] leading-[21px] md:text-[24px] md:leading-[36px]'>
+          <div className='w-[90%] max-w-[600px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[14px] leading-[21px] md:text-[24px] md:leading-[36px]'>
             <div className='flex flex-col items-center'>
-              <h3 className='text-white mb-3'>Followers</h3>
+              <h3 className='text-white mb-3'>Audience Size</h3>
               <h3 className='text-[#10E98C]'>{followers}K</h3>
             </div>
             <div className='flex flex-col items-center'>

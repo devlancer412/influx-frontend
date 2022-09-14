@@ -75,7 +75,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
         </div>
         <ul className='grid-cols-1 gap-[10px] w-full lg:w-1/2 text-[13px] leading-[20px] text-[#CCCCCC] my-[23px] list-disc list-inside hidden lg:grid'>
           <li>
-            Followers{' '}
+            Audience Size{' '}
             <span className='font-bold text-[#10E98C] text-[16px] leading-[21px] ml-[13px]'>
               {influence?.followers}K
             </span>
@@ -95,7 +95,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
         </ul>
         <div className='w-[90%] max-w-[500px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[10px] leading-[15px] lg:hidden'>
           <div className='flex flex-col items-center'>
-            <h3 className='text-white mb-3'>Followers</h3>
+            <h3 className='text-white mb-3'>Audience Size</h3>
             <h3 className='text-[#10E98C] text-[13px] leading-[20px]'>
               {influence?.followers}K
             </h3>
