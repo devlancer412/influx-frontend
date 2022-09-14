@@ -31,6 +31,7 @@ import MobileChannelSelect from '../components/pages/home/MobileChannelSelect';
 import MobileSelectInput from '../components/pages/home/MobileSelectInput';
 import { PriceRanges } from '../constant';
 import { isMobile } from 'react-device-detect';
+import MultiSelectInput from './../components/pages/home/MultiSelectInput';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -225,11 +226,14 @@ export default function Home() {
                     #
                   </div>
                 </div>
-                <input
+
+                <MultiSelectInput
+                  items={Tags}
                   value={tagsFilter}
-                  onChange={(e) => dispatch(setTagsFilter(e.target.value))}
-                  className='w-full border border-[#10E98C80] bg-[#1B3D43] text-center py-[9px] text-[10px] leading-[15px] text-[#FFFFFF64] capitalize'
-                  placeholder='type some keywords'
+                  placeholder='Choose some keywords'
+                  onChange={(value) => {
+                    dispatch(setTagsFilter(value));
+                  }}
                 />
               </div>
             </div>
@@ -403,7 +407,7 @@ export default function Home() {
                         </div>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
+                      <MultiSelectInput
                         items={Tags}
                         value={tagsFilter}
                         placeholder='Choose some keywords'

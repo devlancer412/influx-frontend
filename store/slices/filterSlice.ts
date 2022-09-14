@@ -64,7 +64,7 @@ type FilterState = {
   audienceSizeFilter: AudienceSizeFilter;
   userNameFilter: string;
   audienceLocationFilter: AudienceLocationFilter;
-  tagsFilter: TagsFilter;
+  tagsFilter: TagsFilter[];
 };
 
 const initialState: FilterState = {
@@ -78,7 +78,7 @@ const initialState: FilterState = {
   audienceSizeFilter: '0 - 1000',
   userNameFilter: '',
   audienceLocationFilter: '',
-  tagsFilter: '',
+  tagsFilter: [],
 };
 
 export const filterSlice = createSlice({
@@ -145,11 +145,11 @@ export const filterSlice = createSlice({
     },
     setTagsFilter: (
       state: FilterState,
-      action: PayloadAction<string>
+      action: PayloadAction<string[]>
     ): FilterState => {
       return {
         ...state,
-        tagsFilter: action.payload as TagsFilter,
+        tagsFilter: action.payload as TagsFilter[],
       };
     },
   },
