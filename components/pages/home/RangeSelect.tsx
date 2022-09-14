@@ -28,7 +28,7 @@ const StyledThumb = styled.div`
 const PriceShow = styled.div`
   position: absolute;
   font-weight: 400;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 16px;
   padding: 0px 5px;
   border: 1px solid #cccccc;
