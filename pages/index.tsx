@@ -27,10 +27,7 @@ import {
 import RangeSelect from '../components/pages/home/RangeSelect';
 import SelectInput from '../components/pages/home/SelectInput';
 import InfluenceList from '../components/pages/home/InfluenceList';
-import MobileChannelSelect from '../components/pages/home/MobileChannelSelect';
 import MobileSelectInput from '../components/pages/home/MobileSelectInput';
-import { PriceRanges } from '../constant';
-import { isMobile } from 'react-device-detect';
 import MultiSelectInput from './../components/pages/home/MultiSelectInput';
 
 export default function Home() {
@@ -47,23 +44,6 @@ export default function Home() {
   } = useSelector((store: RootState) => store.filter);
   const influences = useSelector((store: RootState) => store.influences);
   const users = useSelector((store: RootState) => store.users);
-  const [priceRange, setPriceRange] = useState<string>(PriceRanges[0]);
-
-  useEffect(() => {
-    if (isMobile) {
-      const prices = priceRange
-        .split(' - ')
-        .map((item) => item.substring(1, item.length))
-        .map((item) => parseInt(item));
-
-      dispatch(
-        setPriceFilter({
-          top: prices[1],
-          bottom: prices[0],
-        })
-      );
-    }
-  }, [priceRange]);
 
   return (
     <div className='w-full flex flex-col font-poppins'>
@@ -128,10 +108,13 @@ export default function Home() {
                     className='mx-1'
                   />
                 </div>
-                <MobileSelectInput
-                  items={PriceRanges}
-                  value={priceRange}
-                  onChange={(value) => setPriceRange(value)}
+                <RangeSelect
+                  value0={priceFilter.bottom}
+                  value1={priceFilter.top}
+                  top={10000}
+                  onChange={(top, bottom) => {
+                    dispatch(setPriceFilter({ top, bottom }));
+                  }}
                 />
               </div>
               <div className='w-full flex flex-col items-start'>
@@ -226,7 +209,6 @@ export default function Home() {
                     #
                   </div>
                 </div>
-
                 <MultiSelectInput
                   items={Tags}
                   value={tagsFilter}
