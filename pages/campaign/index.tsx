@@ -18,8 +18,8 @@ const CampaignList: React.FC = () => {
         <div className='w-2 h-2 rounded-full bg-[#D9D9D964]' />
       </div>
       <div className='w-full grid grid-cols-1 gap-[60px] px-[13px]'>
-        {campaigns.map((campaign) => (
-          <CampaignCard {...campaign} />
+        {campaigns.map((campaign, index) => (
+          <CampaignCard key={index} {...campaign} />
         ))}
       </div>
     </div>

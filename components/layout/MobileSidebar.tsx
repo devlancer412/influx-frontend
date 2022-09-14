@@ -67,7 +67,7 @@ const MobileSidebar: React.FC<Props> = ({ hide, setHide }) => {
         <FaTimes className='mx-8' size={20} color='#10E98C' onClick={setHide} />
         <div className='flex-1 flex flex-col justify-between items-start my-[55px] text-[14px] leading-[21px] text-white mx-8'>
           {menus.map((menu) => (
-            <Link href={menu.url}>
+            <Link key={menu.title} href={menu.url}>
               <div
                 className='flex flex-row justify-between items-center w-[200px]'
                 onClick={setHide}
