@@ -52,8 +52,9 @@ export default function Home() {
     if (isMobile) {
       const prices = priceRange
         .split(' - ')
-        .map((item) => item.substring(1, item.length - 1))
+        .map((item) => item.substring(1, item.length))
         .map((item) => parseInt(item));
+
       dispatch(
         setPriceFilter({
           top: prices[1],
