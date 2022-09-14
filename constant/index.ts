@@ -36,13 +36,13 @@ export const AudienceLocations = [
 ] as const;
 export const Tags = [
   '',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
+  'Lorem ipsum0',
+  'Lorem ipsum1',
+  'Lorem ipsum2',
+  'Lorem ipsum3',
+  'Lorem ipsum4',
+  'Lorem ipsum5',
+  'Lorem ipsum6',
+  'Lorem ipsum7',
+  'Lorem ipsum8',
 ] as const;

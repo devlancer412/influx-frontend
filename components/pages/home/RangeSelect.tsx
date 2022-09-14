@@ -26,14 +26,18 @@ const StyledThumb = styled.div`
 `;
 
 const PriceShow = styled.div`
+  position: absolute;
   font-weight: 400;
-  font-size: 4px;
-  line-height: 10px;
+  font-size: 8px;
+  line-height: 16px;
+  padding: 0px 5px;
   border: 1px solid #cccccc;
   border-radius: 999px;
   width: auto;
   color: white;
-  transform: translate(0, 30px) scale(2);
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 const StyledTrack = styled.div`
