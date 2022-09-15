@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export type SocialFilterProps = {
-  iconUrl: string;
-  title: string;
-  selected: boolean;
-};
+import {
+  Engagements,
+  Languages,
+  AudienceSizes,
+  AudienceLocations,
+  Tags,
+} from '../../constant';
 
 const initSocialFilters: SocialFilterProps[] = [
   {
@@ -45,49 +46,14 @@ type PriceFilter = {
   bottom: number;
 };
 
-export const Engagements = ['Ok', 'Cancel'] as const;
 type EngagementFilter = typeof Engagements[number];
 
-export const Languages = ['English', 'German', 'Russian'] as const;
 type LanguageFilter = typeof Languages[number];
 
-export const AudienceSizes = [
-  '0 - 1000',
-  '1000 - 2000',
-  '2000 - 3000',
-  '3000 - 4000',
-  '4000 - 5000',
-  '5000 +',
-] as const;
 type AudienceSizeFilter = typeof AudienceSizes[number];
 
-export const AudienceLocations = [
-  '',
-  'United State',
-  'Canada',
-  'Mexico',
-  'Singapore',
-  'United Kingdom',
-  'German',
-  'Russia',
-  'China',
-  'Hong Kong',
-  'Ukraine',
-] as const;
 type AudienceLocationFilter = typeof AudienceLocations[number];
 
-export const Tags = [
-  '',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-  'Lorem ipsum',
-] as const;
 type TagsFilter = typeof Tags[number];
 
 type FilterState = {
@@ -98,7 +64,7 @@ type FilterState = {
   audienceSizeFilter: AudienceSizeFilter;
   userNameFilter: string;
   audienceLocationFilter: AudienceLocationFilter;
-  tagsFilter: TagsFilter;
+  tagsFilter: TagsFilter[];
 };
 
 const initialState: FilterState = {
@@ -112,7 +78,7 @@ const initialState: FilterState = {
   audienceSizeFilter: '0 - 1000',
   userNameFilter: '',
   audienceLocationFilter: '',
-  tagsFilter: '',
+  tagsFilter: [],
 };
 
 export const filterSlice = createSlice({
@@ -179,11 +145,11 @@ export const filterSlice = createSlice({
     },
     setTagsFilter: (
       state: FilterState,
-      action: PayloadAction<string>
+      action: PayloadAction<string[]>
     ): FilterState => {
       return {
         ...state,
-        tagsFilter: action.payload as TagsFilter,
+        tagsFilter: action.payload as TagsFilter[],
       };
     },
   },

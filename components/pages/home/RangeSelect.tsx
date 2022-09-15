@@ -1,57 +1,94 @@
 import React, { useMemo } from 'react';
+import ReactSlider from 'react-slider';
+import styled from 'styled-components';
+
+const StyledSlider = styled(ReactSlider)`
+  width: 100%;
+  height: 8px;
+  margin-top: 14px;
+  margin-bottom: 31px;
+`;
+
+const StyledThumb = styled.div`
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  background-color: #10e98c;
+  border-radius: 50%;
+  cursor: grab;
+  transform: translate(0, -4px);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 8px 1px rgba(0, 0, 0, 0.07);
+
+  &:focus-visible {
+    outline: none;
+  }
+`;
+
+const PriceShow = styled.div`
+  position: absolute;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 16px;
+  padding: 0px 5px;
+  border: 1px solid #cccccc;
+  border-radius: 999px;
+  width: auto;
+  color: white;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0);
+`;
+
+const StyledTrack = styled.div`
+  top: 0;
+  bottom: 0;
+  background: ${(props) =>
+    props.index === 2
+      ? '#134A50'
+      : props.index === 1
+      ? '#FFFFFFEC'
+      : '#134A50'};
+  border-radius: 999px;
+`;
 
 type Props = {
+  value0: number;
+  value1: number;
   top: number;
-  bottom: number;
-  maxTop: number;
-  maxBottom?: number;
-  onChange: (top: number, bottom: number) => void;
+  bottom?: number;
+  onChange: (value0: number, bottom: number) => void;
   unit?: SVGStringList;
 };
 
 const RangeSelect: React.FC<Props> = ({
+  value0,
+  value1,
   top,
-  bottom,
-  maxTop,
-  maxBottom = 0,
+  bottom = 0,
   onChange,
   unit = '$',
 }) => {
-  const range = useMemo<number>(() => maxTop - maxBottom, [maxTop, maxBottom]);
-  const leftWidth = useMemo(
-    () => ((bottom - maxBottom) * 100) / range,
-    [bottom, range]
+  const Thumb = (props, state) => (
+    <StyledThumb {...props}>
+      <PriceShow>${state.valueNow}</PriceShow>
+    </StyledThumb>
   );
-  const rightWidth = useMemo(
-    () => ((maxTop - top) * 100) / range,
-    [bottom, range]
+  const Track = (props, state) => (
+    <StyledTrack {...props} index={state.index} />
   );
 
   return (
-    <div className='relative w-full h-2 rounded-full bg-white mt-[14px] mb-[31px] text-[8px]'>
-      <div
-        className={`absolute left-0 h-2 rounded-full bg-[#134A50] w-[${leftWidth}%] top-1/2 -translate-y-1/2 transition-all`}
-      />
-      <div
-        className={`absolute right-0 h-2 rounded-full bg-[#134A50] w-[${rightWidth}%] top-1/2 -translate-y-1/2 transition-all`}
-      />
-      <div
-        className={`absolute w-[18px] h-[18px] rounded-full bg-[#10E98C] left-[${leftWidth}%] -translate-x-1/2 top-1/2 -translate-y-1/2 transition-all hover:cursor-pointer`}
-      />
-      <div
-        className={`absolute w-[18px] h-[18px] rounded-full bg-[#10E98C] right-[${rightWidth}%] translate-x-1/2 top-1/2 -translate-y-1/2 transition-all hover:cursor-pointer`}
-      />
-      <div
-        className={`absolute border w-fit border-[#CCCCCC] text-[#CCCCCC] rounded-[5px] py-[1px] px-[9px] left-[${leftWidth}%] -translate-x-1/2 -bottom-[12px] translate-y-full transition-all m-0`}
-      >
-        ${bottom}
-      </div>
-      <div
-        className={`absolute border w-fit border-[#CCCCCC] text-[#CCCCCC] rounded-[5px] py-[1px] px-[9px] right-[${rightWidth}%] translate-x-1/2 -bottom-[12px] translate-y-full transition-all m-0`}
-      >
-        ${top}
-      </div>
-    </div>
+    <StyledSlider
+      min={bottom}
+      max={top}
+      value={[value0 ? value0 : bottom, value1 ? value1 : top]}
+      onChange={(value: number[], index: number) =>
+        index === 0 ? onChange(value1, value[0]) : onChange(value[1], value0)
+      }
+      renderTrack={Track}
+      renderThumb={Thumb}
+    />
   );
 };
 

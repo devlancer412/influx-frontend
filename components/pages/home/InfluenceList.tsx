@@ -10,7 +10,7 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
   const [selectAll, setSelectAll] = useState<Boolean>(false);
   return (
     <>
-      <div className='flex flex-row px-10 items-start w-full justify-between'>
+      <div className='flex-row px-10 items-start w-full justify-between hidden lg:flex'>
         <div className='flex flex-row'>
           <div className='rounded-[5px] bg-[#00667180] px-[13px] py-[7px] flex flex-row justify-between min-w-[123px] mr-[21px]'>
             <p className='text-[10px] text-[#FFFFFF66]'>Sort</p>
@@ -51,8 +51,8 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
           </div>
         </div>
       </div>
-      <div className='pl-10 w-full overflow-x-hidden mt-8 mb-[30px]'>
-        <div className='float-lefft w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10'>
+      <div className='pl-5 md:pl-10 w-full overflow-x-hidden mt-8 mb-[30px]'>
+        <div className='float-left w-[calc(100%-20px)] md:w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10'>
           {influences.map((influence, index) => (
             <InfluenceCard key={index} influence={influence} />
           ))}

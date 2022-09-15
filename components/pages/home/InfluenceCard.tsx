@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import useDialog from '../../../hooks/useDialog';
@@ -8,11 +8,15 @@ type Props = {
   influence: Influence;
 };
 
-const InfluenceCard: React.FC<Props> = ({ influence}) => {
+const InfluenceCard: React.FC<Props> = ({ influence }) => {
   const { showDialog } = useDialog();
+  const [selected, select] = useState<boolean>(false);
+
   return (
     <div
-      className='relative flex flex-col items-center bg-[#243034] hover:cursor-pointer'
+      className={`relative flex flex-col items-center bg-[#243034] hover:cursor-pointer ${
+        selected ? 'scale-[1.05]' : ''
+      }`}
       onClick={() => showDialog(<InfluenceProfile {...influence} />)}
     >
       <h3 className='w-full text-center text-[white]  text-4 leading-6 py-[7px] bg-[#D9D9D966]'>
@@ -79,7 +83,7 @@ const InfluenceCard: React.FC<Props> = ({ influence}) => {
       </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
-          <>Followers</>
+          <>Audience Size</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
             {influence?.followers}K
           </p>
@@ -97,7 +101,14 @@ const InfluenceCard: React.FC<Props> = ({ influence}) => {
           </p>
         </div>
       </div>
-      <div className='w-full hover:cursor-pointer'>
+      <div
+        className='w-full hover:cursor-pointer'
+        onClick={(e) => {
+          select(!selected);
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         <div className='w-full text-center pt-4 pb-0 text-black text-[16px] font-semibold bg-[#10E98C] rounded-t-[100%]'>
           Select
         </div>

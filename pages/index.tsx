@@ -1,12 +1,20 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdOutlinePriceCheck } from 'react-icons/md';
+import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
+import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
+
 import SocialSelect from '../components/pages/home/SocialSelect';
 import { RootState } from '../store/index';
 import {
   Engagements,
   Languages,
   AudienceSizes,
+  Tags,
+  AudienceLocations,
+} from '../constant';
+import {
   setEngagementFilter,
   setLanguageFilter,
   setPriceFilter,
@@ -14,16 +22,13 @@ import {
   setAudienceSizeFilter,
   setUserNameFilter,
   setAudienceLocationFilter,
-  Tags,
   setTagsFilter,
 } from '../store/slices/filterSlice';
-import { MdOutlinePriceCheck } from 'react-icons/md';
-import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
-import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import SelectInput from '../components/pages/home/SelectInput';
-import { AudienceLocations } from './../store/slices/filterSlice';
 import InfluenceList from '../components/pages/home/InfluenceList';
+import MobileSelectInput from '../components/pages/home/MobileSelectInput';
+import MultiSelectInput from './../components/pages/home/MultiSelectInput';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -42,17 +47,185 @@ export default function Home() {
 
   return (
     <div className='w-full flex flex-col font-poppins'>
-      <div className='flex flex-col p-[58px]'>
-        <ul className='font-semibold text-[24px] leading-[36px] text-white capitalize list-disc list-inside'>
-          <li>Discover the biggest list of over vetted crypto influencers</li>
+      <div className='flex flex-col p-[23px] md:p-[58px]'>
+        <ul className='font-semibold text-[20px] md:text-[24px] leading-[30px] md:leading-[36px] text-white list-none md:list-disc list-inside uppercase md:capitalize p-[9px] md:p-0 mb-[90px] md:mb-0'>
+          <li>
+            Discover <br className='md:hidden' /> the biggest list{' '}
+            <br className='md:hidden' /> of over vetted crypto{' '}
+            <br className='md:hidden' /> influencers
+          </li>
         </ul>
         <div className='flex flex-col items-end'>
           <div className='flex flex-row items-center mb-[13px]'>
             <Image src='/icons/filter.png' width='13' height='12' />
             <h5 className='ml-2 text-[#10E98C] text-[13px]'>Clear Filter</h5>
           </div>
-          <div className='w-full flex flex-row items-stretch justify-between'>
-            <div className='w-[25%] bg-[#243034] rounded-[10px] pt-[38px] pb-[34px] pl-[26px] pr-[36px] grid grid-cols-1 gap-y-10'>
+          {/* mobile view */}
+          <div className='w-full flex flex-col items-center md:hidden'>
+            <div className='w-full grid grid-cols-1 gap-[25px] bg-[#243034] py-[27px] px-[18px] mb-[30px]'>
+              <div className='w-full flex flex-col items-start'>
+                <p className='mb-[9px] text-white font-bold text-[12px] leading-[18px]'>
+                  Platform
+                </p>
+                <div className='w-full mb-[10px] lg:mb-0 lg:w-[25%] bg-[#243034] rounded-[10px] pt-[38px] pb-[34px] pl-[26px] pr-[36px] grid grid-cols-1 gap-y-10'>
+                  {socialFilters.map((filter) => (
+                    <div
+                      key={filter.title}
+                      className='flex flex-row justify-between items-center'
+                    >
+                      <Image
+                        src={filter.iconUrl}
+                        width={20}
+                        height={18}
+                        objectFit='contain'
+                      />
+                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0'>
+                        {filter.title}
+                      </div>
+                      <SocialSelect
+                        selected={filter.selected}
+                        onToggle={(value: boolean) =>
+                          dispatch(
+                            setSocialFilter({
+                              filterTitle: filter.title,
+                              value: value,
+                            })
+                          )
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-fpl text-white font-bold text-[12px] leading-[18px]'>
+                    Price Range For promo
+                  </p>
+                  <MdOutlinePriceCheck
+                    size={15}
+                    color='#FFFFFFB3'
+                    className='mx-1'
+                  />
+                </div>
+                <RangeSelect
+                  value0={priceFilter.bottom}
+                  value1={priceFilter.top}
+                  top={10000}
+                  onChange={(top, bottom) => {
+                    dispatch(setPriceFilter({ top, bottom }));
+                  }}
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Engagement Rate
+                  </p>
+                  <FaHeartbeat size={15} color='#FFFFFFB3' className='mx-1' />
+                </div>
+                <MobileSelectInput
+                  items={Engagements}
+                  value={engagementFilter}
+                  onChange={(value) => {
+                    dispatch(setEngagementFilter(value));
+                  }}
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Language
+                  </p>
+                  <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
+                </div>
+                <MobileSelectInput
+                  items={Languages}
+                  value={languageFilter}
+                  onChange={(value) => {
+                    dispatch(setLanguageFilter(value));
+                  }}
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Audience Size
+                  </p>
+                  <BsPeopleFill size={15} color='#FFFFFFB3' className='mx-1' />
+                </div>
+                <MobileSelectInput
+                  items={AudienceSizes}
+                  value={audienceSizeFilter}
+                  onChange={(value) => {
+                    dispatch(setAudienceSizeFilter(value));
+                  }}
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Audience Location
+                  </p>
+                  <FaSearchLocation
+                    size={15}
+                    color='#FFFFFFB3'
+                    className='mx-1'
+                  />
+                </div>
+                <MobileSelectInput
+                  items={AudienceLocations}
+                  value={audienceLocationFilter}
+                  onChange={(value) => {
+                    dispatch(setAudienceLocationFilter(value));
+                  }}
+                  placeholder='Where audience located'
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    User Name
+                  </p>
+                  <BsFillPersonFill
+                    size={15}
+                    color='#FFFFFFB3'
+                    className='mx-1'
+                  />
+                </div>
+                <input
+                  value={userNameFilter}
+                  onChange={(e) => dispatch(setUserNameFilter(e.target.value))}
+                  className='w-full border border-[#10E98C80] bg-[#1B3D43] text-center py-[9px] text-[10px] leading-[15px] text-[#FFFFFF64]'
+                  placeholder='Search By Username'
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Tags
+                  </p>
+                  <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
+                    #
+                  </div>
+                </div>
+                <MultiSelectInput
+                  items={Tags}
+                  value={tagsFilter}
+                  placeholder='Choose some keywords'
+                  onChange={(value) => {
+                    dispatch(setTagsFilter(value));
+                  }}
+                />
+              </div>
+            </div>
+            <div className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'>
+              Find Now
+            </div>
+          </div>
+          {/* desctop view */}
+          <div className='w-full flex-col lg:flex-row items-stretch justify-between hidden md:flex'>
+            <div className='w-full mb-[10px] lg:mb-0 lg:w-[25%] bg-[#243034] rounded-[10px] pt-[38px] pb-[34px] pl-[26px] pr-[36px] grid grid-cols-1 gap-y-10'>
               {socialFilters.map((filter) => (
                 <div
                   key={filter.title}
@@ -81,7 +254,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className='relative w-[70%] bg-[#243034] rounded-[10px] p-4 pl-[43px] pt-[30px] grid grid-cols-1 gap-y-10 shadow-[0_4px_4px_0px_#24303440]'>
+            <div className='relative w-full lg:w-[70%] bg-[#243034] rounded-[10px] p-4 pl-[43px] pt-[30px] grid grid-cols-1 gap-y-10 shadow-[0_4px_4px_0px_#24303440]'>
               <div className='w-full h-full flex flex-row justify-between'>
                 <div className='flex flex-col w-[35%] justify-around'>
                   <div className='flex flex-col items-start'>
@@ -97,9 +270,9 @@ export default function Home() {
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <RangeSelect
-                      top={priceFilter.top}
-                      bottom={priceFilter.bottom}
-                      maxTop={10000}
+                      value0={priceFilter.bottom}
+                      value1={priceFilter.top}
+                      top={10000}
                       onChange={(top, bottom) => {
                         dispatch(setPriceFilter({ top, bottom }));
                       }}
@@ -216,7 +389,7 @@ export default function Home() {
                         </div>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
+                      <MultiSelectInput
                         items={Tags}
                         value={tagsFilter}
                         placeholder='Choose some keywords'
@@ -240,9 +413,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='flex flex-row items-center mt-[65px] mb-[45px] px-[80px] w-full'>
+      <div className='flex flex-row items-center mt-[65px] mb-[45px] px-[23px] md:px-[80px] w-full'>
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
-        <Image src='/images/splitermark.png' width={65} height={61} />
+        <div className='hidden md:block'>
+          <Image src='/images/splitermark.png' width={65} height={61} />
+        </div>
+        <div className='md:hidden'>
+          <Image src='/images/splitermark.png' width={41} height={41} />
+        </div>
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
       </div>
       <div className='flex flex-col px-[23px]'>
