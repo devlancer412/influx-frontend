@@ -147,7 +147,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             <h5 className='text-[16px] font-semibold text-white'>
               Influencer’s Channels
             </h5>
-            <div className='w-[95%] max-w-[500px] grid grid-cols-3 gap-[5px] md:gap-[10px] lg:gap-[53px] mt-7'>
+            <div className='w-[95%] max-w-[200px] md:max-w-[500px] grid grid-cols-1 md:grid-cols-3 gap-[5px] md:gap-[10px] lg:gap-[53px] mt-7'>
               {youtube ? (
                 <Link href={youtube}>
                   <div className='py-[10px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
@@ -160,7 +160,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
                       youtube
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px] hidden md:block'>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
                       2M
                     </h3>
                   </div>
@@ -180,7 +180,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
                       telegram
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px] hidden md:block'>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
                       119K
                     </h3>
                   </div>
@@ -200,7 +200,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
                       twitter
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px] hidden md:block'>
+                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
                       119K
                     </h3>
                   </div>

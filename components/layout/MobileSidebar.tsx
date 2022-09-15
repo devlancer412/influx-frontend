@@ -72,9 +72,7 @@ const MobileSidebar: React.FC<Props> = ({ hide, setHide }) => {
                 className='flex flex-row justify-between items-center w-[200px]'
                 onClick={setHide}
               >
-                <ul className='list-inside list-disc'>
-                  <li>{menu.title}</li>
-                </ul>
+                <p>{menu.title}</p>
                 <Image
                   src={menu.iconUrl}
                   width={20}

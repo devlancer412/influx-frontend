@@ -64,9 +64,9 @@ export default function Home() {
           <div className='w-full flex flex-col items-center md:hidden'>
             <div className='w-full grid grid-cols-1 gap-[25px] bg-[#243034] py-[27px] px-[18px] mb-[30px]'>
               <div className='w-full flex flex-col items-start'>
-                <ul className='list-inside list-disc mb-[9px] text-white font-bold text-[12px] leading-[18px]'>
-                  <li>Platform</li>
-                </ul>
+                <p className='mb-[9px] text-white font-bold text-[12px] leading-[18px]'>
+                  Platform
+                </p>
                 <div className='w-full mb-[10px] lg:mb-0 lg:w-[25%] bg-[#243034] rounded-[10px] pt-[38px] pb-[34px] pl-[26px] pr-[36px] grid grid-cols-1 gap-y-10'>
                   {socialFilters.map((filter) => (
                     <div
@@ -99,9 +99,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Price Range For promo</li>
-                  </ul>
+                  <p className='w-fpl text-white font-bold text-[12px] leading-[18px]'>
+                    Price Range For promo
+                  </p>
                   <MdOutlinePriceCheck
                     size={15}
                     color='#FFFFFFB3'
@@ -119,9 +119,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Engagement Rate</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Engagement Rate
+                  </p>
                   <FaHeartbeat size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
                 <MobileSelectInput
@@ -134,9 +134,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Language</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Language
+                  </p>
                   <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
                 <MobileSelectInput
@@ -149,9 +149,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Audience Size</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Audience Size
+                  </p>
                   <BsPeopleFill size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
                 <MobileSelectInput
@@ -164,9 +164,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Audience Location</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Audience Location
+                  </p>
                   <FaSearchLocation
                     size={15}
                     color='#FFFFFFB3'
@@ -184,9 +184,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>User Name</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    User Name
+                  </p>
                   <BsFillPersonFill
                     size={15}
                     color='#FFFFFFB3'
@@ -202,9 +202,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <ul className='w-full list-inside list-disc text-white font-bold text-[12px] leading-[18px]'>
-                    <li>Tags</li>
-                  </ul>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Tags
+                  </p>
                   <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
                     #
                   </div>
