@@ -79,7 +79,7 @@ export default function Home() {
                         height={18}
                         objectFit='contain'
                       />
-                      <div className='flex-1 text-center text-white text-[16px]'>
+                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0'>
                         {filter.title}
                       </div>
                       <SocialSelect
