@@ -10,6 +10,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 1,
@@ -17,6 +18,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 3,
@@ -31,6 +34,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 4,
@@ -38,6 +42,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 5,
@@ -45,6 +50,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 6,
@@ -52,6 +58,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 7,
@@ -59,6 +66,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 8,
@@ -66,6 +74,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
   {
     id: 7,
@@ -73,6 +82,7 @@ const initialState: CampaignsState = [
     influencers: 12,
     averageEngagementRate: 'Good',
     budget: 25.4,
+    potentialReach: 12.5,
   },
 ];
 
