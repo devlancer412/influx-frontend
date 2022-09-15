@@ -52,7 +52,7 @@ const CampaignCard: React.FC<Campaign> = ({
                 Potential Reach
               </h5>
               <h5 className='text-[15px] leading-[22px] text-[#10E98C] py-[14px] lg:py-0'>
-                ${potentialReach}K
+                {potentialReach}K
               </h5>
             </div>
           </div>
