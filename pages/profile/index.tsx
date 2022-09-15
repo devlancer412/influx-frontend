@@ -19,14 +19,14 @@ const Profile: React.FC = () => {
   }, [_profile]);
 
   return (
-    <div className='w-full px-[70px] py-[23px] flex justify-center items-center font-poppins'>
+    <div className='w-full px-[40px] lg:px-[70px] py-[23px] flex justify-center items-center font-poppins'>
       <div className='w-full max-w-[980px] flex flex-col items-center overflow-hidden'>
-        <h1 className='w-full font-semibold text-[32px] leading-[42px] capitalize text-white text-center mb-5'>
+        <h1 className='w-full font-semibold text-[32px] leading-[42px] capitalize text-white text-start lg:text-center mb-5'>
           Brand Profile
         </h1>
-        <div className='flex flex-col w-full items-center bg-[url("/images/profileback.svg")] bg-cover'>
+        <div className='flex flex-col w-full items-center bg-[url("/images/profileback.svg")] bg-cover bg-center'>
           <Image src={profile?.avatar} width={170} height={170} />
-          <div className='w-[640px] mt-7 grid grid-cols-2 gap-x-10 gap-y-5 mb-[18px]'>
+          <div className='w-[90%] max-w-[640px] mt-7 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-5 mb-[18px]'>
             <div className='flex flex-col items-start'>
               <p className='text-[15px] leading-[22px] pl-[5px] text-[#CCCCCC] mb-[10px]'>
                 Brand Name
@@ -53,7 +53,7 @@ const Profile: React.FC = () => {
                 placeholder='Type your website url'
               />
             </div>
-            <div className='flex flex-col items-start col-span-2'>
+            <div className='flex flex-col items-start lg:col-span-2'>
               <p className='text-[15px] leading-[22px] pl-[5px] text-[#CCCCCC] mb-[10px]'>
                 Description
               </p>
@@ -67,11 +67,11 @@ const Profile: React.FC = () => {
               />
             </div>
           </div>
-          <div className='w-full px-[calc(50%-280px)] flex flex-col items-start mb-9'>
+          <div className='w-[90%] max-w-[580px] flex flex-col items-start mb-9'>
             <ul className='font-semibold text-[17px] leading-[26px] text-white capitalize list-disc list-inside mb-[25px]'>
               <li>Channels</li>
             </ul>
-            <div className='w-full grid grid-cols-2 gap-[29px] px-[10px]'>
+            <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-[29px] px-[10px]'>
               {profile?.channels.twitter ? (
                 <Link href={profile?.channels.twitter}>
                   <div className='border-[0.5px] border-[#CCCCCC80] bg-[#243034] flex flex-row justify-center rounded-[3px] text-white py-3 hover:cursor-pointer'>
@@ -122,7 +122,7 @@ const Profile: React.FC = () => {
               )}
             </div>
           </div>
-          <div className='w-full px-[calc(50%-280px)] flex flex-col items-start mb-[55px]'>
+          <div className='w-[90%] max-w-[580px] flex flex-col items-start mb-[55px]'>
             <ul className='font-semibold text-[17px] leading-[26px] text-white capitalize list-disc list-inside mb-[25px]'>
               <li>Main Telegram channel</li>
             </ul>
@@ -137,7 +137,7 @@ const Profile: React.FC = () => {
               />
             </div>
           </div>
-          <div className='w-full px-[calc(50%-270px)] grid grid-cols-1 gap-[10px] mb-[77px]'>
+          <div className='w-[90%] max-w-[580px] grid grid-cols-1 gap-[10px] mb-[77px]'>
             <div className='w-full flex-col items-start'>
               <h5 className='pl-[7px] text-[16px] leading-[24px] text-[#CCCCCC] mb-[9px]'>
                 Category
@@ -204,11 +204,14 @@ const Profile: React.FC = () => {
               />
             </div>
           </div>
-          <div className='w-full px-[calc(50%-270px)] grid grid-cols-1 gap-[34px] mb-[48px]'>
+          <div className='w-[90%] max-w-[580px] grid grid-cols-1 gap-[34px] mb-[48px]'>
             {profile?.launchSettings.map((setting) => (
-              <div className='flex flex-row justify-between items-center'>
+              <div
+                key={setting.name}
+                className='flex flex-row justify-between items-center flex-wrap lg:flex-nowrap'
+              >
                 <div
-                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mx-[35px] hover:cursor-pointer'
+                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mr-[35px] lg:mx-[35px] hover:cursor-pointer mb-[10px] lg:mb-0'
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -226,11 +229,11 @@ const Profile: React.FC = () => {
                     <></>
                   )}
                 </div>
-                <h3 className='font-medium text-[20px] leading-[30px] text-white flex-1'>
+                <h3 className='font-medium text-[20px] leading-[30px] text-white flex-1 mb-[10px] lg:mb-0'>
                   {setting.name}
                 </h3>
                 <input
-                  className='rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#CCCCCCB3] text-[12px] leading-[18px] py-[9px] px-[19px]'
+                  className='rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#CCCCCCB3] text-[12px] leading-[18px] py-[9px] px-[19px] w-full lg:w-auto'
                   value={setting.value}
                   onChange={(e) =>
                     setProfile({
@@ -247,14 +250,14 @@ const Profile: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className='w-full px-[calc(50%-230px)] flex flex-col items-center mb-[68px]'>
+          <div className='w-[90%] max-w-[450px] flex flex-col items-center mb-[68px]'>
             <h3 className='font-semibold text-[22px] leading-[33px] text-white mb-[38px]'>
               For Great Partners I can offer :
             </h3>
             <div className='grid w-full grid-cols-1 gap-[28px]'>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div
-                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mx-[35px] hover:cursor-pointer'
+                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mr-[35px] lg:mx-[35px] hover:cursor-pointer'
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -274,7 +277,7 @@ const Profile: React.FC = () => {
               </div>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div
-                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mx-[35px] hover:cursor-pointer'
+                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mr-[35px] lg:mx-[35px] hover:cursor-pointer'
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -294,7 +297,7 @@ const Profile: React.FC = () => {
               </div>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div
-                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mx-[35px] hover:cursor-pointer'
+                  className='flex justify-center items-center w-[15px] h-[15px] rounded-[1px] border-2 border-[#10E98C] mr-[35px] lg:mx-[35px] hover:cursor-pointer'
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -314,7 +317,7 @@ const Profile: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className='mx-auto w-[368px] grid grid-cols-1 gap-[30px] mb-[29px]'>
+          <div className='w-[90%] max-w-[368px] grid grid-cols-1 gap-[30px] mb-[29px]'>
             <div
               className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer'
               onClick={() => dispatch(setBrand(profile))}
