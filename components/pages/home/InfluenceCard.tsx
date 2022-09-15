@@ -138,7 +138,14 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       ) : (
         <></>
       )} */}
-      <div className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-4 top-[54px]'>
+      <div
+        className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-4 top-[54px] hover:cursor-pointer'
+        onClick={(e) => {
+          select(!selected);
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         {selected ? (
           <div className='w-1 h-1 rounded-full bg-white'></div>
         ) : (
