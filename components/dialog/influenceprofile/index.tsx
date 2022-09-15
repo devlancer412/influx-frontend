@@ -232,6 +232,11 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             </h5>
             <EngagementChart data={chartData} />
           </div>
+          <Link href={'#'}>
+            <h5 className='text-[12px] leading-[18px] text-[#10E98C] underline hover:cursor-pointer mb-[21px]'>
+              Report Issue
+            </h5>
+          </Link>
           {/* <div className='absolute top-[150px] bg-[#FFFF00] -left-16 flex flex-row justify-center items-center py-[13px] w-[300px] text-[16px] text-black font-medium -rotate-[35deg]'>
             <div className='mr-1'>Premium Influencer</div>
             <Image src='/icons/crown.png' width={17} height={17} />
