@@ -138,7 +138,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       ) : (
         <></>
       )} */}
-      <div className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-8 top-16'>
+      <div className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-4 top-[54px]'>
         {selected ? (
           <div className='w-1 h-1 rounded-full bg-white'></div>
         ) : (
