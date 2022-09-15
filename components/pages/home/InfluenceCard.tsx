@@ -14,9 +14,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
 
   return (
     <div
-      className={`relative flex flex-col items-center bg-[#243034] hover:cursor-pointer ${
-        selected ? 'scale-[1.05]' : ''
-      }`}
+      className={`relative flex flex-col items-center bg-[#243034] hover:cursor-pointer`}
       onClick={() => showDialog(<InfluenceProfile {...influence} />)}
     >
       <h3 className='w-full text-center text-[white]  text-4 leading-6 py-[7px] bg-[#D9D9D966]'>
@@ -81,6 +79,17 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
           </div>
         </div>
       </div>
+      <div className='w-full flex flex-row justify-center items-center gap-[6px]'>
+        <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#8DD7CF] text-[8px] leading-[16px] text-black font-semibold text-center'>
+          Discount
+        </div>
+        <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#FBE192] text-[8px] leading-[16px] text-black font-semibold text-center'>
+          Paid Promo
+        </div>
+        <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#96C3EC] text-[8px] leading-[16px] text-black font-semibold text-center'>
+          Votted Projects Only
+        </div>
+      </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>Audience Size</>
@@ -109,10 +118,18 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
           e.stopPropagation();
         }}
       >
-        <div className='w-full text-center pt-4 pb-0 text-black text-[16px] font-semibold bg-[#10E98C] rounded-t-[100%]'>
-          Select
+        <div
+          className={`w-full text-center pt-4 pb-0 text-black text-[16px] font-semibold ${
+            selected ? 'bg-[#CCCCCC]' : 'bg-[#10E98C]'
+          } rounded-t-[100%]`}
+        >
+          {selected ? 'Remove' : 'Select'}
         </div>
-        <div className='w-full h-4 bg-[#10E98C]' />
+        <div
+          className={`w-full h-4 ${
+            selected ? 'bg-[#CCCCCC]' : 'bg-[#10E98C]'
+          } `}
+        />
       </div>
       {influence?.premium ? (
         <div className='absolute top-0 right-0'>
@@ -121,6 +138,13 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       ) : (
         <></>
       )}
+      <div className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-8 top-16'>
+        {selected ? (
+          <div className='w-1 h-1 rounded-full bg-white'></div>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 };
