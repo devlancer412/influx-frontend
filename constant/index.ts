@@ -1,3 +1,5 @@
+export * from './selectInputStyle';
+
 export const Categories = ['AAA', 'BBB'] as const;
 export const Regions = ['AAA', 'BBB'] as const;
 export const Chains = ['AAA', 'BBB'] as const;
@@ -25,7 +27,6 @@ export const AudienceSizes = [
 ] as const;
 
 export const AudienceLocations = [
-  '',
   'United State',
   'Canada',
   'Mexico',
@@ -39,7 +40,6 @@ export const AudienceLocations = [
 ] as const;
 
 export const Tags = [
-  '',
   'Lorem ipsum0',
   'Lorem ipsum1',
   'Lorem ipsum2',

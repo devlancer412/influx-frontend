@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { GetServerSideProps } from 'next';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { MdOutlinePriceCheck } from 'react-icons/md';
 import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
 import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
-import Select, { StylesConfig } from 'react-select';
+import Select from 'react-select';
 
 import SocialSelect from '../components/pages/home/SocialSelect';
 import {
@@ -16,11 +17,8 @@ import {
   initSocialFilters,
 } from '../constant';
 import RangeSelect from '../components/pages/home/RangeSelect';
-import SelectInput from '../components/pages/home/SelectInput';
 import InfluenceList from '../components/pages/home/InfluenceList';
-import MobileSelectInput from '../components/pages/home/MobileSelectInput';
-import MultiSelectInput from './../components/pages/home/MultiSelectInput';
-import { useRouter } from 'next/router';
+import { desktopSelectStyle, mobileSelectStyle } from './../constant';
 
 const initialInfluences: Influence[] = [
   {
@@ -294,7 +292,7 @@ export default function Home({ filterProps, influences, users }: Props) {
     filterProps.tagsFilter
   );
 
-  const findNow = () => {
+  const updateUrl = () => {
     let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}`;
 
     for (const socialFilter of socialFilters) {
@@ -305,118 +303,18 @@ export default function Home({ filterProps, influences, users }: Props) {
     router.push(url);
   };
 
-  const desktopSelectStyle: StylesConfig = {
-    container: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      marginTop: 8,
-    }),
-    control: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      backgroundColor: '#124B5280',
-      borderRadius: 5,
-      borderWidth: 0,
-      padding: '4px 16px',
-      fontSize: 14,
-    }),
-    valueContainer: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      padding: 0,
-    }),
-    singleValue: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-    }),
-    multiValue: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-      backgroundColor: '#124B52',
-    }),
-    multiValueLabel: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-    }),
-    indicatorSeparator: (provided, state) => ({
-      ...provided,
-      visibility: 'hidden',
-    }),
-    dropdownIndicator: (provided, state) => ({
-      ...provided,
-      padding: 0,
-      color: '#FFFFFF66',
-    }),
-    menu: (provided, state) => ({
-      ...provided,
-      fontSize: 14,
-      color: '#FFFFFF66',
-      backgroundColor: '#124B52',
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      fontSize: 14,
-      color: '#FFFFFF66',
-      backgroundColor: '#124B52',
-    }),
-  };
-
-  const mobileSelectStyle: StylesConfig = {
-    container: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      marginTop: 8,
-    }),
-    control: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      backgroundColor: 'transparent',
-      borderRadius: 5,
-      borderWidth: 0,
-      padding: '4px 16px',
-      fontSize: 14,
-    }),
-    valueContainer: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      padding: 0,
-    }),
-    singleValue: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-      textAlign: 'center',
-    }),
-    multiValue: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-      backgroundColor: 'transparent',
-    }),
-    multiValueLabel: (provided, state) => ({
-      ...provided,
-      color: '#FFFFFF66',
-    }),
-    indicatorSeparator: (provided, state) => ({
-      ...provided,
-      visibility: 'hidden',
-    }),
-    dropdownIndicator: (provided, state) => ({
-      ...provided,
-      padding: 0,
-      color: '#FFFFFF66',
-    }),
-    menu: (provided, state) => ({
-      ...provided,
-      fontSize: 14,
-      color: '#FFFFFF66',
-      backgroundColor: '#124B52',
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      fontSize: 14,
-      color: '#FFFFFF66',
-      backgroundColor: '#124B52',
-    }),
-  };
+  useEffect(() => {
+    updateUrl();
+  }, [
+    socialFilters,
+    priceFilter,
+    engagementFilter,
+    languageFilter,
+    audienceSizeFilter,
+    audienceLocationFilter,
+    userNameFilter,
+    tagsFilter,
+  ]);
 
   return (
     <div className='w-full flex flex-col font-poppins'>
@@ -633,7 +531,7 @@ export default function Home({ filterProps, influences, users }: Props) {
             </div>
             <div
               className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
-              onClick={findNow}
+              onClick={updateUrl}
             >
               Find Now
             </div>
@@ -854,7 +752,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   <div className='w-full'>
                     <div
                       className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
-                      onClick={findNow}
+                      onClick={updateUrl}
                     >
                       Find now
                     </div>
