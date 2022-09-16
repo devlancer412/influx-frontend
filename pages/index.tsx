@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { MdOutlinePriceCheck } from 'react-icons/md';
 import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
 import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
+import Select, { StylesConfig } from 'react-select';
 
 import SocialSelect from '../components/pages/home/SocialSelect';
 import {
@@ -304,6 +305,119 @@ export default function Home({ filterProps, influences, users }: Props) {
     router.push(url);
   };
 
+  const desktopSelectStyle: StylesConfig = {
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      marginTop: 8,
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      backgroundColor: '#124B5280',
+      borderRadius: 5,
+      borderWidth: 0,
+      padding: '4px 16px',
+      fontSize: 14,
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      padding: 0,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    multiValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    multiValueLabel: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      visibility: 'hidden',
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      padding: 0,
+      color: '#FFFFFF66',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+  };
+
+  const mobileSelectStyle: StylesConfig = {
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      marginTop: 8,
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      backgroundColor: 'transparent',
+      borderRadius: 5,
+      borderWidth: 0,
+      padding: '4px 16px',
+      fontSize: 14,
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      padding: 0,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      textAlign: 'center',
+    }),
+    multiValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      backgroundColor: 'transparent',
+    }),
+    multiValueLabel: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      visibility: 'hidden',
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      padding: 0,
+      color: '#FFFFFF66',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+  };
+
   return (
     <div className='w-full flex flex-col font-poppins'>
       <div className='flex flex-col p-[23px] md:p-[58px]'>
@@ -384,11 +498,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </p>
                   <FaHeartbeat size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={Engagements}
-                  value={engagementFilter}
-                  onChange={(value) => {
-                    setEngagementFilter(value);
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Engagements.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: engagementFilter,
+                    label: engagementFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setEngagementFilter(item.value);
                   }}
                 />
               </div>
@@ -399,11 +519,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </p>
                   <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={Languages}
-                  value={languageFilter}
-                  onChange={(value) => {
-                    setLanguageFilter(value);
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Languages.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: languageFilter,
+                    label: languageFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setLanguageFilter(item.value);
                   }}
                 />
               </div>
@@ -414,11 +540,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </p>
                   <BsPeopleFill size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={AudienceSizes}
-                  value={audienceSizeFilter}
-                  onChange={(value) => {
-                    setAudienceSizeFilter(value);
+                <Select
+                  styles={mobileSelectStyle}
+                  options={AudienceSizes.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: audienceSizeFilter,
+                    label: audienceSizeFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setAudienceSizeFilter(item.value);
                   }}
                 />
               </div>
@@ -433,13 +565,19 @@ export default function Home({ filterProps, influences, users }: Props) {
                     className='mx-1'
                   />
                 </div>
-                <MobileSelectInput
-                  items={AudienceLocations}
-                  value={audienceLocationFilter}
-                  onChange={(value) => {
-                    setAudienceLocationFilter(value);
+                <Select
+                  styles={mobileSelectStyle}
+                  placeholder='Where Audiece located'
+                  options={AudienceLocations.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: audienceLocationFilter,
+                    label: audienceLocationFilter,
                   }}
-                  placeholder='Where audience located'
+                  onChange={(item: any) => {
+                    setAudienceLocationFilter(item.value);
+                  }}
                 />
               </div>
               <div className='w-full flex flex-col items-start'>
@@ -453,11 +591,19 @@ export default function Home({ filterProps, influences, users }: Props) {
                     className='mx-1'
                   />
                 </div>
-                <input
-                  value={userNameFilter}
-                  onChange={(e) => setUserNameFilter(e.target.value)}
-                  className='w-full border border-[#10E98C80] bg-[#1B3D43] text-center py-[9px] text-[10px] leading-[15px] text-[#FFFFFF64]'
-                  placeholder='Search By Username'
+                <Select
+                  styles={mobileSelectStyle}
+                  placeholder='Search by user name'
+                  options={users.map((item) => {
+                    return { value: item.name, label: item.name };
+                  })}
+                  value={{
+                    value: userNameFilter,
+                    label: userNameFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setUserNameFilter(item.value);
+                  }}
                 />
               </div>
               <div className='w-full flex flex-col items-start'>
@@ -469,12 +615,18 @@ export default function Home({ filterProps, influences, users }: Props) {
                     #
                   </div>
                 </div>
-                <MultiSelectInput
-                  items={Tags}
-                  value={tagsFilter}
-                  placeholder='Choose some keywords'
-                  onChange={(value) => {
-                    setTagsFilter(value);
+                <Select
+                  styles={desktopSelectStyle}
+                  placeholder='Choose some key words'
+                  options={Tags.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={tagsFilter.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  isMulti
+                  onChange={(item: any) => {
+                    setTagsFilter(item.map((subitem) => subitem.value));
                   }}
                 />
               </div>
@@ -554,11 +706,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                       />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={Engagements}
-                      value={engagementFilter}
-                      onChange={(value) => {
-                        setEngagementFilter(value);
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={Engagements.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: engagementFilter,
+                        label: engagementFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setEngagementFilter(item.value);
                       }}
                     />
                   </div>
@@ -570,11 +728,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                       <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={Languages}
-                      value={languageFilter}
-                      onChange={(value) => {
-                        setLanguageFilter(value);
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={Languages.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: languageFilter,
+                        label: languageFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setLanguageFilter(item.value);
                       }}
                     />
                   </div>
@@ -590,11 +754,17 @@ export default function Home({ filterProps, influences, users }: Props) {
                       />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={AudienceSizes}
-                      value={audienceSizeFilter}
-                      onChange={(value) => {
-                        setAudienceSizeFilter(value);
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={AudienceSizes.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: audienceSizeFilter,
+                        label: audienceSizeFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setAudienceSizeFilter(item.value);
                       }}
                     />
                   </div>
@@ -613,12 +783,18 @@ export default function Home({ filterProps, influences, users }: Props) {
                         />
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
-                        items={users.map((user) => user.name)}
-                        value={userNameFilter}
+                      <Select
+                        styles={desktopSelectStyle}
                         placeholder='Search by user name'
-                        onChange={(value) => {
-                          setUserNameFilter(value);
+                        options={users.map((item) => {
+                          return { value: item.name, label: item.name };
+                        })}
+                        value={{
+                          value: userNameFilter,
+                          label: userNameFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setUserNameFilter(item.value);
                         }}
                       />
                     </div>
@@ -634,12 +810,18 @@ export default function Home({ filterProps, influences, users }: Props) {
                         />
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
-                        items={AudienceLocations}
-                        value={audienceLocationFilter}
-                        placeholder='Where audience located'
-                        onChange={(value) => {
-                          setAudienceLocationFilter(value);
+                      <Select
+                        styles={desktopSelectStyle}
+                        placeholder='Where Audiece located'
+                        options={AudienceLocations.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={{
+                          value: audienceLocationFilter,
+                          label: audienceLocationFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setAudienceLocationFilter(item.value);
                         }}
                       />
                     </div>
@@ -653,12 +835,18 @@ export default function Home({ filterProps, influences, users }: Props) {
                         </div>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <MultiSelectInput
-                        items={Tags}
-                        value={tagsFilter}
-                        placeholder='Choose some keywords'
-                        onChange={(value) => {
-                          setTagsFilter(value);
+                      <Select
+                        styles={desktopSelectStyle}
+                        placeholder='Choose some key words'
+                        options={Tags.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={tagsFilter.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        isMulti
+                        onChange={(item: any) => {
+                          setTagsFilter(item.map((subitem) => subitem.value));
                         }}
                       />
                     </div>
