@@ -1,17 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import filterSlice from './slices/filterSlice';
-import usersSlice from './slices/usersSlice';
 import campaignSlice from './slices/campaignSlice';
-import influencesSlice from './slices/influencesSlice';
 import profileSlice from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
-    filter: filterSlice,
-    users: usersSlice,
     campaigns: campaignSlice,
-    influences: influencesSlice,
     brandProfile: profileSlice,
   },
 });

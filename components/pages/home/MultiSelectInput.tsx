@@ -37,6 +37,7 @@ const MultiSelectInput: React.FC<Props> = ({
         {value.length > 0
           ? value.map((item) => (
               <div
+                key={item}
                 className='mr-1 border border-[#FFFFFF66] px-2 rounded-[3px] my-1'
                 onClick={(e) => {
                   itemClick(item);
@@ -80,6 +81,7 @@ const MultiSelectInput: React.FC<Props> = ({
                   .map((item: string) =>
                     item !== '' ? (
                       <div
+                        key={item}
                         className='w-full flex flex-row items-center my-[10px] hover:cursor-pointer'
                         onClick={() => {
                           itemClick(item);

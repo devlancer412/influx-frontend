@@ -56,6 +56,7 @@ const SelectInput: React.FC<Props> = ({
                   .map((item: string) =>
                     item !== '' ? (
                       <div
+                        key={item}
                         className='w-full flex flex-row items-center my-[10px] hover:cursor-pointer'
                         onClick={() => {
                           onChange(item);
