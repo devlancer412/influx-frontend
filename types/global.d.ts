@@ -88,4 +88,23 @@ declare global {
     iconUrl: string;
     url: string;
   };
+
+  type PriceFilter = {
+    top: number;
+    bottom: number;
+  };
+
+  type EngagementFilter = typeof Engagements[number];
+
+  type LanguageFilter = typeof Languages[number];
+
+  type AudienceSizeFilter = typeof AudienceSizes[number];
+
+  type AudienceLocationFilter = typeof AudienceLocations[number];
+
+  type TagsFilter = typeof Tags[number];
+
+  type User = {
+    name: string;
+  };
 }

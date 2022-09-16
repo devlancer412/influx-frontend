@@ -12,7 +12,7 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
   return (
     <>
       <div className='flex-row px-10 items-start w-full justify-between hidden lg:flex'>
-        <div className='rounded-[5px] bg-[#00667180] px-[13px] py-[7px] flex flex-row justify-between min-w-[123px] mr-[21px]'>
+        <div className='rounded-[5px] bg-[#006671] px-[13px] py-[7px] flex flex-row justify-between min-w-[123px] mr-[21px]'>
           <p className='text-[10px] text-[#FFFFFF66]'>Sort</p>
           <Image
             src='/icons/sort.png'

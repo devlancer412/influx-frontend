@@ -124,7 +124,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
           </div>
           <div className='flex flex-col items-start'>
             <p className='text-[13px] leading-[20px] pl-1 text-[#FFFFFF80] mb-[10px]'>
-              Negociated price
+              Negotiated price
             </p>
             <input className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-1 px-2' />
           </div>
@@ -143,7 +143,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
         />
         <input
           className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-2 px-3'
-          placeholder='Negociated Price'
+          placeholder='Negotiated Price'
         />
         <input
           className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-2 px-3'

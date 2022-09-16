@@ -35,7 +35,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
             <div className='flex flex-row w-full justify-around items-center'>
               {influence?.youtube ? (
                 <Link href={influence?.youtube}>
-                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
                     <Image
                       src='/icons/youtube.png'
                       width={13}
@@ -49,7 +49,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               )}
               {influence?.telegram ? (
                 <Link href={influence?.telegram}>
-                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
                     <Image
                       src='/icons/telegram.png'
                       width={13}
@@ -63,7 +63,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               )}
               {influence?.twitter ? (
                 <Link href={influence?.twitter}>
-                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full'>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
                     <Image
                       src='/icons/twitter.png'
                       width={13}

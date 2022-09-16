@@ -1,49 +1,422 @@
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { GetServerSideProps } from 'next';
+import { useState } from 'react';
 import { MdOutlinePriceCheck } from 'react-icons/md';
 import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
 import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
+import Select, { StylesConfig } from 'react-select';
 
 import SocialSelect from '../components/pages/home/SocialSelect';
-import { RootState } from '../store/index';
 import {
   Engagements,
   Languages,
   AudienceSizes,
   Tags,
   AudienceLocations,
+  initSocialFilters,
 } from '../constant';
-import {
-  setEngagementFilter,
-  setLanguageFilter,
-  setPriceFilter,
-  setSocialFilter,
-  setAudienceSizeFilter,
-  setUserNameFilter,
-  setAudienceLocationFilter,
-  setTagsFilter,
-} from '../store/slices/filterSlice';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import SelectInput from '../components/pages/home/SelectInput';
 import InfluenceList from '../components/pages/home/InfluenceList';
 import MobileSelectInput from '../components/pages/home/MobileSelectInput';
 import MultiSelectInput from './../components/pages/home/MultiSelectInput';
+import { useRouter } from 'next/router';
 
-export default function Home() {
-  const dispatch = useDispatch();
+const initialInfluences: Influence[] = [
+  {
+    id: 0,
+    campaignId: 0,
+    name: 'Alice',
+    nickName: 'Influence',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 1,
+    campaignId: 0,
+    name: 'Bob',
+    nickName: 'Influence',
+    imageUrl: '/img/user_2.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: true,
+  },
+  {
+    id: 2,
+    campaignId: 0,
+    name: 'Vault',
+    nickName: 'Influence',
+    imageUrl: '/img/user_3.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 3,
+    campaignId: 0,
+    name: 'Alice',
+    nickName: 'Influence',
+    imageUrl: '/img/user_4.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 4,
+    campaignId: 0,
+    name: 'Bob',
+    nickName: 'Influence',
+    imageUrl: '/img/user_5.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 5,
+    campaignId: 0,
+    name: 'Vault',
+    nickName: 'Influence',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 6,
+    campaignId: 0,
+    name: 'Alice',
+    nickName: 'Influence',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 7,
+    campaignId: 0,
+    name: 'Bob',
+    nickName: 'Influence',
+    imageUrl: '/img/user_2.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: true,
+  },
+  {
+    id: 8,
+    campaignId: 0,
+    name: 'Vault',
+    nickName: 'Influence',
+    imageUrl: '/img/user_3.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 9,
+    campaignId: 0,
+    name: 'Alice',
+    nickName: 'Influence',
+    imageUrl: '/img/user_4.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 10,
+    campaignId: 0,
+    name: 'Bob',
+    nickName: 'Influence',
+    imageUrl: '/img/user_5.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+  {
+    id: 11,
+    campaignId: 0,
+    name: 'Vault',
+    nickName: 'Influence',
+    imageUrl: '/img/user_1.png',
+    youtube: 'https://fakeurl/',
+    telegram: 'https://fakeurl/',
+    twitter: 'https://fakeurl/',
+    followers: 22,
+    er: 'Good',
+    topPrice: 5000,
+    bottomPrice: 1000,
+    premium: false,
+  },
+];
+
+interface FilterProps {
+  socialFilters: SocialFilterProps[];
+  priceFilter: PriceFilter;
+  engagementFilter: EngagementFilter;
+  languageFilter: LanguageFilter;
+  audienceSizeFilter: AudienceSizeFilter;
+  userNameFilter: string;
+  audienceLocationFilter: AudienceLocationFilter;
+  tagsFilter: TagsFilter[];
+}
+
+interface Props {
+  filterProps: FilterProps;
+  influences: Influence[];
+  users: User[];
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const {
-    socialFilters,
-    priceFilter,
-    engagementFilter,
-    languageFilter,
-    audienceSizeFilter,
-    userNameFilter,
-    audienceLocationFilter,
-    tagsFilter,
-  } = useSelector((store: RootState) => store.filter);
-  const influences = useSelector((store: RootState) => store.influences);
-  const users = useSelector((store: RootState) => store.users);
+    top,
+    bottom,
+    engagement,
+    language,
+    audienceSize,
+    userName,
+    audienceLocation,
+    tags,
+  } = context.query;
+
+  let props: Props = {
+    filterProps: {
+      socialFilters: [],
+      priceFilter: {
+        top: parseInt(top as string) || 10000,
+        bottom: parseInt(bottom as string) || 0,
+      },
+      engagementFilter: (engagement as string) || Engagements[0],
+      languageFilter: (language as string) || Languages[0],
+      audienceSizeFilter: (audienceSize as string) || AudienceSizes[0],
+      userNameFilter: (userName as string) || '',
+      audienceLocationFilter:
+        (audienceLocation as string) || AudienceLocations[0],
+      tagsFilter: [],
+    },
+    influences: initialInfluences,
+    users: [],
+  };
+
+  props.filterProps.socialFilters = initSocialFilters.map((filter) =>
+    context.query[filter.title] === 'true'
+      ? { ...filter, selected: true }
+      : filter
+  );
+
+  if (typeof tags === 'string') {
+    props.filterProps.tagsFilter = [tags];
+  } else if (typeof tags === 'object') {
+    props.filterProps.tagsFilter = tags as string[];
+  }
+
+  return { props };
+};
+
+export default function Home({ filterProps, influences, users }: Props) {
+  const router = useRouter();
+
+  const [socialFilters, setSocialFilter] = useState<SocialFilterProps[]>(
+    filterProps.socialFilters
+  );
+  const [priceFilter, setPriceFilter] = useState<PriceFilter>(
+    filterProps.priceFilter
+  );
+  const [engagementFilter, setEngagementFilter] = useState<EngagementFilter>(
+    filterProps.engagementFilter
+  );
+  const [languageFilter, setLanguageFilter] = useState<LanguageFilter>(
+    filterProps.languageFilter
+  );
+  const [audienceSizeFilter, setAudienceSizeFilter] =
+    useState<AudienceSizeFilter>(filterProps.audienceSizeFilter);
+  const [userNameFilter, setUserNameFilter] = useState<string>(
+    filterProps.userNameFilter
+  );
+  const [audienceLocationFilter, setAudienceLocationFilter] =
+    useState<AudienceLocationFilter>(filterProps.audienceLocationFilter);
+  const [tagsFilter, setTagsFilter] = useState<TagsFilter>(
+    filterProps.tagsFilter
+  );
+
+  const findNow = () => {
+    let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}`;
+
+    for (const socialFilter of socialFilters) {
+      url += `&${socialFilter.title}=${socialFilter.selected}`;
+    }
+
+    tagsFilter.forEach((tag) => (url += `&tags=${tag}`));
+    router.push(url);
+  };
+
+  const desktopSelectStyle: StylesConfig = {
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      marginTop: 8,
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      backgroundColor: '#124B5280',
+      borderRadius: 5,
+      borderWidth: 0,
+      padding: '4px 16px',
+      fontSize: 14,
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      padding: 0,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    multiValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    multiValueLabel: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      visibility: 'hidden',
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      padding: 0,
+      color: '#FFFFFF66',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+  };
+
+  const mobileSelectStyle: StylesConfig = {
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      marginTop: 8,
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      backgroundColor: 'transparent',
+      borderRadius: 5,
+      borderWidth: 0,
+      padding: '4px 16px',
+      fontSize: 14,
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      padding: 0,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      textAlign: 'center',
+    }),
+    multiValue: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+      backgroundColor: 'transparent',
+    }),
+    multiValueLabel: (provided, state) => ({
+      ...provided,
+      color: '#FFFFFF66',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      visibility: 'hidden',
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      padding: 0,
+      color: '#FFFFFF66',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      fontSize: 14,
+      color: '#FFFFFF66',
+      backgroundColor: '#124B52',
+    }),
+  };
 
   return (
     <div className='w-full flex flex-col font-poppins'>
@@ -85,11 +458,12 @@ export default function Home() {
                       <SocialSelect
                         selected={filter.selected}
                         onToggle={(value: boolean) =>
-                          dispatch(
-                            setSocialFilter({
-                              filterTitle: filter.title,
-                              value: value,
-                            })
+                          setSocialFilter(
+                            socialFilters.map((item) =>
+                              item.title !== filter.title
+                                ? item
+                                : { ...filter, selected: value }
+                            )
                           )
                         }
                       />
@@ -113,7 +487,7 @@ export default function Home() {
                   value1={priceFilter.top}
                   top={10000}
                   onChange={(top, bottom) => {
-                    dispatch(setPriceFilter({ top, bottom }));
+                    setPriceFilter({ top, bottom });
                   }}
                 />
               </div>
@@ -124,11 +498,17 @@ export default function Home() {
                   </p>
                   <FaHeartbeat size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={Engagements}
-                  value={engagementFilter}
-                  onChange={(value) => {
-                    dispatch(setEngagementFilter(value));
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Engagements.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: engagementFilter,
+                    label: engagementFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setEngagementFilter(item.value);
                   }}
                 />
               </div>
@@ -139,11 +519,17 @@ export default function Home() {
                   </p>
                   <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={Languages}
-                  value={languageFilter}
-                  onChange={(value) => {
-                    dispatch(setLanguageFilter(value));
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Languages.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: languageFilter,
+                    label: languageFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setLanguageFilter(item.value);
                   }}
                 />
               </div>
@@ -154,11 +540,17 @@ export default function Home() {
                   </p>
                   <BsPeopleFill size={15} color='#FFFFFFB3' className='mx-1' />
                 </div>
-                <MobileSelectInput
-                  items={AudienceSizes}
-                  value={audienceSizeFilter}
-                  onChange={(value) => {
-                    dispatch(setAudienceSizeFilter(value));
+                <Select
+                  styles={mobileSelectStyle}
+                  options={AudienceSizes.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: audienceSizeFilter,
+                    label: audienceSizeFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setAudienceSizeFilter(item.value);
                   }}
                 />
               </div>
@@ -173,13 +565,19 @@ export default function Home() {
                     className='mx-1'
                   />
                 </div>
-                <MobileSelectInput
-                  items={AudienceLocations}
-                  value={audienceLocationFilter}
-                  onChange={(value) => {
-                    dispatch(setAudienceLocationFilter(value));
+                <Select
+                  styles={mobileSelectStyle}
+                  placeholder='Where Audiece located'
+                  options={AudienceLocations.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{
+                    value: audienceLocationFilter,
+                    label: audienceLocationFilter,
                   }}
-                  placeholder='Where audience located'
+                  onChange={(item: any) => {
+                    setAudienceLocationFilter(item.value);
+                  }}
                 />
               </div>
               <div className='w-full flex flex-col items-start'>
@@ -193,11 +591,19 @@ export default function Home() {
                     className='mx-1'
                   />
                 </div>
-                <input
-                  value={userNameFilter}
-                  onChange={(e) => dispatch(setUserNameFilter(e.target.value))}
-                  className='w-full border border-[#10E98C80] bg-[#1B3D43] text-center py-[9px] text-[10px] leading-[15px] text-[#FFFFFF64]'
-                  placeholder='Search By Username'
+                <Select
+                  styles={mobileSelectStyle}
+                  placeholder='Search by user name'
+                  options={users.map((item) => {
+                    return { value: item.name, label: item.name };
+                  })}
+                  value={{
+                    value: userNameFilter,
+                    label: userNameFilter,
+                  }}
+                  onChange={(item: any) => {
+                    setUserNameFilter(item.value);
+                  }}
                 />
               </div>
               <div className='w-full flex flex-col items-start'>
@@ -209,17 +615,26 @@ export default function Home() {
                     #
                   </div>
                 </div>
-                <MultiSelectInput
-                  items={Tags}
-                  value={tagsFilter}
-                  placeholder='Choose some keywords'
-                  onChange={(value) => {
-                    dispatch(setTagsFilter(value));
+                <Select
+                  styles={desktopSelectStyle}
+                  placeholder='Choose some key words'
+                  options={Tags.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={tagsFilter.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  isMulti
+                  onChange={(item: any) => {
+                    setTagsFilter(item.map((subitem) => subitem.value));
                   }}
                 />
               </div>
             </div>
-            <div className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'>
+            <div
+              className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
+              onClick={findNow}
+            >
               Find Now
             </div>
           </div>
@@ -243,11 +658,12 @@ export default function Home() {
                   <SocialSelect
                     selected={filter.selected}
                     onToggle={(value: boolean) =>
-                      dispatch(
-                        setSocialFilter({
-                          filterTitle: filter.title,
-                          value: value,
-                        })
+                      setSocialFilter(
+                        socialFilters.map((item) =>
+                          item.title !== filter.title
+                            ? item
+                            : { ...filter, selected: value }
+                        )
                       )
                     }
                   />
@@ -274,7 +690,7 @@ export default function Home() {
                       value1={priceFilter.top}
                       top={10000}
                       onChange={(top, bottom) => {
-                        dispatch(setPriceFilter({ top, bottom }));
+                        setPriceFilter({ top, bottom });
                       }}
                     />
                   </div>
@@ -290,11 +706,17 @@ export default function Home() {
                       />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={Engagements}
-                      value={engagementFilter}
-                      onChange={(value) => {
-                        dispatch(setEngagementFilter(value));
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={Engagements.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: engagementFilter,
+                        label: engagementFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setEngagementFilter(item.value);
                       }}
                     />
                   </div>
@@ -306,11 +728,17 @@ export default function Home() {
                       <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={Languages}
-                      value={languageFilter}
-                      onChange={(value) => {
-                        dispatch(setLanguageFilter(value));
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={Languages.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: languageFilter,
+                        label: languageFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setLanguageFilter(item.value);
                       }}
                     />
                   </div>
@@ -326,11 +754,17 @@ export default function Home() {
                       />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
-                    <SelectInput
-                      items={AudienceSizes}
-                      value={audienceSizeFilter}
-                      onChange={(value) => {
-                        dispatch(setAudienceSizeFilter(value));
+                    <Select
+                      styles={desktopSelectStyle}
+                      options={AudienceSizes.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={{
+                        value: audienceSizeFilter,
+                        label: audienceSizeFilter,
+                      }}
+                      onChange={(item: any) => {
+                        setAudienceSizeFilter(item.value);
                       }}
                     />
                   </div>
@@ -349,12 +783,18 @@ export default function Home() {
                         />
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
-                        items={users.map((user) => user.name)}
-                        value={userNameFilter}
+                      <Select
+                        styles={desktopSelectStyle}
                         placeholder='Search by user name'
-                        onChange={(value) => {
-                          dispatch(setUserNameFilter(value));
+                        options={users.map((item) => {
+                          return { value: item.name, label: item.name };
+                        })}
+                        value={{
+                          value: userNameFilter,
+                          label: userNameFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setUserNameFilter(item.value);
                         }}
                       />
                     </div>
@@ -370,12 +810,18 @@ export default function Home() {
                         />
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <SelectInput
-                        items={AudienceLocations}
-                        value={audienceLocationFilter}
-                        placeholder='Where audience located'
-                        onChange={(value) => {
-                          dispatch(setAudienceLocationFilter(value));
+                      <Select
+                        styles={desktopSelectStyle}
+                        placeholder='Where Audiece located'
+                        options={AudienceLocations.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={{
+                          value: audienceLocationFilter,
+                          label: audienceLocationFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setAudienceLocationFilter(item.value);
                         }}
                       />
                     </div>
@@ -389,12 +835,18 @@ export default function Home() {
                         </div>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <MultiSelectInput
-                        items={Tags}
-                        value={tagsFilter}
-                        placeholder='Choose some keywords'
-                        onChange={(value) => {
-                          dispatch(setTagsFilter(value));
+                      <Select
+                        styles={desktopSelectStyle}
+                        placeholder='Choose some key words'
+                        options={Tags.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={tagsFilter.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        isMulti
+                        onChange={(item: any) => {
+                          setTagsFilter(item.map((subitem) => subitem.value));
                         }}
                       />
                     </div>
@@ -402,7 +854,7 @@ export default function Home() {
                   <div className='w-full'>
                     <div
                       className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
-                      onClick={() => {}}
+                      onClick={findNow}
                     >
                       Find now
                     </div>
