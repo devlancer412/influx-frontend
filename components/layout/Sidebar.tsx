@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { isMobile } from 'react-device-detect';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { setBrand } from '../../store/slices/profileSlice';
 
 const menus: MenuProps[] = [
   {
@@ -64,9 +67,30 @@ const comingsoons: string[] = [
 
 const Sidebar: React.FC = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const profile = useSelector((store: RootState) => store.brandProfile);
 
   return (
     <div className='flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px] hidden md:flex'>
+      <div
+        className='w-[calc(100%-32px)] flex flex-row justify-center items-center mx-4 border-b border-[#FFFFFF64] py-4 hover:cursor-pointer'
+        onClick={() =>
+          dispatch(setBrand({ ...profile, loggedin: !profile.loggedin }))
+        }
+      >
+        {profile.loggedin ? (
+          <>
+            <Image src={profile.avatar} width={77} height={77} />
+            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[20px] leading-[30px] font-medium'>
+              {profile.name || 'Name'}
+            </h5>
+          </>
+        ) : (
+          <h5 className='text-[#FFFFFFC8] text-[20px] leading-[30px] font-medium'>
+            Login/Signup
+          </h5>
+        )}
+      </div>
       <div className='w-full grid gap-y-[0.5vh] grid-cols-1'>
         {menus.map((page: MenuProps) => (
           <Link key={page.url} href={page.url}>

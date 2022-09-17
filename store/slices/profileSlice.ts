@@ -43,6 +43,7 @@ const initialState: BrandState = {
   isWL: false,
   isAirdrop: false,
   isPremint: false,
+  loggedin: false,
 };
 
 const brandSlice = createSlice({
