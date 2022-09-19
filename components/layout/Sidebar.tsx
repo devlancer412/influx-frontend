@@ -86,7 +86,7 @@ const Sidebar: React.FC = () => {
             </h5>
           </>
         ) : (
-          <h5 className='text-[#FFFFFFC8] text-[1.3vh] leading-[2.5vh] 2xl:text-[1.6vh] 2xl:leading-[3vh] font-medium'>
+          <h5 className='text-[#FFFFFFC8] text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] font-medium'>
             Login/Signup
           </h5>
         )}
@@ -100,7 +100,7 @@ const Sidebar: React.FC = () => {
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
               <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
-              <h3 className='text-white font-poppins text-[1.3vh] leading-[2.5vh] 2xl:text-[1.6vh] 2xl:leading-[3vh] ml-[20px]'>
+              <h3 className='text-white font-poppins text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] ml-[20px]'>
                 {page.title}
               </h3>
             </div>
@@ -122,7 +122,7 @@ const Sidebar: React.FC = () => {
                 width={'17vh'}
                 height={'17vh'}
               />
-              <h3 className='text-white font-poppins ml-[20px] font-semibold text-[1.3vh] leading-[2.5vh] 2xl:text-[1.6vh] 2xl:leading-[3vh]'>
+              <h3 className='text-white font-poppins ml-[20px] font-semibold text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh]'>
                 Coming Soon
               </h3>
             </div>
@@ -130,7 +130,7 @@ const Sidebar: React.FC = () => {
               {comingsoons.map((title: string) => (
                 <h3
                   key={title}
-                  className='text-white font-poppins font-semibold hover:cursor-pointe text-[1.3vh] leading-[2.5vh] 2xl:text-[1.6vh] 2xl:leading-[3vh]'
+                  className='text-white font-poppins font-semibold hover:cursor-pointe text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh]'
                 >
                   {title}
                 </h3>
@@ -148,7 +148,7 @@ const Sidebar: React.FC = () => {
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
               <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
-              <h3 className='text-white font-poppins ml-[20px] text-[1.3vh] leading-[2.5vh] 2xl:text-[1.6vh] 2xl:leading-[3vh]'>
+              <h3 className='text-white font-poppins ml-[20px] text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh]'>
                 {page.title}
               </h3>
             </div>
