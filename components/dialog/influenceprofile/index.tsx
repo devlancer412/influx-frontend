@@ -48,6 +48,7 @@ type InfluenceProps = {
   topPrice: number;
   bottomPrice: number;
   premium: boolean;
+  niches: string[];
 };
 
 const InfluenceProfile: React.FC<InfluenceProps> = ({
@@ -62,6 +63,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   topPrice,
   bottomPrice,
   premium,
+  niches,
 }) => {
   const { hideDialog } = useDialog();
 
@@ -131,16 +133,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           <div className='flex-col items-center mt-[45px] hidden md:flex'>
             <h5 className='text-16 font-semibold text-white'>Niche</h5>
             <NicheSlideShow
-              niches={[
-                'NFT',
-                'ProductLive',
-                'DoxxedTeam',
-                'Fairvesting',
-                'NFT',
-                'ProductLive',
-                'DoxxedTeam',
-                'Fairvesting',
-              ]}
+              niches={niches.length?niches:['NFTs']}
             />
           </div>
           <div className='w-full flex flex-col items-center mt-[45px]'>

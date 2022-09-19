@@ -32,6 +32,7 @@ declare global {
     topPrice: number;
     bottomPrice: number;
     premium: boolean;
+    niches: string[];
   }
 
   type Category = typeof Categories[number];

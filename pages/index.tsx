@@ -36,6 +36,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 1,
@@ -51,6 +52,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: true,
+    niches: [],
   },
   {
     id: 2,
@@ -66,6 +68,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 3,
@@ -81,6 +84,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 4,
@@ -96,6 +100,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 5,
@@ -111,6 +116,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 6,
@@ -126,6 +132,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 7,
@@ -141,6 +148,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: true,
+    niches: [],
   },
   {
     id: 8,
@@ -156,6 +164,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 9,
@@ -171,6 +180,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 10,
@@ -186,6 +196,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
   {
     id: 11,
@@ -201,6 +212,7 @@ const initialInfluences: Influence[] = [
     topPrice: 5000,
     bottomPrice: 1000,
     premium: false,
+    niches: [],
   },
 ];
 
