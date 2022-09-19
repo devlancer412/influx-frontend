@@ -81,7 +81,7 @@ const Sidebar: React.FC = () => {
         {profile.loggedin ? (
           <>
             <Image src={profile.avatar} width={'60vh'} height={'60vh'} />
-            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[2vh] leading-[30px] font-medium'>
+            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] font-medium'>
               {profile.name || 'Name'}
             </h5>
           </>
