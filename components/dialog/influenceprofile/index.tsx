@@ -201,7 +201,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
             </div>
           </div>
-          <div className='flex flex-col md:flex-row items-center mt-[55px] pb-[57px] md:pb-0 border-b border-[#10E98C48] md:border-b-0'>
+          {/* <div className='flex flex-col md:flex-row items-center mt-[55px] pb-[57px] md:pb-0 border-b border-[#10E98C48] md:border-b-0'>
             <h3 className='text-[11px] md:text-[13px] text-white md:mr-[21px] mb-[23px] md:mb-0 text-center'>
               Get Better Prices for this influencer by contacting :
             </h3>
@@ -216,8 +216,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 Crypto Labs
               </h3>
             </div>
-          </div>
-          <div className='flex flex-col items-center mt-[20px]'>
+          </div> */}
+          <div className='flex flex-col items-center mt-[40px]'>
             <h5 className='text-[12px] md:text-[16px] font-extrabold md:font-semibold text-white mb-[11px] text-center'>
               Influencer’s Statistics ( Last Updated 1-8-2022 )
             </h5>
