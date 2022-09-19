@@ -12,7 +12,7 @@ import {
   Engagements,
   Languages,
   AudienceSizes,
-  Tags,
+  Niches,
   AudienceLocations,
   initSocialFilters,
   Sorters,
@@ -212,7 +212,7 @@ interface FilterProps {
   audienceSizeFilter: AudienceSizeFilter;
   userNameFilter: string;
   audienceLocationFilter: AudienceLocationFilter;
-  tagsFilter: TagsFilter[];
+  nichesFilter: NicheFilter[];
   sort: SortFilter;
 }
 
@@ -231,7 +231,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     audienceSize,
     userName,
     audienceLocation,
-    tags,
+    niches,
     sort,
   } = context.query;
 
@@ -248,7 +248,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       userNameFilter: (userName as string) || '',
       audienceLocationFilter:
         (audienceLocation as string) || AudienceLocations[0],
-      tagsFilter: [],
+      nichesFilter: [],
       sort: (sort as SortFilter) || Sorters[0],
     },
     influences: initialInfluences,
@@ -261,10 +261,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       : filter
   );
 
-  if (typeof tags === 'string') {
-    props.filterProps.tagsFilter = [tags];
-  } else if (typeof tags === 'object') {
-    props.filterProps.tagsFilter = tags as string[];
+  if (typeof niches === 'string') {
+    props.filterProps.nichesFilter = [niches];
+  } else if (typeof niches === 'object') {
+    props.filterProps.nichesFilter = niches as string[];
   }
 
   return { props };
@@ -292,8 +292,8 @@ export default function Home({ filterProps, influences, users }: Props) {
   );
   const [audienceLocationFilter, setAudienceLocationFilter] =
     useState<AudienceLocationFilter>(filterProps.audienceLocationFilter);
-  const [tagsFilter, setTagsFilter] = useState<TagsFilter>(
-    filterProps.tagsFilter
+  const [nichesFilter, setNichesFilter] = useState<NicheFilter>(
+    filterProps.nichesFilter
   );
   const [sortFilter, setSortFilter] = useState<SortFilter>(filterProps.sort);
 
@@ -304,7 +304,7 @@ export default function Home({ filterProps, influences, users }: Props) {
       url += `&${socialFilter.title}=${socialFilter.selected}`;
     }
 
-    tagsFilter.forEach((tag) => (url += `&tags=${tag}`));
+    nichesFilter.forEach((tag) => (url += `&niches=${tag}`));
     router.push(url);
   };
 
@@ -318,7 +318,7 @@ export default function Home({ filterProps, influences, users }: Props) {
     audienceSizeFilter,
     audienceLocationFilter,
     userNameFilter,
-    tagsFilter,
+    nichesFilter,
   ]);
 
   return (
@@ -521,15 +521,15 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <Select
                   styles={desktopSelectStyle}
                   placeholder='Choose some key words'
-                  options={Tags.map((item) => {
+                  options={Niches.map((item) => {
                     return { value: item, label: item };
                   })}
-                  value={tagsFilter.map((item) => {
+                  value={nichesFilter.map((item) => {
                     return { value: item, label: item };
                   })}
                   isMulti
                   onChange={(item: any) => {
-                    setTagsFilter(item.map((subitem) => subitem.value));
+                    setNichesFilter(item.map((subitem) => subitem.value));
                   }}
                 />
               </div>
@@ -763,15 +763,15 @@ export default function Home({ filterProps, influences, users }: Props) {
                       <Select
                         styles={desktopSelectStyle}
                         placeholder='Choose some key words'
-                        options={Tags.map((item) => {
+                        options={Niches.map((item) => {
                           return { value: item, label: item };
                         })}
-                        value={tagsFilter.map((item) => {
+                        value={nichesFilter.map((item) => {
                           return { value: item, label: item };
                         })}
                         isMulti
                         onChange={(item: any) => {
-                          setTagsFilter(item.map((subitem) => subitem.value));
+                          setNichesFilter(item.map((subitem) => subitem.value));
                         }}
                       />
                     </div>

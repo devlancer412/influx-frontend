@@ -39,7 +39,7 @@ export const AudienceLocations = [
   'Ukraine',
 ] as const;
 
-export const Tags = [
+export const Niches = [
   'Lorem ipsum0',
   'Lorem ipsum1',
   'Lorem ipsum2',
