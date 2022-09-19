@@ -350,7 +350,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                         height={18}
                         objectFit='contain'
                       />
-                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0'>
+                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0 capitalize'>
                         {filter.title}
                       </div>
                       <SocialSelect
@@ -550,7 +550,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                     height={18}
                     objectFit='contain'
                   />
-                  <div className='flex-1 text-center text-white text-[16px]'>
+                  <div className='flex-1 text-center text-white text-[16px] capitalize'>
                     {filter.title}
                   </div>
                   <SocialSelect
