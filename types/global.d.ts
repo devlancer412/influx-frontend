@@ -67,6 +67,7 @@ declare global {
     isWL: boolean;
     isAirdrop: boolean;
     isPremint: boolean;
+    loggedin?: boolean;
   }
 
   type Billing = {
