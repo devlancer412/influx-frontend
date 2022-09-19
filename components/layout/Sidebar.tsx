@@ -80,13 +80,13 @@ const Sidebar: React.FC = () => {
       >
         {profile.loggedin ? (
           <>
-            <Image src={profile.avatar} width={77} height={77} />
-            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[12px] leaing-[24px] lg:text-[16px] lg:leading-[28px] font-medium'>
+            <Image src={profile.avatar} width={'60vh'} height={'60vh'} />
+            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[2vh] leading-[30px] font-medium'>
               {profile.name || 'Name'}
             </h5>
           </>
         ) : (
-          <h5 className='text-[#FFFFFFC8] text-[12px] leaing-[24px] lg:text-[16px] lg:leading-[28px] font-medium'>
+          <h5 className='text-[#FFFFFFC8] text-[1.6vh] leading-[3vh] lg:text-[1.3vh] lg:leading-[2.5vh] font-medium'>
             Login/Signup
           </h5>
         )}
@@ -99,8 +99,8 @@ const Sidebar: React.FC = () => {
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={20} height={20} />
-              <h3 className='text-white font-poppins leading-[24px] lg:leading-[28px] ml-[20px] text-[1.3vh] lg:text-[1.7vh]'>
+              <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
+              <h3 className='text-white font-poppins text-[1.6vh] leading-[3vh] lg:text-[1.3vh] lg:leading-[2.5vh] ml-[20px]'>
                 {page.title}
               </h3>
             </div>
@@ -117,8 +117,12 @@ const Sidebar: React.FC = () => {
                   : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src='/icons/comingsoon.png' width={20} height={20} />
-              <h3 className='text-white font-poppins leading-[2vh] lg:leading-[2.5vh] ml-[20px] font-semibold text-[1.3vh] lg:text-[1.7vh]'>
+              <Image
+                src='/icons/comingsoon.png'
+                width={'17vh'}
+                height={'17vh'}
+              />
+              <h3 className='text-white font-poppins ml-[20px] font-semibold text-[1.6vh] leading-[3vh] lg:text-[1.3vh] lg:leading-[2.5vh]'>
                 Coming Soon
               </h3>
             </div>
@@ -126,7 +130,7 @@ const Sidebar: React.FC = () => {
               {comingsoons.map((title: string) => (
                 <h3
                   key={title}
-                  className='text-white font-poppins leading-[1.6vh] lg:leading-[2vh] font-semibold hover:cursor-pointe text-[1.2vh] lg:text-[1.5vh]'
+                  className='text-white font-poppins font-semibold hover:cursor-pointe text-[1.6vh] leading-[3vh] lg:text-[1.3vh] lg:leading-[2.5vh]'
                 >
                   {title}
                 </h3>
@@ -143,8 +147,8 @@ const Sidebar: React.FC = () => {
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
               } flex flex-row justify-start items-center hover:cursor-pointer`}
             >
-              <Image src={page.iconUrl} width={20} height={20} />
-              <h3 className='text-white font-poppins leading-[2vh] lg:leading-[2.5vh] ml-[20px] text-[1.3vh] lg:text-[1.7vh]'>
+              <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
+              <h3 className='text-white font-poppins ml-[20px] text-[1.6vh] leading-[3vh] lg:text-[1.3vh] lg:leading-[2.5vh]'>
                 {page.title}
               </h3>
             </div>
@@ -153,7 +157,7 @@ const Sidebar: React.FC = () => {
       </div>
       <div className='w-full py-[15px] bg-[#D9D9D9] bg-opacity-50 flex flex-row justify-center items-center hover:cursor-pointer'>
         <Image src='/icons/logout.png' width={20} height={20} />
-        <h3 className='text-white font-poppins text-[12px] leaing-[24px] lg:text-[16px] lg:leading-[28px] ml-[12px] font-semibold'>
+        <h3 className='text-white font-poppins text-[1.7vh] leading-[2.5vh] ml-[12px] font-semibold'>
           Log Out
         </h3>
       </div>
