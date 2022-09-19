@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { MdOutlinePriceCheck } from 'react-icons/md';
-import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
+import { FaHeartbeat, FaSearchLocation, FaSort } from 'react-icons/fa';
 import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import Select from 'react-select';
 
@@ -15,6 +15,7 @@ import {
   Tags,
   AudienceLocations,
   initSocialFilters,
+  Sorters,
 } from '../constant';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import InfluenceList from '../components/pages/home/InfluenceList';
@@ -212,6 +213,7 @@ interface FilterProps {
   userNameFilter: string;
   audienceLocationFilter: AudienceLocationFilter;
   tagsFilter: TagsFilter[];
+  sort: SortFilter;
 }
 
 interface Props {
@@ -230,6 +232,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     userName,
     audienceLocation,
     tags,
+    sort,
   } = context.query;
 
   let props: Props = {
@@ -246,6 +249,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       audienceLocationFilter:
         (audienceLocation as string) || AudienceLocations[0],
       tagsFilter: [],
+      sort: (sort as SortFilter) || Sorters[0],
     },
     influences: initialInfluences,
     users: [],
@@ -291,9 +295,10 @@ export default function Home({ filterProps, influences, users }: Props) {
   const [tagsFilter, setTagsFilter] = useState<TagsFilter>(
     filterProps.tagsFilter
   );
+  const [sortFilter, setSortFilter] = useState<SortFilter>(filterProps.sort);
 
   const updateUrl = () => {
-    let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}`;
+    let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}&sort=${sortFilter}`;
 
     for (const socialFilter of socialFilters) {
       url += `&${socialFilter.title}=${socialFilter.selected}`;
@@ -528,6 +533,28 @@ export default function Home({ filterProps, influences, users }: Props) {
                   }}
                 />
               </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Sort
+                  </p>
+                  <FaSearchLocation
+                    size={15}
+                    color='#FFFFFFB3'
+                    className='mx-1'
+                  />
+                </div>
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Sorters.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{ value: sortFilter, label: sortFilter }}
+                  onChange={(item: any) => {
+                    setSortFilter(item.value);
+                  }}
+                />
+              </div>
             </div>
             <div
               className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
@@ -745,6 +772,28 @@ export default function Home({ filterProps, influences, users }: Props) {
                         isMulti
                         onChange={(item: any) => {
                           setTagsFilter(item.map((subitem) => subitem.value));
+                        }}
+                      />
+                    </div>
+                    <div className='flex flex-col items-start mt-[10px]'>
+                      <div className='flex flex-row justify-start items-center'>
+                        <h3 className='font-semibold text-[12px] text-white capitalize'>
+                          Sort
+                        </h3>
+                        <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
+                        <Image src='/icons/info.png' width={10} height={10} />
+                      </div>
+                      <Select
+                        styles={desktopSelectStyle}
+                        options={Sorters.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={{
+                          value: sortFilter,
+                          label: sortFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setSortFilter(item.value);
                         }}
                       />
                     </div>
