@@ -129,7 +129,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             </div>
           </div>
           <div className='flex-col items-center mt-[45px] hidden md:flex'>
-            <h5 className='text-16 font-semibold text-white'>Tags</h5>
+            <h5 className='text-16 font-semibold text-white'>Niche</h5>
             <TagsSlideShow
               tags={[
                 'NFT',

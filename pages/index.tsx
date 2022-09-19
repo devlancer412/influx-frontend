@@ -512,7 +512,7 @@ export default function Home({ filterProps, influences, users }: Props) {
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
                   <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
-                    Tags
+                    Niche
                   </p>
                   <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
                     #
@@ -756,7 +756,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                           #
                         </div>
                         <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
-                          Tags
+                          Niche
                         </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
