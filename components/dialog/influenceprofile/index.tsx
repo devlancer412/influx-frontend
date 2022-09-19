@@ -68,7 +68,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   const { hideDialog } = useDialog();
 
   return (
-    <div className='relative w-screen lg:w-[1000px] h-screen lg:max-h-[90vh] px-[30px] py-[95px] md:p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] overflow-y-auto scrollbar'>
+    <div className='relative w-screen lg:w-[1000px] h-screen lg:max-h-[90vh] px-[30px] py-[95px] md:p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] overflow-y-auto'>
       <div
         className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
         onClick={hideDialog}
@@ -121,7 +121,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           </div>
           <div className='w-full max-w-[500px] grid-cols-3 gap-[13px] text-black font-semibold text-[14px] leading-[21px] mt-5 text-center hidden md:grid'>
             <div className='py-2 bg-[#8DD7CF] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-            VIP Perks
+              VIP Perks
             </div>
             <div className='py-2 bg-[#FBE192] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
               PaidPromo
@@ -132,9 +132,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           </div>
           <div className='flex-col items-center mt-[45px] hidden md:flex'>
             <h5 className='text-16 font-semibold text-white'>Niche</h5>
-            <NicheSlideShow
-              niches={niches.length?niches:['NFTs']}
-            />
+            <NicheSlideShow niches={niches.length ? niches : ['NFTs']} />
           </div>
           <div className='w-full flex flex-col items-center mt-[45px]'>
             <h5 className='text-[16px] font-semibold text-white'>

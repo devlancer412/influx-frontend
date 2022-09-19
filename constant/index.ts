@@ -57,6 +57,18 @@ export const Sorters = [
   'Price range',
 ] as const;
 
+export const InfluenceStates = [
+  'Not Outreached (DEFAULT VALUE)',
+  'Outreached',
+  'In negotiation',
+  'Waiting for payment',
+  'Payment complete',
+  'Promotion materials sent',
+  'Promotion complete',
+  'Canceled',
+  'No Reply',
+];
+
 export const initSocialFilters: SocialFilterProps[] = [
   {
     iconUrl: '/icons/twitter.png',

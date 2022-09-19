@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaEllipsisV } from 'react-icons/fa';
 import Select from 'react-select';
 import { influenceStatusSelectStyle } from '../../../constant';
+import { InfluenceStates } from './../../../constant/index';
 
 type Props = {
   influence: Influence;
@@ -132,10 +133,9 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
             </p>
             <Select
               styles={influenceStatusSelectStyle}
-              options={[
-                { value: 'open', label: 'Open' },
-                { value: 'close', label: 'Close' },
-              ]}
+              options={InfluenceStates.map((item) => {
+                return { value: item, label: item };
+              })}
             />
           </div>
           <div className='flex flex-col items-start'>
