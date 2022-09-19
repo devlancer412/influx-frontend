@@ -600,14 +600,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <div className='flex flex-col w-[35%] justify-around'>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Price Range for promo
-                      </h3>
                       <MdOutlinePriceCheck
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Price Range for promo
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <RangeSelect
@@ -621,14 +621,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Engagement Rate
-                      </h3>
                       <FaHeartbeat
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Engagement Rate
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -647,10 +647,10 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start mt-[10px]'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
+                      <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
                         Language
                       </h3>
-                      <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -669,14 +669,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start mt-[10px]'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Audience Size
-                      </h3>
                       <BsPeopleFill
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Audience Size
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -698,14 +698,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   <div className='flex flex-col w-[70%] justify-around'>
                     <div className='flex flex-col items-start'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          By User Name
-                        </h3>
                         <BsFillPersonFill
                           size={15}
                           color='#FFFFFFB3'
                           className='mx-1'
                         />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          By User Name
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
@@ -725,14 +725,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                     </div>
                     <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          Audience Location
-                        </h3>
                         <FaSearchLocation
                           size={15}
                           color='#FFFFFFB3'
                           className='mx-1'
                         />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Audience Location
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
@@ -752,12 +752,12 @@ export default function Home({ filterProps, influences, users }: Props) {
                     </div>
                     <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          Tags
-                        </h3>
                         <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
                           #
                         </div>
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Tags
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
