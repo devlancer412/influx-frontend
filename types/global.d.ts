@@ -28,7 +28,7 @@ declare global {
     telegram?: string;
     twitter?: string;
     followers: number;
-    er: 'Good' | 'Normal' | 'Bad';
+    engagement: 'Good' | 'Normal' | 'Bad';
     topPrice: number;
     bottomPrice: number;
     premium: boolean;
