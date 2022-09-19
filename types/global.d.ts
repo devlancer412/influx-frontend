@@ -4,6 +4,7 @@ import {
   Chains,
   Attributes,
   EsBudgets,
+  Sorters,
 } from '../constant';
 export {};
 
@@ -104,6 +105,8 @@ declare global {
   type AudienceLocationFilter = typeof AudienceLocations[number];
 
   type TagsFilter = typeof Tags[number];
+
+  type SortFilter = typeof Sorters[number];
 
   type User = {
     name: string;

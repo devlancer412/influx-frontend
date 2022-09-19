@@ -10,7 +10,7 @@ type Props = {
 
 const menus: MenuProps[] = [
   {
-    title: 'Discover',
+    title: 'Discovery',
     iconUrl: '/icons/cover.png',
     url: '/',
   },
@@ -20,17 +20,12 @@ const menus: MenuProps[] = [
     url: '/campaign',
   },
   {
-    title: 'Get Found by infl.',
-    iconUrl: '/icons/foundbyinfl.png',
-    url: '/foundbyinfl',
-  },
-  {
     title: 'Profile',
     iconUrl: '/icons/profile.png',
     url: '/profile',
   },
   {
-    title: 'Plan & Billing',
+    title: 'Upgrade Plan',
     iconUrl: '/icons/planandbilling.png',
     url: '/planandbilling',
   },

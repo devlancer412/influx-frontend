@@ -51,6 +51,12 @@ export const Tags = [
   'Lorem ipsum8',
 ] as const;
 
+export const Sorters = [
+  'Audience size',
+  'Engagement rate',
+  'Price range',
+] as const;
+
 export const initSocialFilters: SocialFilterProps[] = [
   {
     iconUrl: '/icons/twitter.png',
