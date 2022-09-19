@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import TagsSlideShow from './TagsSlideShow';
+import NicheSlideShow from './NicheSlideShow';
 import Link from 'next/link';
 
 import { BsPlusCircle, BsChat } from 'react-icons/bs';
@@ -129,9 +129,9 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             </div>
           </div>
           <div className='flex-col items-center mt-[45px] hidden md:flex'>
-            <h5 className='text-16 font-semibold text-white'>Tags</h5>
-            <TagsSlideShow
-              tags={[
+            <h5 className='text-16 font-semibold text-white'>Niche</h5>
+            <NicheSlideShow
+              niches={[
                 'NFT',
                 'ProductLive',
                 'DoxxedTeam',

@@ -104,7 +104,7 @@ declare global {
 
   type AudienceLocationFilter = typeof AudienceLocations[number];
 
-  type TagsFilter = typeof Tags[number];
+  type NicheFilter = typeof Niches[number];
 
   type SortFilter = typeof Sorters[number];
 
