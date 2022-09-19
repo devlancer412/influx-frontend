@@ -112,3 +112,66 @@ export const mobileSelectStyle: StylesConfig = {
     backgroundColor: '#124B52',
   }),
 };
+
+export const influenceStatusSelectStyle: StylesConfig = {
+  container: (provided, state) => ({
+    ...provided,
+    width: '100%',
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    width: '100%',
+    backgroundColor: '#243034',
+    borderRadius: 3,
+    borderWidth: 0.5,
+    borderColor: '#CCCCCC80',
+    padding: '4px 8px',
+    fontSize: 12,
+    minHeight: 20,
+  }),
+  valueContainer: (provided, state) => ({
+    ...provided,
+    width: '100%',
+    padding: 0,
+    margin: 0,
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: '#FFFFFF80',
+    margin: 0,
+  }),
+  input: (provided, state) => ({
+    ...provided,
+    color: '#FFFFFF80',
+    margin: 0,
+    padding: 0,
+  }),
+  indicatorsContainer: (provided, state) => ({
+    ...provided,
+  }),
+  indicatorSeparator: (provided, state) => ({
+    ...provided,
+    display: 'none',
+  }),
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    padding: 0,
+    color: '#FFFFFF80',
+    height: 18,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+  menu: (provided, state) => ({
+    ...provided,
+    fontSize: 12,
+    color: '#FFFFFF80',
+    backgroundColor: '#243034',
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    fontSize: 12,
+    color: '#FFFFFF80',
+    backgroundColor: '#243034',
+  }),
+};

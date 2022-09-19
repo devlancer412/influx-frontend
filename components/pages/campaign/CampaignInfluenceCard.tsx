@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaEllipsisV } from 'react-icons/fa';
+import Select from 'react-select';
+import { influenceStatusSelectStyle } from '../../../constant';
 
 type Props = {
   influence: Influence;
@@ -9,9 +11,9 @@ type Props = {
 
 const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
   return (
-    <div className='relative flex flex-col xl:flex-row items-center bg-[#314146] xl:h-[120px] overflow-hidden'>
+    <div className='relative flex flex-col xl:flex-row items-center bg-[#314146] xl:h-[120px]'>
       <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-center'>
-        <div className='flex flex-row w-full lg:w-1/2 items-center justify-around py-[29px] px-[23px]'>
+        <div className='relative flex flex-row w-full lg:w-1/2 items-center justify-around py-[29px] px-[23px] overflow-hidden'>
           <Image
             src={influence?.imageUrl}
             width={78}
@@ -72,6 +74,14 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
               </div>
             </div>
           </div>
+          {influence.premium ? (
+            <div className='absolute top-[17px] bg-[#FFFF00] -left-[46px] flex flex-row justify-center items-center py-1 w-[150px] text-[12px] text-black font-medium -rotate-[45deg]'>
+              <div className='mr-1'>VIP</div>
+              <Image src='/icons/crown.png' width={12} height={12} />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <ul className='grid-cols-1 gap-[10px] w-full lg:w-1/2 text-[13px] leading-[20px] text-[#CCCCCC] my-[23px] list-disc list-inside hidden lg:grid'>
           <li>
@@ -120,7 +130,13 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
             <p className='text-[13px] leading-[20px] pl-1 text-[#FFFFFF80] mb-[10px]'>
               Status
             </p>
-            <input className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-1 px-2' />
+            <Select
+              styles={influenceStatusSelectStyle}
+              options={[
+                { value: 'open', label: 'Open' },
+                { value: 'close', label: 'Close' },
+              ]}
+            />
           </div>
           <div className='flex flex-col items-start'>
             <p className='text-[13px] leading-[20px] pl-1 text-[#FFFFFF80] mb-[10px]'>
@@ -153,14 +169,6 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
       <div className='absolute w-5 h-5 flex justify-center items-center bg-[#41666FB3] top-[14px] right-8 rounded-full hover:cursor-pointer'>
         <FaEllipsisV size={12} color='white' />
       </div>
-      {influence.premium ? (
-        <div className='absolute top-[17px] bg-[#FFFF00] -left-[46px] flex flex-row justify-center items-center py-1 w-[150px] text-[12px] text-black font-medium -rotate-[45deg]'>
-          <div className='mr-1'>VIP</div>
-          <Image src='/icons/crown.png' width={12} height={12} />
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };
