@@ -87,9 +87,9 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
             </span>
           </li>
           <li>
-            ER{' '}
+            Engagement{' '}
             <span className='font-bold text-[#10E98C] text-[16px] leading-[21px] ml-[13px]'>
-              {influence?.er}
+              {influence?.engagement}
             </span>
           </li>
         </ul>
@@ -101,9 +101,9 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
             </h3>
           </div>
           <div className='flex flex-col items-center'>
-            <h3 className='text-white mb-3'>ER</h3>
+            <h3 className='text-white mb-3'>Engagement</h3>
             <h3 className='text-[#10E98C] text-[13px] leading-[20px]'>
-              {influence?.er}K
+              {influence?.engagement}K
             </h3>
           </div>
           <div className='flex flex-col items-center'>
