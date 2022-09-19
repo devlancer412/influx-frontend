@@ -14,9 +14,7 @@ const CampaignProfile: React.FC = () => {
 
   const [current, setCurrent] = useState<SubMenu>('Actions');
 
-  const influences = useSelector((store: RootState) => store.influences).filter(
-    (influence) => influence.campaignId === parseInt(campaignId as string)
-  );
+  const influences = [];
   const campaign = useSelector((store: RootState) => store.campaigns).filter(
     (item) => item.id === parseInt(campaignId as string)
   )[0];
@@ -49,10 +47,10 @@ const CampaignProfile: React.FC = () => {
               </div>
               <div className='flex flex-col max-w-[220px]'>
                 <h5 className='w-full pb-[25px] border-b border-[#FFFFFFCC] text-[14px] leading-[12px] md:text-[16px] md:leading-[24px] text-center text-[#FFFFFFCC] px-[10px]'>
-                  Negotiated Budget
+                  Negotiated Pricee
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  ${campaign?.budget}K
+                  ${campaign?.price}K
                 </h3>
               </div>
               <div className='flex flex-col max-w-[220px]'>

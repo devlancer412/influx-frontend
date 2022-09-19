@@ -9,7 +9,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -17,7 +17,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -25,7 +25,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -33,7 +33,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -41,7 +41,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -49,7 +49,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -57,7 +57,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -65,7 +65,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -73,7 +73,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
   {
@@ -81,7 +81,7 @@ const initialState: CampaignsState = [
     name: 'Text campaign 1',
     influencers: 12,
     averageEngagementRate: 'Good',
-    budget: 25.4,
+    price: 25.4,
     potentialReach: 12.5,
   },
 ];
