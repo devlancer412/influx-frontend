@@ -121,7 +121,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           </div>
           <div className='w-full max-w-[500px] grid-cols-3 gap-[13px] text-black font-semibold text-[14px] leading-[21px] mt-5 text-center hidden md:grid'>
             <div className='py-2 bg-[#8DD7CF] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-              Discount
+            VIP Perks
             </div>
             <div className='py-2 bg-[#FBE192] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
               PaidPromo
