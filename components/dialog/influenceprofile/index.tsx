@@ -44,7 +44,7 @@ type InfluenceProps = {
   telegram?: string;
   twitter?: string;
   followers: number;
-  er: 'Good' | 'Normal' | 'Bad';
+  engagement: 'Good' | 'Normal' | 'Bad';
   topPrice: number;
   bottomPrice: number;
   premium: boolean;
@@ -58,7 +58,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   telegram,
   twitter,
   followers,
-  er,
+  engagement,
   topPrice,
   bottomPrice,
   premium,
@@ -93,8 +93,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               <h3 className='text-[#10E98C]'>{followers}K</h3>
             </div>
             <div className='flex flex-col items-center'>
-              <h3 className='text-white mb-3'>ER</h3>
-              <h3 className='text-[#10E98C]'>{er}K</h3>
+              <h3 className='text-white mb-3'>Engagement</h3>
+              <h3 className='text-[#10E98C]'>{engagement}K</h3>
             </div>
             <div className='flex flex-col items-end md:items-center'>
               <h3 className='text-white mb-3'>Price Range</h3>
