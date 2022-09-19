@@ -14,8 +14,8 @@ declare global {
     name: string;
     influencers: number;
     averageEngagementRate: 'Good' | 'Normal' | 'Bad';
-    budget: number;
-    potentialReach: number;
+    price: number;
+    followers: number;
   }
 
   interface Influence {
@@ -32,13 +32,14 @@ declare global {
     topPrice: number;
     bottomPrice: number;
     premium: boolean;
+    niches: string[];
   }
 
   type Category = typeof Categories[number];
   type Region = typeof Regions[number];
   type Chain = typeof Chains[number];
   type Attribute = typeof Attributes[number];
-  type ExBudget = typeof EsBudgets[number];
+  type EsBudget = typeof EsBudgets[number];
 
   interface LaunchSetting {
     name: string;
@@ -63,7 +64,7 @@ declare global {
     region: Region | '';
     chain: Chain | '';
     attribute: Attribute | '';
-    esBudget: ExBudget | '';
+    esBudget: EsBudget | '';
     launchSettings: LaunchSetting[];
     isWL: boolean;
     isAirdrop: boolean;

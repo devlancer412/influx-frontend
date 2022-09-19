@@ -48,6 +48,7 @@ type InfluenceProps = {
   topPrice: number;
   bottomPrice: number;
   premium: boolean;
+  niches: string[];
 };
 
 const InfluenceProfile: React.FC<InfluenceProps> = ({
@@ -62,11 +63,12 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   topPrice,
   bottomPrice,
   premium,
+  niches,
 }) => {
   const { hideDialog } = useDialog();
 
   return (
-    <div className='relative w-screen lg:w-[1000px] h-screen lg:max-h-[90vh] px-[30px] py-[95px] md:p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] overflow-y-auto scrollbar'>
+    <div className='relative w-screen lg:w-[1000px] h-screen lg:max-h-[90vh] px-[30px] py-[95px] md:p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] overflow-y-auto'>
       <div
         className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
         onClick={hideDialog}
@@ -119,7 +121,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           </div>
           <div className='w-full max-w-[500px] grid-cols-3 gap-[13px] text-black font-semibold text-[14px] leading-[21px] mt-5 text-center hidden md:grid'>
             <div className='py-2 bg-[#8DD7CF] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-              Discount
+              VIP Perks
             </div>
             <div className='py-2 bg-[#FBE192] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
               PaidPromo
@@ -130,18 +132,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
           </div>
           <div className='flex-col items-center mt-[45px] hidden md:flex'>
             <h5 className='text-16 font-semibold text-white'>Niche</h5>
-            <NicheSlideShow
-              niches={[
-                'NFT',
-                'ProductLive',
-                'DoxxedTeam',
-                'Fairvesting',
-                'NFT',
-                'ProductLive',
-                'DoxxedTeam',
-                'Fairvesting',
-              ]}
-            />
+            <NicheSlideShow niches={niches.length ? niches : ['NFTs']} />
           </div>
           <div className='w-full flex flex-col items-center mt-[45px]'>
             <h5 className='text-[16px] font-semibold text-white'>
@@ -210,7 +201,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
             </div>
           </div>
-          <div className='flex flex-col md:flex-row items-center mt-[55px] pb-[57px] md:pb-0 border-b border-[#10E98C48] md:border-b-0'>
+          {/* <div className='flex flex-col md:flex-row items-center mt-[55px] pb-[57px] md:pb-0 border-b border-[#10E98C48] md:border-b-0'>
             <h3 className='text-[11px] md:text-[13px] text-white md:mr-[21px] mb-[23px] md:mb-0 text-center'>
               Get Better Prices for this influencer by contacting :
             </h3>
@@ -225,8 +216,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 Crypto Labs
               </h3>
             </div>
-          </div>
-          <div className='flex flex-col items-center mt-[20px]'>
+          </div> */}
+          <div className='flex flex-col items-center mt-[40px]'>
             <h5 className='text-[12px] md:text-[16px] font-extrabold md:font-semibold text-white mb-[11px] text-center'>
               Influencer’s Statistics ( Last Updated 1-8-2022 )
             </h5>

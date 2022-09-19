@@ -36,7 +36,7 @@ const SelectInput: React.FC<Props> = ({
             className='fixed w-[100vw] h-screen top-0 left-0'
             onClick={() => setSubMenu(false)}
           />
-          <div className='absolute top-full translate-y-1 w-full left-0 bg-[#243034] border border-[#CCCCCC80] rounded-[5px] max-h-[195px] overflow-x-hidden overflow-y-auto z-20 scrollbar'>
+          <div className='absolute top-full translate-y-1 w-full left-0 bg-[#243034] border border-[#CCCCCC80] rounded-[5px] max-h-[195px] overflow-x-hidden overflow-y-auto z-20'>
             <div className='flex flex-col w-full'>
               <div className='w-full py-[5px] px-3 border-b border-[#CCCCCC80]'>
                 <input

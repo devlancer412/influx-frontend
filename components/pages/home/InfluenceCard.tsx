@@ -81,7 +81,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       </div>
       <div className='w-full flex flex-row justify-center items-center gap-[6px] text-[10px] leading-[18px] text-black font-semibold text-center'>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#8DD7CF]'>
-          Discount
+        VIP Perks
         </div>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#FBE192]'>
           Paid Promo

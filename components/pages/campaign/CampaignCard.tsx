@@ -7,8 +7,8 @@ const CampaignCard: React.FC<Campaign> = ({
   name,
   influencers,
   averageEngagementRate,
-  budget,
-  potentialReach,
+  price,
+  followers,
 }) => {
   return (
     <Link href={`/campaign/${id}`}>
@@ -41,18 +41,18 @@ const CampaignCard: React.FC<Campaign> = ({
             </div>
             <div className='flex flex-col justify-between text-center border-b lg:border-b-0 lg:border-r border-[#FFFFFF14] pt-[48px] lg:pt-0'>
               <h5 className='text-[13px] leading-[20px] text-white'>
-                Negotiated Budget
+                Negotiated Price
               </h5>
               <h5 className='text-[15px] leading-[22px] text-[#10E98C] py-[14px] lg:py-0'>
-                ${budget}K
+                ${price}K
               </h5>
             </div>
             <div className='flex flex-col justify-between text-center pt-[48px] lg:pt-0'>
               <h5 className='text-[13px] leading-[20px] text-white'>
-                Potential Reach
+                Total Followers
               </h5>
               <h5 className='text-[15px] leading-[22px] text-[#10E98C] py-[14px] lg:py-0'>
-                {potentialReach}K
+                {followers}K
               </h5>
             </div>
           </div>

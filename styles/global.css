@@ -129,17 +129,23 @@
 }
 
 
-.scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
-.scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: black;
+  background: #00000032;
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
+  background: #10E98C48;
+  border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb:hover {
   background: #10E98CB3;
   border-radius: 100vh;
+  cursor: pointer;
 }
