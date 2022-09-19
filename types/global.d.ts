@@ -15,7 +15,7 @@ declare global {
     influencers: number;
     averageEngagementRate: 'Good' | 'Normal' | 'Bad';
     price: number;
-    potentialReach: number;
+    followers: number;
   }
 
   interface Influence {
