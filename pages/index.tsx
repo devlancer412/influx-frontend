@@ -777,10 +777,10 @@ export default function Home({ filterProps, influences, users }: Props) {
                     </div>
                     <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
+                        <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
                           Sort
                         </h3>
-                        <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
@@ -798,7 +798,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                       />
                     </div>
                   </div>
-                  <div className='w-full'>
+                  <div className='w-full mt-4'>
                     <div
                       className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
                       onClick={updateUrl}
