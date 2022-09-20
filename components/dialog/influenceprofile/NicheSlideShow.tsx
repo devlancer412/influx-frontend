@@ -26,7 +26,7 @@ const NicheSlideShow: React.FC<Props> = ({ niches }) => {
   return (
     <div className='relative w-[500px]'>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={niches.length < 4 ? niches.length : 4}
         modules={[Navigation]}
         className='w-full'
         navigation={{
