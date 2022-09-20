@@ -130,9 +130,15 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               Voted Project Only
             </div>
           </div>
-          <div className='flex-col items-center mt-[45px] hidden md:flex'>
+          {/* <div className='flex-col items-center mt-[45px] hidden md:flex'>
             <h5 className='text-16 font-semibold text-white'>Niche</h5>
             <NicheSlideShow niches={niches.length ? niches : ['NFTs']} />
+          </div> */}
+          <div className='flex-row items-center mt-[45px] hidden md:flex'>
+            <h5 className='text-16 font-semibold text-white mr-4'>Niche</h5>
+            <div className='bg-[#324951] text-[#10E98C] text-xs rounded-[5px] py-[9px] text-center my-[10px] !w-[105px] !h-[35px] mx-auto'>
+              #NFTs
+            </div>
           </div>
           <div className='w-full flex flex-col items-center mt-[45px]'>
             <h5 className='text-[16px] font-semibold text-white'>
