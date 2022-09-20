@@ -87,7 +87,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
           Paid Promo
         </div>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#96C3EC]'>
-          Votted Projects Only
+          Vetted Projects Only
         </div>
       </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
