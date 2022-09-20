@@ -124,10 +124,10 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               VIP Perks
             </div>
             <div className='py-2 bg-[#FBE192] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-              PaidPromo
+              Paid Promo
             </div>
             <div className='py-2 bg-[#96C3EC] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-              Voted Project Only
+              Vetted Projects Only
             </div>
           </div>
           {/* <div className='flex-col items-center mt-[45px] hidden md:flex'>
