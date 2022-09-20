@@ -68,7 +68,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   const { hideDialog } = useDialog();
 
   return (
-    <div className='relative w-screen lg:w-[1000px] h-screen lg:max-h-[90vh] px-[30px] py-[95px] md:p-[95px] pb-[30px] bg-[#082129] mx-auto my-[154px] overflow-y-auto'>
+    <div className='relative w-screen md:w-[550px] h-screen md:max-h-[90vh] px-[10px] py-[35px] md:p-[40px] !pb-[20px] bg-[#082129] mx-auto my-[50px] overflow-y-auto'>
       <div
         className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
         onClick={hideDialog}
@@ -76,50 +76,50 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
         <FaTimes />
       </div>
       <div className='flex flex-col items-center font-poppins'>
-        <h1 className='font-bold text-[20px] leading-[30px] md:text-[36px] md:leading-[54px] text-white mb-[45px] z-20 text-center md:text-left'>
+        <h1 className='font-bold text-[16px] leading-[28px] text-white mb-[10px] text-center md:text-left'>
           Influencer Profile
         </h1>
-        <div className='w-full relative flex flex-col items-center bg-[#26363B] rounded-[5px] overflow-hidden'>
-          <div className='relative w-[113px] h-[113px] md:w-[236px] md:h-[236px] rounded-full border-0 md:border-[22px] border-[#082129] z-20'>
+        <div className='w-full relative flex flex-col items-center rounded-[5px] overflow-hidden  bg-[#26363B]'>
+          <div className='relative w-[79px] h-[79px] rounded-full border-0 md:border-[8px] border-[#082129] z-20'>
             <Image src={imageUrl} layout='fill' objectFit='contain' />
           </div>
-          <h1 className='font-bold text-white text-[20px] leading-[30px] md:text-[36px] md:leading-[54px] mt-[21px]'>
+          <h1 className='font-bold text-white text-[12px] leading-[20px] mt-[10px]'>
             {name}
           </h1>
-          <p className='text-white opacity-80 text-[14px] leading-[21px] md:text-[24px] md:leading-[36px]'>
+          <p className='text-white opacity-80 text-[8px] leading-[16px]'>
             @{nickName}
           </p>
-          <div className='w-[90%] max-w-[600px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[14px] leading-[21px] md:text-[24px] md:leading-[36px]'>
+          <div className='w-[90%] max-w-[400px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[12px] leading-[16px]'>
             <div className='flex flex-col items-center'>
-              <h3 className='text-white mb-3'>Audience Size</h3>
+              <h3 className='text-white mb-2'>Audience Size</h3>
               <h3 className='text-[#10E98C]'>{followers}K</h3>
             </div>
             <div className='flex flex-col items-center'>
-              <h3 className='text-white mb-3'>Engagement</h3>
+              <h3 className='text-white mb-2'>Engagement</h3>
               <h3 className='text-[#10E98C]'>{engagement}K</h3>
             </div>
             <div className='flex flex-col items-end md:items-center'>
-              <h3 className='text-white mb-3'>Price Range</h3>
+              <h3 className='text-white mb-2'>Price Range</h3>
               <h3 className='text-[#10E98C]'>
                 ${bottomPrice}-${topPrice}
               </h3>
             </div>
           </div>
-          <div className='w-[90%] grid grid-cols-1 gap-5 md:gap-7 lg:absolute right-[35px] top-[160px] py-[20px] border-b border-[#10E98C48] lg:border-b-0 lg:w-[220px]'>
-            <div className='flex w-full max-w-[220px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[50px] text-black hover:cursor-pointer mx-auto'>
-              <BsPlusCircle size={18} />
-              <h3 className='text-[15px] font-semibold uppercase ml-[9px]'>
+          <div className='w-[90%] grid grid-cols-1 gap-2 md:absolute right-[50px] top-[50px] py-[20px] border-b border-[#10E98C48] md:border-b-0 md:w-[120px]'>
+            <div className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto'>
+              <BsPlusCircle size={10} />
+              <h3 className='text-[8px] font-semibold uppercase ml-[9px]'>
                 ADD TO CAMPAIGN
               </h3>
             </div>
-            <div className='flex w-full max-w-[220px] flex-row justify-center items-center border border-[#10E98C] rounded-[5px] h-[50px] text-white hover:cursor-pointer mx-auto'>
-              <BsChat size={18} />
-              <h3 className='text-[15px] font-semibold uppercase ml-[9px]'>
+            <div className='flex w-full max-w-[120px] flex-row justify-center items-center border border-[#10E98C] rounded-[5px] h-[25px] text-white hover:cursor-pointer mx-auto'>
+              <BsChat size={10} />
+              <h3 className='text-[8px] font-semibold uppercase ml-[9px]'>
                 Contact
               </h3>
             </div>
           </div>
-          <div className='w-full max-w-[500px] grid-cols-3 gap-[13px] text-black font-semibold text-[14px] leading-[21px] mt-5 text-center hidden md:grid'>
+          <div className='w-full max-w-[400px] grid-cols-3 gap-[6px] text-black font-semibold text-[8px] leading-[16px] mt-5 text-center hidden md:grid'>
             <div className='py-2 bg-[#8DD7CF] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
               VIP Perks
             </div>
@@ -134,30 +134,30 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             <h5 className='text-16 font-semibold text-white'>Niche</h5>
             <NicheSlideShow niches={niches.length ? niches : ['NFTs']} />
           </div> */}
-          <div className='flex-row items-center mt-[45px] hidden md:flex'>
-            <h5 className='text-16 font-semibold text-white mr-4'>Niche</h5>
-            <div className='bg-[#324951] text-[#10E98C] text-xs rounded-[5px] py-[9px] text-center my-[10px] !w-[105px] !h-[35px] mx-auto'>
+          <div className='flex-row items-center mt-[10px] hidden md:flex'>
+            <h5 className='text-[12px] font-semibold text-white mr-4'>Niche</h5>
+            <div className='bg-[#324951] text-[#10E98C] text-[8px] rounded-[5px] py-[3px] text-center my-[10px] !w-[50px] !h-[18px] mx-auto'>
               #NFTs
             </div>
           </div>
-          <div className='w-full flex flex-col items-center mt-[45px]'>
-            <h5 className='text-[16px] font-semibold text-white'>
+          <div className='w-full flex flex-col items-center mt-[10px]'>
+            <h5 className='text-[12px] font-semibold text-white'>
               Influencer’s Channels
             </h5>
-            <div className='w-[95%] max-w-[200px] md:max-w-[500px] grid grid-cols-1 md:grid-cols-3 gap-[5px] md:gap-[10px] lg:gap-[30px] mt-7'>
+            <div className='w-[90%] max-w-[200px] md:max-w-[400px] grid grid-cols-1 md:grid-cols-3 gap-[10px] mt-2'>
               {youtube ? (
                 <Link href={youtube}>
-                  <div className='py-[10px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/youtube.png'
-                      width={16}
-                      height={16}
+                      width={8}
+                      height={8}
                       objectFit='contain'
                     />
-                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
+                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                       youtube
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                    <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
                       2M
                     </h3>
                   </div>
@@ -167,17 +167,17 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
               {telegram ? (
                 <Link href={telegram}>
-                  <div className='py-[10px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/telegram.png'
-                      width={16}
-                      height={16}
+                      width={8}
+                      height={8}
                       objectFit='contain'
                     />
-                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
+                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                       telegram
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                    <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
                       119K
                     </h3>
                   </div>
@@ -187,17 +187,17 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               )}
               {twitter ? (
                 <Link href={twitter}>
-                  <div className='py-[10px] bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                  <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                     <Image
                       src='/icons/twitter.png'
-                      width={16}
-                      height={16}
+                      width={8}
+                      height={8}
                       objectFit='contain'
                     />
-                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px] md:text-[16px] md:leading-[20px]'>
+                    <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                       twitter
                     </h3>
-                    <h3 className='text-[#CCCCCC] text-[16px] leading-[20px]'>
+                    <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
                       119K
                     </h3>
                   </div>
@@ -223,8 +223,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               </h3>
             </div>
           </div> */}
-          <div className='flex flex-col items-center mt-[40px]'>
-            <h5 className='text-[12px] md:text-[16px] font-extrabold md:font-semibold text-white mb-[11px] text-center'>
+          <div className='flex flex-col items-center mt-[15px]'>
+            <h5 className='text-[12px] font-extrabold md:font-semibold text-white mb-[11px] text-center'>
               Influencer’s Statistics ( Last Updated 1-8-2022 )
             </h5>
             <EngagementChart data={chartData} />
@@ -238,7 +238,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
             <div className='mr-1'>Premium Influencer</div>
             <Image src='/icons/crown.png' width={17} height={17} />
           </div> */}
-          <div className='absolute w-[3000px] h-[3000px] bg-[#082129] rounded-full top-[130px] -translate-y-full left-1/2 -translate-x-1/2 hidden md:block' />
+          <div className='absolute w-[1500px] h-[1500px] bg-[#082129] rounded-full top-[50px] -translate-y-full left-1/2 -translate-x-1/2 hidden md:block' />
           <div className='absolute w-full h-[50px] bg-[#082129] top-0 left-0 md:hidden' />
         </div>
       </div>

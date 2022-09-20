@@ -199,7 +199,7 @@ const Profile: React.FC = () => {
                 value={profile?.esBudget}
                 placeholder='Determine your budget'
                 onChange={(value) =>
-                  setProfile({ ...profile, esBudget: value as ExBudget })
+                  setProfile({ ...profile, esBudget: value as EsBudget })
                 }
               />
             </div>

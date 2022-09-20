@@ -55,7 +55,7 @@ export const DialogContextProvider: React.FC<PropsWithChildren> = ({
   const showDialog = (children: ReactNode) => {
     const modalContent = (
       <div
-        className='fixed t-0 l-0 w-[100vw] h-screen flex justify-center items-center bg-black bg-opacity-30 z-30 backdrop-blur-[15px]'
+        className='fixed t-0 l-0 w-[100vw] h-screen flex justify-center items-center bg-black bg-opacity-30 z-10 backdrop-blur-[15px]'
         onClick={handleCloseClick}
       >
         <div
