@@ -2,12 +2,28 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import InfluenceCard from './InfluenceCard';
 import { FaPlusCircle } from 'react-icons/fa';
+import Select, { components } from 'react-select';
+import { influencesSortSelectStyle, Sorters } from '../../../constant';
 
 type Props = {
   influences: any[];
+  sortFilter: string;
+  setSortFilter: (value: SortFilter) => void;
 };
 
-const InfluenceList: React.FC<Props> = ({ influences }) => {
+const DropdownIndicator = (props) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Image src='/icons/sort.png' width={10} height={10} objectFit='cover' />
+    </components.DropdownIndicator>
+  );
+};
+
+const InfluenceList: React.FC<Props> = ({
+  influences,
+  sortFilter,
+  setSortFilter,
+}) => {
   const [selectAll, setSelectAll] = useState<Boolean>(false);
   return (
     <>
@@ -21,6 +37,22 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
             objectFit='cover'
           />
         </div> */}
+        <div className='w-[15%] max-w-[150px] absolute top-0 left-10'>
+          <Select
+            styles={influencesSortSelectStyle}
+            components={{ DropdownIndicator }}
+            options={Sorters.map((item) => {
+              return { value: item, label: item };
+            })}
+            value={{
+              value: sortFilter,
+              label: sortFilter,
+            }}
+            onChange={(item: any) => {
+              setSortFilter(item.value);
+            }}
+          />
+        </div>
         <div className='flex flex-row items-center gap-[30px]'>
           <div className='flex flex-row items-center py-[7px] px-[18px] bg-[#04434D] rounded-[5px] hover:cursor-pointer'>
             <FaPlusCircle size={20} color='#10E98C' className='mx-2' />

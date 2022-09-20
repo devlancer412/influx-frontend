@@ -351,7 +351,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   }}
                 />
               </div>
-              <div className='w-full flex flex-col items-start'>
+              {/* <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
                   <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
                     Sort
@@ -372,7 +372,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                     setSortFilter(item.value);
                   }}
                 />
-              </div>
+              </div> */}
             </div>
             <div
               className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
@@ -593,7 +593,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                         }}
                       />
                     </div>
-                    <div className='flex flex-col items-start mt-[10px]'>
+                    {/* <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
                         <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
                         <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
@@ -614,7 +614,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                           setSortFilter(item.value);
                         }}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div className='w-full mt-4'>
                     <div
@@ -641,7 +641,11 @@ export default function Home({ filterProps, influences, users }: Props) {
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
       </div>
       <div className='flex flex-col px-[23px]'>
-        <InfluenceList influences={influences} />
+        <InfluenceList
+          influences={influences}
+          sortFilter={sortFilter}
+          setSortFilter={setSortFilter}
+        />
       </div>
     </div>
   );

@@ -136,6 +136,10 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
               options={InfluenceStates.map((item) => {
                 return { value: item, label: item };
               })}
+              defaultValue={{
+                value: InfluenceStates[0],
+                label: InfluenceStates[0],
+              }}
             />
           </div>
           <div className='flex flex-col items-start'>
