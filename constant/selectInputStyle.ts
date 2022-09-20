@@ -184,7 +184,7 @@ export const influencesSortSelectStyle: StylesConfig = {
   control: (provided, state) => ({
     ...provided,
     width: '100%',
-    backgroundColor: '#006671',
+    backgroundColor: '#04434D',
     borderRadius: 3,
     borderWidth: 0,
     padding: '4px 8px',
@@ -228,12 +228,12 @@ export const influencesSortSelectStyle: StylesConfig = {
     ...provided,
     fontSize: 12,
     color: '#FFFFFF64',
-    backgroundColor: '#006671',
+    backgroundColor: '#04434D',
   }),
   option: (provided, state) => ({
     ...provided,
     fontSize: 12,
     color: '#FFFFFF64',
-    backgroundColor: '#006671',
+    backgroundColor: '#04434D',
   }),
 };
