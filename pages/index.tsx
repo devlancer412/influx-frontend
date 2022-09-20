@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { MdOutlinePriceCheck } from 'react-icons/md';
-import { FaHeartbeat, FaSearchLocation } from 'react-icons/fa';
+import { FaHeartbeat, FaSearchLocation, FaSort } from 'react-icons/fa';
 import { BsGlobe2, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import Select from 'react-select';
 
@@ -12,196 +12,15 @@ import {
   Engagements,
   Languages,
   AudienceSizes,
-  Tags,
+  Niches,
   AudienceLocations,
   initSocialFilters,
+  Sorters,
+  initialInfluences,
 } from '../constant';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import InfluenceList from '../components/pages/home/InfluenceList';
 import { desktopSelectStyle, mobileSelectStyle } from './../constant';
-
-const initialInfluences: Influence[] = [
-  {
-    id: 0,
-    campaignId: 0,
-    name: 'Alice',
-    nickName: 'Influence',
-    imageUrl: '/img/user_1.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 1,
-    campaignId: 0,
-    name: 'Bob',
-    nickName: 'Influence',
-    imageUrl: '/img/user_2.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: true,
-  },
-  {
-    id: 2,
-    campaignId: 0,
-    name: 'Vault',
-    nickName: 'Influence',
-    imageUrl: '/img/user_3.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 3,
-    campaignId: 0,
-    name: 'Alice',
-    nickName: 'Influence',
-    imageUrl: '/img/user_4.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 4,
-    campaignId: 0,
-    name: 'Bob',
-    nickName: 'Influence',
-    imageUrl: '/img/user_5.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 5,
-    campaignId: 0,
-    name: 'Vault',
-    nickName: 'Influence',
-    imageUrl: '/img/user_1.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 6,
-    campaignId: 0,
-    name: 'Alice',
-    nickName: 'Influence',
-    imageUrl: '/img/user_1.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 7,
-    campaignId: 0,
-    name: 'Bob',
-    nickName: 'Influence',
-    imageUrl: '/img/user_2.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: true,
-  },
-  {
-    id: 8,
-    campaignId: 0,
-    name: 'Vault',
-    nickName: 'Influence',
-    imageUrl: '/img/user_3.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 9,
-    campaignId: 0,
-    name: 'Alice',
-    nickName: 'Influence',
-    imageUrl: '/img/user_4.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 10,
-    campaignId: 0,
-    name: 'Bob',
-    nickName: 'Influence',
-    imageUrl: '/img/user_5.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-  {
-    id: 11,
-    campaignId: 0,
-    name: 'Vault',
-    nickName: 'Influence',
-    imageUrl: '/img/user_1.png',
-    youtube: 'https://fakeurl/',
-    telegram: 'https://fakeurl/',
-    twitter: 'https://fakeurl/',
-    followers: 22,
-    er: 'Good',
-    topPrice: 5000,
-    bottomPrice: 1000,
-    premium: false,
-  },
-];
 
 interface FilterProps {
   socialFilters: SocialFilterProps[];
@@ -211,7 +30,8 @@ interface FilterProps {
   audienceSizeFilter: AudienceSizeFilter;
   userNameFilter: string;
   audienceLocationFilter: AudienceLocationFilter;
-  tagsFilter: TagsFilter[];
+  nichesFilter: NicheFilter[];
+  sort: SortFilter;
 }
 
 interface Props {
@@ -229,7 +49,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     audienceSize,
     userName,
     audienceLocation,
-    tags,
+    niches,
+    sort,
   } = context.query;
 
   let props: Props = {
@@ -245,7 +66,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       userNameFilter: (userName as string) || '',
       audienceLocationFilter:
         (audienceLocation as string) || AudienceLocations[0],
-      tagsFilter: [],
+      nichesFilter: [],
+      sort: (sort as SortFilter) || Sorters[0],
     },
     influences: initialInfluences,
     users: [],
@@ -257,10 +79,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       : filter
   );
 
-  if (typeof tags === 'string') {
-    props.filterProps.tagsFilter = [tags];
-  } else if (typeof tags === 'object') {
-    props.filterProps.tagsFilter = tags as string[];
+  if (typeof niches === 'string') {
+    props.filterProps.nichesFilter = [niches];
+  } else if (typeof niches === 'object') {
+    props.filterProps.nichesFilter = niches as string[];
   }
 
   return { props };
@@ -288,18 +110,19 @@ export default function Home({ filterProps, influences, users }: Props) {
   );
   const [audienceLocationFilter, setAudienceLocationFilter] =
     useState<AudienceLocationFilter>(filterProps.audienceLocationFilter);
-  const [tagsFilter, setTagsFilter] = useState<TagsFilter>(
-    filterProps.tagsFilter
+  const [nichesFilter, setNichesFilter] = useState<NicheFilter>(
+    filterProps.nichesFilter
   );
+  const [sortFilter, setSortFilter] = useState<SortFilter>(filterProps.sort);
 
   const updateUrl = () => {
-    let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}`;
+    let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}&sort=${sortFilter}`;
 
     for (const socialFilter of socialFilters) {
       url += `&${socialFilter.title}=${socialFilter.selected}`;
     }
 
-    tagsFilter.forEach((tag) => (url += `&tags=${tag}`));
+    nichesFilter.forEach((tag) => (url += `&niches=${tag}`));
     router.push(url);
   };
 
@@ -313,7 +136,7 @@ export default function Home({ filterProps, influences, users }: Props) {
     audienceSizeFilter,
     audienceLocationFilter,
     userNameFilter,
-    tagsFilter,
+    nichesFilter,
   ]);
 
   return (
@@ -350,7 +173,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                         height={18}
                         objectFit='contain'
                       />
-                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0'>
+                      <div className='flex-1 text-start lg:text-center text-white text-[16px] pl-10 lg:px-0 capitalize'>
                         {filter.title}
                       </div>
                       <SocialSelect
@@ -507,7 +330,7 @@ export default function Home({ filterProps, influences, users }: Props) {
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
                   <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
-                    Tags
+                    Niche
                   </p>
                   <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
                     #
@@ -516,18 +339,40 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <Select
                   styles={desktopSelectStyle}
                   placeholder='Choose some key words'
-                  options={Tags.map((item) => {
+                  options={Niches.map((item) => {
                     return { value: item, label: item };
                   })}
-                  value={tagsFilter.map((item) => {
+                  value={nichesFilter.map((item) => {
                     return { value: item, label: item };
                   })}
                   isMulti
                   onChange={(item: any) => {
-                    setTagsFilter(item.map((subitem) => subitem.value));
+                    setNichesFilter(item.map((subitem) => subitem.value));
                   }}
                 />
               </div>
+              {/* <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Sort
+                  </p>
+                  <FaSearchLocation
+                    size={15}
+                    color='#FFFFFFB3'
+                    className='mx-1'
+                  />
+                </div>
+                <Select
+                  styles={mobileSelectStyle}
+                  options={Sorters.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={{ value: sortFilter, label: sortFilter }}
+                  onChange={(item: any) => {
+                    setSortFilter(item.value);
+                  }}
+                />
+              </div> */}
             </div>
             <div
               className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
@@ -550,7 +395,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                     height={18}
                     objectFit='contain'
                   />
-                  <div className='flex-1 text-center text-white text-[16px]'>
+                  <div className='flex-1 text-center text-white text-[16px] capitalize'>
                     {filter.title}
                   </div>
                   <SocialSelect
@@ -573,14 +418,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <div className='flex flex-col w-[35%] justify-around'>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Price Range for promo
-                      </h3>
                       <MdOutlinePriceCheck
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Price Range for promo
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <RangeSelect
@@ -594,14 +439,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Engagement Rate
-                      </h3>
                       <FaHeartbeat
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Engagement Rate
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -620,10 +465,10 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start mt-[10px]'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
+                      <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
                         Language
                       </h3>
-                      <BsGlobe2 size={15} color='#FFFFFFB3' className='mx-1' />
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -642,14 +487,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='flex flex-col items-start mt-[10px]'>
                     <div className='flex flex-row justify-start items-center'>
-                      <h3 className='font-semibold text-[12px] text-white capitalize'>
-                        Audience Size
-                      </h3>
                       <BsPeopleFill
                         size={15}
                         color='#FFFFFFB3'
                         className='mx-1'
                       />
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Audience Size
+                      </h3>
                       <Image src='/icons/info.png' width={10} height={10} />
                     </div>
                     <Select
@@ -671,14 +516,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                   <div className='flex flex-col w-[70%] justify-around'>
                     <div className='flex flex-col items-start'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          By User Name
-                        </h3>
                         <BsFillPersonFill
                           size={15}
                           color='#FFFFFFB3'
                           className='mx-1'
                         />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          By User Name
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
@@ -698,14 +543,14 @@ export default function Home({ filterProps, influences, users }: Props) {
                     </div>
                     <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          Audience Location
-                        </h3>
                         <FaSearchLocation
                           size={15}
                           color='#FFFFFFB3'
                           className='mx-1'
                         />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Audience Location
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
@@ -725,31 +570,53 @@ export default function Home({ filterProps, influences, users }: Props) {
                     </div>
                     <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
-                        <h3 className='font-semibold text-[12px] text-white capitalize'>
-                          Tags
-                        </h3>
                         <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
                           #
                         </div>
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Niche
+                        </h3>
                         <Image src='/icons/info.png' width={10} height={10} />
                       </div>
                       <Select
                         styles={desktopSelectStyle}
                         placeholder='Choose some key words'
-                        options={Tags.map((item) => {
+                        options={Niches.map((item) => {
                           return { value: item, label: item };
                         })}
-                        value={tagsFilter.map((item) => {
+                        value={nichesFilter.map((item) => {
                           return { value: item, label: item };
                         })}
                         isMulti
                         onChange={(item: any) => {
-                          setTagsFilter(item.map((subitem) => subitem.value));
+                          setNichesFilter(item.map((subitem) => subitem.value));
                         }}
                       />
                     </div>
+                    {/* <div className='flex flex-col items-start mt-[10px]'>
+                      <div className='flex flex-row justify-start items-center'>
+                        <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Sort
+                        </h3>
+                        <Image src='/icons/info.png' width={10} height={10} />
+                      </div>
+                      <Select
+                        styles={desktopSelectStyle}
+                        options={Sorters.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={{
+                          value: sortFilter,
+                          label: sortFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setSortFilter(item.value);
+                        }}
+                      />
+                    </div> */}
                   </div>
-                  <div className='w-full'>
+                  <div className='w-full mt-4'>
                     <div
                       className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
                       onClick={updateUrl}
@@ -774,7 +641,11 @@ export default function Home({ filterProps, influences, users }: Props) {
         <div className='flex-1 h-[1px] bg-[#10E98C4D]' />
       </div>
       <div className='flex flex-col px-[23px]'>
-        <InfluenceList influences={influences} />
+        <InfluenceList
+          influences={influences}
+          sortFilter={sortFilter}
+          setSortFilter={setSortFilter}
+        />
       </div>
     </div>
   );

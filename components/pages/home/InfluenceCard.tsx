@@ -81,13 +81,13 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       </div>
       <div className='w-full flex flex-row justify-center items-center gap-[6px] text-[10px] leading-[18px] text-black font-semibold text-center'>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#8DD7CF]'>
-          Discount
+          VIP Perks
         </div>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#FBE192]'>
           Paid Promo
         </div>
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#96C3EC]'>
-          Votted Projects Only
+          Voted Projects Only
         </div>
       </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
@@ -98,9 +98,9 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
           </p>
         </div>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
-          <>ER</>
+          <>Engagement</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
-            {influence?.er}
+            {influence?.engagement}
           </p>
         </div>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white'>

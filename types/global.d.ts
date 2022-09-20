@@ -4,6 +4,7 @@ import {
   Chains,
   Attributes,
   EsBudgets,
+  Sorters,
 } from '../constant';
 export {};
 
@@ -13,8 +14,8 @@ declare global {
     name: string;
     influencers: number;
     averageEngagementRate: 'Good' | 'Normal' | 'Bad';
-    budget: number;
-    potentialReach: number;
+    price: number;
+    followers: number;
   }
 
   interface Influence {
@@ -27,17 +28,18 @@ declare global {
     telegram?: string;
     twitter?: string;
     followers: number;
-    er: 'Good' | 'Normal' | 'Bad';
+    engagement: 'Good' | 'Normal' | 'Bad';
     topPrice: number;
     bottomPrice: number;
     premium: boolean;
+    niches: string[];
   }
 
   type Category = typeof Categories[number];
   type Region = typeof Regions[number];
   type Chain = typeof Chains[number];
   type Attribute = typeof Attributes[number];
-  type ExBudget = typeof EsBudgets[number];
+  type EsBudget = typeof EsBudgets[number];
 
   interface LaunchSetting {
     name: string;
@@ -62,7 +64,7 @@ declare global {
     region: Region | '';
     chain: Chain | '';
     attribute: Attribute | '';
-    esBudget: ExBudget | '';
+    esBudget: EsBudget | '';
     launchSettings: LaunchSetting[];
     isWL: boolean;
     isAirdrop: boolean;
@@ -103,7 +105,9 @@ declare global {
 
   type AudienceLocationFilter = typeof AudienceLocations[number];
 
-  type TagsFilter = typeof Tags[number];
+  type NicheFilter = typeof Niches[number];
+
+  type SortFilter = typeof Sorters[number];
 
   type User = {
     name: string;

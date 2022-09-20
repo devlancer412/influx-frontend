@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 type Props = {
-  tags: string[];
+  niches: string[];
 };
 
 const settings = {
@@ -21,11 +21,12 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2000,
 };
-const TagsSlideShow: React.FC<Props> = ({ tags }) => {
+
+const NicheSlideShow: React.FC<Props> = ({ niches }) => {
   return (
     <div className='relative w-[500px]'>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={niches.length < 4 ? niches.length : 4}
         modules={[Navigation]}
         className='w-full'
         navigation={{
@@ -33,7 +34,7 @@ const TagsSlideShow: React.FC<Props> = ({ tags }) => {
           nextEl: '.slide-prev-btn',
         }}
       >
-        {tags.map((tag: string, index: number) => (
+        {niches.map((tag: string, index: number) => (
           <SwiperSlide key={index}>
             <div className='bg-[#324951] text-[#10E98C] text-xs rounded-[5px] py-[9px] text-center my-[10px] !w-[105px] !h-[35px] mx-auto'>
               #{tag}
@@ -53,4 +54,4 @@ const TagsSlideShow: React.FC<Props> = ({ tags }) => {
   );
 };
 
-export default TagsSlideShow;
+export default NicheSlideShow;

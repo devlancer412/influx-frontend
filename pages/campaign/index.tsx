@@ -8,7 +8,7 @@ const CampaignList: React.FC = () => {
   return (
     <div className='px-[30px] md:pl-[48px] md:pr-[33px] py-[75px] flex flex-col font-poppins'>
       <ul className='font-semibold text-[20px] leading-[30px] md:text-[24px] md:leading-[36px] text-white capitalize md:list-disc list-inside mb-[43px]'>
-        <li>Discover the biggest list of over vetted crypto influencers</li>
+        <li>Manage your Campaigns</li>
       </ul>
       <div className='w-full md:hidden flex flex-row justify-start items-center mb-[46px]'>
         <div className='w-2 h-2 rounded-full bg-[#D9D9D964]' />

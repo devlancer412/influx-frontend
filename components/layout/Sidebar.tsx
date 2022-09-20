@@ -10,7 +10,7 @@ import { setBrand } from '../../store/slices/profileSlice';
 
 const menus: MenuProps[] = [
   {
-    title: 'Discover',
+    title: 'Discovery',
     iconUrl: '/icons/cover.png',
     url: '/',
   },
@@ -20,17 +20,12 @@ const menus: MenuProps[] = [
     url: '/campaign',
   },
   {
-    title: 'Get Found by infl.',
-    iconUrl: '/icons/foundbyinfl.png',
-    url: '/foundbyinfl',
-  },
-  {
     title: 'Profile',
     iconUrl: '/icons/profile.png',
     url: '/profile',
   },
   {
-    title: 'Plan & Billing',
+    title: 'Upgrade Plan',
     iconUrl: '/icons/planandbilling.png',
     url: '/planandbilling',
   },
@@ -81,7 +76,7 @@ const Sidebar: React.FC = () => {
         {profile.loggedin ? (
           <>
             <Image src={profile.avatar} width={'60vh'} height={'60vh'} />
-            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[2vh] leading-[30px] font-medium'>
+            <h5 className='ml-[21px] text-[#FFFFFFC8] text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] font-medium'>
               {profile.name || 'Name'}
             </h5>
           </>

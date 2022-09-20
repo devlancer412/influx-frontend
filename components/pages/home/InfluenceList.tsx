@@ -2,23 +2,55 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import InfluenceCard from './InfluenceCard';
 import { FaPlusCircle } from 'react-icons/fa';
+import Select, { components } from 'react-select';
+import { influencesSortSelectStyle, Sorters } from '../../../constant';
 
 type Props = {
   influences: any[];
+  sortFilter: string;
+  setSortFilter: (value: SortFilter) => void;
 };
 
-const InfluenceList: React.FC<Props> = ({ influences }) => {
+const DropdownIndicator = (props) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Image src='/icons/sort.png' width={10} height={10} objectFit='cover' />
+    </components.DropdownIndicator>
+  );
+};
+
+const InfluenceList: React.FC<Props> = ({
+  influences,
+  sortFilter,
+  setSortFilter,
+}) => {
   const [selectAll, setSelectAll] = useState<Boolean>(false);
   return (
     <>
-      <div className='flex-row px-10 items-start w-full justify-between hidden lg:flex'>
-        <div className='rounded-[5px] bg-[#006671] px-[13px] py-[7px] flex flex-row justify-between min-w-[123px] mr-[21px]'>
+      <div className='relative flex-row px-10 items-start w-full justify-center hidden lg:flex'>
+        {/* <div className='rounded-[5px] bg-[#006671] px-[13px] py-[7px] flex flex-row justify-between min-w-[123px] mr-[21px]'>
           <p className='text-[10px] text-[#FFFFFF66]'>Sort</p>
           <Image
             src='/icons/sort.png'
             width={10}
             height={10}
             objectFit='cover'
+          />
+        </div> */}
+        <div className='w-[15%] max-w-[150px] absolute top-0 left-10'>
+          <Select
+            styles={influencesSortSelectStyle}
+            components={{ DropdownIndicator }}
+            options={Sorters.map((item) => {
+              return { value: item, label: item };
+            })}
+            value={{
+              value: sortFilter,
+              label: sortFilter,
+            }}
+            onChange={(item: any) => {
+              setSortFilter(item.value);
+            }}
           />
         </div>
         <div className='flex flex-row items-center gap-[30px]'>
@@ -36,7 +68,7 @@ const InfluenceList: React.FC<Props> = ({ influences }) => {
           </div>
         </div>
         <div
-          className='flex flex-row items-center py-[2px] px-[10px] bg-[#04434D] rounded-[5px] hover:cursor-pointer min-w-[110px] ml-[25px]'
+          className='flex flex-row items-center py-[2px] px-[10px] bg-[#04434D] rounded-[5px] hover:cursor-pointer min-w-[110px] ml-[25px] absolute top-0 right-10'
           onClick={() => setSelectAll(!selectAll)}
         >
           <div className='w-[8px] h-[8px] flex justify-center items-center border border-[#10E98C]'>
