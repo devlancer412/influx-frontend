@@ -4,10 +4,11 @@ import InfluenceCard from './InfluenceCard';
 import { FaPlusCircle } from 'react-icons/fa';
 import Select, { components } from 'react-select';
 import { influencesSortSelectStyle, Sorters } from '../../../constant';
+import { Engagements } from './../../../constant/index';
 
 type Props = {
-  influences: any[];
-  sortFilter: string;
+  influences: Influence[];
+  sortFilter: SortFilter;
   setSortFilter: (value: SortFilter) => void;
 };
 
@@ -81,9 +82,18 @@ const InfluenceList: React.FC<Props> = ({
       </div>
       <div className='pl-5 md:pl-10 w-full overflow-x-hidden mt-8 mb-[30px]'>
         <div className='float-left w-[calc(100%-20px)] md:w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10'>
-          {influences.map((influence, index) => (
-            <InfluenceCard key={index} influence={influence} />
-          ))}
+          {influences
+            .sort((a, b) =>
+              sortFilter === 'Audience size'
+                ? a.followers - b.followers
+                : sortFilter === 'Price range'
+                ? b.topPrice - a.topPrice
+                : Engagements.indexOf(a.engagement) -
+                  Engagements.indexOf(b.engagement)
+            )
+            .map((influence, index) => (
+              <InfluenceCard key={index} influence={influence} />
+            ))}
         </div>
       </div>
     </>

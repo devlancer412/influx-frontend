@@ -13,7 +13,7 @@ declare global {
     id: number;
     name: string;
     influencers: number;
-    averageEngagementRate: 'Good' | 'Normal' | 'Bad';
+    averageEngagementRate: EngagementFilter;
     price: number;
     followers: number;
   }
@@ -27,7 +27,7 @@ declare global {
     telegram?: string;
     twitter?: string;
     followers: number;
-    engagement: 'Good' | 'Normal' | 'Bad';
+    engagement: EngagementFilter;
     topPrice: number;
     bottomPrice: number;
     isVIP: boolean;
