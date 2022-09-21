@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useDialog from '../../../hooks/useDialog';
 import InfluenceProfile from '../../dialog/influenceprofile';
+import { FaInstagram, FaTiktok } from 'react-icons/fa';
 
 type Props = {
   influence: Influence;
@@ -36,12 +37,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               {influence?.instagram ? (
                 <Link href={influence?.instagram}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110 mr-1'>
-                    <Image
-                      src='/icons/instagram.png'
-                      width={13}
-                      height={13}
-                      objectFit='contain'
-                    />
+                    <FaInstagram size={13} color='black' />
                   </div>
                 </Link>
               ) : (
@@ -92,12 +88,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               {influence?.tiktok ? (
                 <Link href={influence?.tiktok}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
-                    <Image
-                      src='/icons/tiktok.png'
-                      width={13}
-                      height={13}
-                      objectFit='contain'
-                    />
+                    <FaTiktok size={12} color='black' />
                   </div>
                 </Link>
               ) : (
