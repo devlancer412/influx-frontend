@@ -20,7 +20,6 @@ declare global {
 
   interface Influence {
     id: number;
-    campaignId: number | null;
     name: string;
     nickName: string;
     imageUrl: string;
@@ -31,7 +30,7 @@ declare global {
     engagement: 'Good' | 'Normal' | 'Bad';
     topPrice: number;
     bottomPrice: number;
-    premium: boolean;
+    isVIP: boolean;
     niches: string[];
   }
 

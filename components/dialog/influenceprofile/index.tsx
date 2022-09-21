@@ -47,7 +47,7 @@ type InfluenceProps = {
   engagement: 'Good' | 'Normal' | 'Bad';
   topPrice: number;
   bottomPrice: number;
-  premium: boolean;
+  isVIP: boolean;
   niches: string[];
 };
 
@@ -62,7 +62,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   engagement,
   topPrice,
   bottomPrice,
-  premium,
+  isVIP,
   niches,
 }) => {
   const { hideDialog } = useDialog();
@@ -107,7 +107,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   </h3>
                 </div>
               </div>
-              <div className='w-[90%] grid grid-cols-1 gap-2 md:absolute right-[50px] top-[50px] py-[20px] border-b border-[#10E98C48] md:border-b-0 md:w-[120px]'>
+              <div className='w-[90%] grid grid-cols-1 gap-2 md:absolute right-[45px] top-[45px] py-[20px] border-b border-[#10E98C48] md:border-b-0 md:w-[120px]'>
                 <div className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto'>
                   <BsPlusCircle size={10} />
                   <h3 className='text-[8px] font-semibold uppercase ml-[9px]'>
@@ -239,7 +239,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 </h5>
               </Link>
               {/* <div className='absolute top-[150px] bg-[#FFFF00] -left-16 flex flex-row justify-center items-center py-[13px] w-[300px] text-[16px] text-black font-medium -rotate-[35deg]'>
-            <div className='mr-1'>Premium Influencer</div>
+            <div className='mr-1'>isVIP Influencer</div>
             <Image src='/icons/crown.png' width={17} height={17} />
           </div> */}
               <div className='absolute w-[1500px] h-[1500px] bg-[#082129] rounded-full top-[50px] -translate-y-full left-1/2 -translate-x-1/2 hidden md:block' />

@@ -16,11 +16,11 @@ import {
   AudienceLocations,
   initSocialFilters,
   Sorters,
-  initialInfluences,
 } from '../constant';
 import RangeSelect from '../components/pages/home/RangeSelect';
 import InfluenceList from '../components/pages/home/InfluenceList';
 import { desktopSelectStyle, mobileSelectStyle } from './../constant';
+import client from '../services/HttpClient';
 
 interface FilterProps {
   socialFilters: SocialFilterProps[];
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       nichesFilter: [],
       sort: (sort as SortFilter) || Sorters[0],
     },
-    influences: initialInfluences,
+    influences: [],
     users: [],
   };
 
@@ -83,6 +83,43 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props.filterProps.nichesFilter = [niches];
   } else if (typeof niches === 'object') {
     props.filterProps.nichesFilter = niches as string[];
+  }
+
+  let url = `/influencers?minPrice=${props.filterProps.priceFilter.bottom}&maxPrice=${props.filterProps.priceFilter.top}`;
+
+  if (props.filterProps.languageFilter != 'None') {
+    url += `&language=${props.filterProps.languageFilter}`;
+  }
+  if (props.filterProps.engagementFilter != 'None') {
+    url += `&ER=${props.filterProps.engagementFilter}`;
+  }
+  if (props.filterProps.nichesFilter.length) {
+    url += `&tags=${props.filterProps.nichesFilter.join(',')}`;
+  }
+  if (props.filterProps.userNameFilter != '') {
+    url += `&userName=${props.filterProps.userNameFilter}`;
+  }
+
+  const response = await client.get(url);
+  console.log(url, response);
+  if (response.success) {
+    props.influences = response.data.map((data) => {
+      return {
+        id: data?.id,
+        name: data?.account?.name,
+        nickName: data?.account?.name,
+        imageUrl: data?.account?.logo,
+        youtube: '#',
+        telegram: '#',
+        twitter: '#',
+        followers: 0,
+        engagement: data?.engagementRate,
+        topPrice: data?.priceRange?.at(1),
+        bottomPrice: data?.priceRange?.at(0),
+        isVIP: data?.isVIP,
+        niches: data?.niche || [],
+      };
+    });
   }
 
   return { props };

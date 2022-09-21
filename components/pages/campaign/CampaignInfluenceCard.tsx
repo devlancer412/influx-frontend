@@ -75,7 +75,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
               </div>
             </div>
           </div>
-          {influence.premium ? (
+          {influence.isVIP ? (
             <div className='absolute top-[17px] bg-[#FFFF00] -left-[46px] flex flex-row justify-center items-center py-1 w-[150px] text-[12px] text-black font-medium -rotate-[45deg]'>
               <div className='mr-1'>VIP</div>
               <Image src='/icons/crown.png' width={12} height={12} />
