@@ -1,10 +1,11 @@
-import React from 'react';
 import CampaignCard from '../../components/pages/campaign/CampaignCard';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { NextPage } from 'next';
 
-const CampaignList: React.FC = () => {
-  const campaigns = useSelector((store: RootState) => store.campaigns);
+type Props = {
+  campaigns: Campaign[];
+};
+
+const CampaignList: NextPage = ({ campaigns = [] }: Props) => {
   return (
     <div className='px-[30px] md:pl-[48px] md:pr-[33px] py-[75px] flex flex-col font-poppins'>
       <ul className='font-semibold text-[20px] leading-[30px] md:text-[24px] md:leading-[36px] text-white capitalize md:list-disc list-inside mb-[43px]'>

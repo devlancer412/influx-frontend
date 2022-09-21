@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { RootState } from '../../store';
 import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInfluenceCard';
-import { initialInfluences } from '../../constant';
 
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
@@ -15,7 +14,7 @@ const CampaignProfile: React.FC = () => {
 
   const [current, setCurrent] = useState<SubMenu>('Actions');
 
-  const influences = initialInfluences;
+  const influences = [];
   const campaign = useSelector((store: RootState) => store.campaigns).filter(
     (item) => item.id === parseInt(campaignId as string)
   )[0];
