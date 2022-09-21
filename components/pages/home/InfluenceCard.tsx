@@ -33,6 +33,20 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               @{influence?.nickName}
             </p>
             <div className='flex flex-row w-full justify-around items-center'>
+              {influence?.instagram ? (
+                <Link href={influence?.instagram}>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110 mr-1'>
+                    <Image
+                      src='/icons/instagram.png'
+                      width={13}
+                      height={13}
+                      objectFit='contain'
+                    />
+                  </div>
+                </Link>
+              ) : (
+                <></>
+              )}
               {influence?.youtube ? (
                 <Link href={influence?.youtube}>
                   <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110 mr-1'>
@@ -63,9 +77,23 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
               )}
               {influence?.twitter ? (
                 <Link href={influence?.twitter}>
-                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110 mr-1'>
                     <Image
                       src='/icons/twitter.png'
+                      width={13}
+                      height={13}
+                      objectFit='contain'
+                    />
+                  </div>
+                </Link>
+              ) : (
+                <></>
+              )}
+              {influence?.tiktok ? (
+                <Link href={influence?.tiktok}>
+                  <div className='w-[19px] h-[19px] bg-white flex justify-center items-center rounded-full hover:scale-110'>
+                    <Image
+                      src='/icons/tiktok.png'
                       width={13}
                       height={13}
                       objectFit='contain'
@@ -94,7 +122,9 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>Audience Size</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 -right-5'>
-            {influence?.followers}K
+            {influence?.followers > 1000
+              ? `${influence?.followers / 1000}K`
+              : influence?.followers}
           </p>
         </div>
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>

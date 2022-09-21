@@ -104,15 +104,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log(url, response);
   if (response.success) {
     props.influences = response.data.map((data) => {
+      let followers =
+        data?.account?.instagram?.followers > data?.account?.twitter?.followers
+          ? data?.account?.instagram?.followers
+          : data?.account?.twitter?.followers;
+
+      followers =
+        followers > data?.account?.tiktok?.followers
+          ? followers
+          : data?.account?.tiktok?.followers;
+
       return {
         id: data?.id,
         name: data?.account?.name,
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
-        youtube: '#',
-        telegram: '#',
-        twitter: '#',
-        followers: 0,
+        instagram: data?.account?.instagram?.socialUrl,
+        youtube: data?.account?.youtube?.socialUrl,
+        telegram: data?.account?.telegram?.socialUrl,
+        twitter: data?.account?.twitter?.socialUrl,
+        tiktok: data?.account?.tiktok?.socialUrl,
+        followers: followers,
         engagement: data?.engagementRate,
         topPrice: data?.priceRange?.at(1),
         bottomPrice: data?.priceRange?.at(0),

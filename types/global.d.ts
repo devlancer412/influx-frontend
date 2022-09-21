@@ -23,9 +23,11 @@ declare global {
     name: string;
     nickName: string;
     imageUrl: string;
+    instagram?: string;
     youtube?: string;
     telegram?: string;
     twitter?: string;
+    tiktok?: string;
     followers: number;
     engagement: EngagementFilter;
     topPrice: number;
@@ -57,6 +59,7 @@ declare global {
       instagram?: string;
       discord?: string;
       youtube?: string;
+      tiktok?: string;
     };
     mainTgChannel: string;
     category: Category | '';
