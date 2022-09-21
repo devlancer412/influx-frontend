@@ -1,5 +1,5 @@
+import { NextPage, GetServerSideProps } from 'next';
 import CampaignCard from '../../components/pages/campaign/CampaignCard';
-import { NextPage } from 'next';
 
 type Props = {
   campaigns: Campaign[];
@@ -28,3 +28,11 @@ const CampaignList: NextPage = ({ campaigns = [] }: Props) => {
 };
 
 export default CampaignList;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let props: Props = {
+    campaigns: [],
+  };
+
+  return { props };
+};

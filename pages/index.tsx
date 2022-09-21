@@ -126,8 +126,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         tiktok: data?.account?.tiktok?.socialUrl,
         followers: followers,
         engagement: data?.engagementRate,
-        topPrice: data?.priceRange?.at(1),
-        bottomPrice: data?.priceRange?.at(0),
+        topPrice: data?.priceRange[1],
+        bottomPrice: data?.priceRange[0],
         isVIP: data?.isVIP,
         niches: data?.niche || [],
       };

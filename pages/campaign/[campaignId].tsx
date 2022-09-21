@@ -1,5 +1,6 @@
+import { NextPage, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { RootState } from '../../store';
@@ -8,16 +9,16 @@ import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInflu
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
 
-const CampaignProfile: React.FC = () => {
+type Props = {
+  campaign: Campaign;
+  influences: Influence[];
+};
+
+const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
   const router = useRouter();
   const { campaignId } = router.query;
 
   const [current, setCurrent] = useState<SubMenu>('Actions');
-
-  const influences = [];
-  const campaign = useSelector((store: RootState) => store.campaigns).filter(
-    (item) => item.id === parseInt(campaignId as string)
-  )[0];
 
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
@@ -94,3 +95,12 @@ const CampaignProfile: React.FC = () => {
 };
 
 export default CampaignProfile;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let props: Props = {
+    campaign: {} as Campaign,
+    influences: [],
+  };
+
+  return { props };
+};
