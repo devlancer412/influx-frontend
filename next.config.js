@@ -5,7 +5,7 @@ module.exports = async (phase, { defaultConfig }) => {
   const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ['viral-hub', 's.gravatar.com'],
+      domains: ['viral-hub', 's.gravatar.com', 'lh3.googleusercontent.com'],
     },
   };
   return nextConfig;
