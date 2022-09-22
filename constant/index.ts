@@ -1,10 +1,9 @@
 export * from './selectInputStyle';
 
 export const Categories = ['AAA', 'BBB'] as const;
-export const Regions = ['AAA', 'BBB'] as const;
-export const Chains = ['AAA', 'BBB'] as const;
+export const Regions = ['United States'] as const;
+export const Chains = ['ETH', 'BNB', 'SOL', 'MATIC'] as const;
 export const Attributes = ['AAA', 'BBB'] as const;
-export const EsBudgets = ['AAA', 'BBB'] as const;
 
 export const PriceRanges = [
   '$0 - $250',

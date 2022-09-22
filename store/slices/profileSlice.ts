@@ -4,8 +4,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 type BrandState = BrandProfile;
 
 const initialState: BrandState = {
-  name: '',
-  avatar: '/img/user_1.png',
+  account: {
+    name: '',
+    avatar: '',
+    email: '',
+    verified: false,
+  },
   website: '',
   description: '',
   channels: {
@@ -19,7 +23,7 @@ const initialState: BrandState = {
   region: '',
   chain: '',
   attribute: '',
-  esBudget: '',
+  esBudget: 0,
   launchSettings: [
     {
       name: 'Pre-Launch',
@@ -44,6 +48,7 @@ const initialState: BrandState = {
   isAirdrop: false,
   isPremint: false,
   loggedin: false,
+  isListed: false,
 };
 
 const brandSlice = createSlice({
@@ -55,6 +60,12 @@ const brandSlice = createSlice({
       action: PayloadAction<BrandProfile>
     ): BrandState => {
       return action.payload;
+    },
+    setUser: (
+      state: BrandState,
+      action: PayloadAction<UserProfile>
+    ): BrandState => {
+      return { ...state, account: action.payload };
     },
   },
 });

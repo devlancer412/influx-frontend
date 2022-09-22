@@ -1,11 +1,4 @@
-import {
-  Categories,
-  Regions,
-  Chains,
-  Attributes,
-  EsBudgets,
-  Sorters,
-} from '../constant';
+import { Categories, Regions, Chains, Attributes, Sorters } from '../constant';
 export {};
 
 declare global {
@@ -40,7 +33,6 @@ declare global {
   type Region = typeof Regions[number];
   type Chain = typeof Chains[number];
   type Attribute = typeof Attributes[number];
-  type EsBudget = typeof EsBudgets[number];
 
   interface LaunchSetting {
     name: string;
@@ -49,9 +41,15 @@ declare global {
     placeholder: string;
   }
 
-  interface BrandProfile {
+  interface UserProfile {
     name: string;
-    avatar: string;
+    email: string;
+    picture: string;
+    verified: boolean;
+  }
+
+  interface BrandProfile {
+    account;
     website: string;
     description: string;
     channels: {
@@ -66,12 +64,14 @@ declare global {
     region: Region | '';
     chain: Chain | '';
     attribute: Attribute | '';
-    esBudget: EsBudget | '';
+    esBudget: Number;
     launchSettings: LaunchSetting[];
     isWL: boolean;
     isAirdrop: boolean;
     isPremint: boolean;
     loggedin?: boolean;
+    isListed?: boolean;
+    campaigns?: Campaign[];
   }
 
   type Billing = {

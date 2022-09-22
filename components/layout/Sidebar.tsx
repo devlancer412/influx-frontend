@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
-
-import { isMobile } from 'react-device-detect';
 import { useSelector, useDispatch } from 'react-redux';
+import client from '../../services/HttpClient';
+
 import { RootState } from '../../store';
 import { setBrand } from '../../store/slices/profileSlice';
 
@@ -64,7 +64,78 @@ const comingsoons: string[] = [
 const Sidebar: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        let response = await client.get(`/brands/brandId/aaaa@gmail.com`);
+        if (response.data == 'Brand does not exist') {
+          return;
+        }
+        response = await client.get(`/brands/${response.data}`);
+        const brandData: BrandProfile = {
+          account: {
+            name: user.name,
+            avatar: user.picture,
+            email: user.email,
+            verified: user.email_verified,
+          },
+          website: '',
+          description: response.data?.desc,
+          channels: {
+            twitter: 'https://fakeurl',
+            instagram: 'https://fakeurl',
+            discord: 'https://fakeurl',
+            youtube: 'https://fakeurl',
+          },
+          mainTgChannel: '',
+          category: '',
+          region: '',
+          chain: '',
+          attribute: '',
+          esBudget: response.data?.budget,
+          launchSettings: [
+            {
+              name: 'Pre-Launch',
+              setted: true,
+              value: '',
+              placeholder: 'Presale / Launch In',
+            },
+            {
+              name: 'Presale',
+              setted: true,
+              value: '',
+              placeholder: 'Presale Link',
+            },
+            {
+              name: 'Launched',
+              setted: false,
+              value: '',
+              placeholder: 'Contract Address',
+            },
+          ],
+          isWL: false,
+          isAirdrop: false,
+          isPremint: false,
+          loggedin: false,
+          isListed: false,
+          campaigns: response.data?.campaigns.map((data) => {
+            return {
+              id: data.id,
+              name: data.name,
+              influencers: data.influencers.length,
+              averageEngagementRate: data.avgER,
+              price: data.negoBudget,
+              followers: 0,
+            };
+          }),
+        };
+
+        dispatch(setBrand(brandData));
+      })();
+    }
+  }, [user]);
 
   return (
     <div className='flex-col justify-around bg-black bg-opacity-50 bg-blend-soft-light backdrop-blur-[15px] w-[240px] hidden md:flex'>

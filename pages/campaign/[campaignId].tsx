@@ -5,21 +5,20 @@ import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { RootState } from '../../store';
 import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInfluenceCard';
+import client from '../../services/HttpClient';
 
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
 
 type Props = {
   campaign: Campaign;
-  influences: Influence[];
+  influencers: Influence[];
 };
 
-const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
-  const router = useRouter();
-  const { campaignId } = router.query;
-
+const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const [current, setCurrent] = useState<SubMenu>('Actions');
 
+  console.log(campaign, influencers);
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
       <div className='w-full flex justify-center items-center px-[29px] lg:px-[110px]'>
@@ -51,7 +50,10 @@ const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
                   Negotiated Price
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  ${campaign?.price}K
+                  $
+                  {campaign?.price > 1000
+                    ? `${campaign?.price / 100}K`
+                    : `${campaign?.price}`}
                 </h3>
               </div>
               <div className='flex flex-col max-w-[220px]'>
@@ -59,7 +61,7 @@ const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
                   Total Followers
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  XXXX
+                  {campaign.followers}
                 </h3>
               </div>
             </div>
@@ -85,7 +87,7 @@ const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
           </div>
         </div>
         <div className='w-full grid grid-cols-1 gap-16'>
-          {influences.map((influence) => (
+          {influencers.map((influence) => (
             <CampaignInfluenceCard influence={influence} />
           ))}
         </div>
@@ -97,10 +99,45 @@ const CampaignProfile: NextPage = ({ campaign, influences }: Props) => {
 export default CampaignProfile;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { campaignId } = context.query;
+
   let props: Props = {
     campaign: {} as Campaign,
-    influences: [],
+    influencers: [],
   };
+
+  const response = await client.get(`/campaigns/${campaignId}`);
+
+  if (response.success) {
+    props.campaign = {
+      id: response.data.id,
+      name: response.data.name,
+      influencers: response.data.influencers.length,
+      averageEngagementRate: response.data.avgER,
+      price: response.data.negoBudget,
+      followers: response.data.totalFollowers,
+    };
+
+    props.influencers = response.data.influencers.map((data) => {
+      return {
+        id: data.id,
+        name: data.influencer.account.name,
+        nickName: data.influencer.account.name,
+        imageUrl: data.influencer.account.logo,
+        instagram: data.influencer.account.instagram.socialUrl,
+        youtube: data.influencer.account.youtube.socialUrl,
+        telegram: data.influencer.account.telegram.socialUrl,
+        twitter: data.influencer.account.twitter.socialUrl,
+        tiktok: data.influencer.account.tiktok.socialUrl,
+        followers: 0,
+        engagement: data.influencer.engagementRate,
+        topPrice: data.negotiatedBudget,
+        bottomPrice: 0,
+        isVIP: data.influencer.isVIP,
+        niches: [],
+      };
+    });
+  }
 
   return { props };
 };
