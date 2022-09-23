@@ -1,14 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { Languages } from './../../constant/index';
 
 type BrandState = BrandProfile;
 
 const initialState: BrandState = {
   account: {
+    id: 0,
     name: '',
     avatar: '',
     email: '',
     verified: false,
+    language: Languages[0],
   },
   website: '',
   description: '',

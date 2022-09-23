@@ -8,6 +8,7 @@ import client from '../../services/HttpClient';
 
 import { RootState } from '../../store';
 import { setBrand } from '../../store/slices/profileSlice';
+import { Languages, Regions } from './../../constant/index';
 
 const menus: MenuProps[] = [
   {
@@ -69,13 +70,35 @@ const Sidebar: React.FC = () => {
   useEffect(() => {
     if (user) {
       (async () => {
-        let response = await client.get(`/brands/brandId/aaaa@gmail.com`);
+        let response = await client.get(`/brands/brandId/${user.email}`);
         if (response.data == 'Brand does not exist') {
-          return;
+          const body = {
+            name: user.name,
+            email: user.email,
+            logo: user.picture,
+            region: Regions[0],
+            language: Languages[0],
+            desc: '',
+            salesPhase: 'Launched',
+            budget: 0,
+            isVetted: false,
+            pdfAudit: true,
+            pdfReview: true,
+            profileLive: true,
+          };
+          response = await client.post('/brands', body);
+          if (!response.success) {
+            console.log(response.message);
+            return;
+          }
+
+          response = await client.get(`/brands/brandId/${user.email}`);
         }
         response = await client.get(`/brands/${response.data}`);
         const brandData: BrandProfile = {
           account: {
+            id: 0,
+            language: Languages[0],
             name: user.name,
             avatar: user.picture,
             email: user.email,

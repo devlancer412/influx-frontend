@@ -42,14 +42,16 @@ declare global {
   }
 
   interface UserProfile {
+    id: number;
     name: string;
     email: string;
-    picture: string;
+    avatar: string;
     verified: boolean;
+    language: LanguageFilter;
   }
 
   interface BrandProfile {
-    account;
+    account: UserProfile;
     website: string;
     description: string;
     channels: {
@@ -64,7 +66,7 @@ declare global {
     region: Region | '';
     chain: Chain | '';
     attribute: Attribute | '';
-    esBudget: Number;
+    esBudget: number;
     launchSettings: LaunchSetting[];
     isWL: boolean;
     isAirdrop: boolean;
