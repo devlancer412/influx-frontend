@@ -30,6 +30,7 @@ declare global {
     tiktok?: string;
     followers: number;
     engagement: EngagementFilter;
+    language: LanguageFilter;
     topPrice: number;
     bottomPrice: number;
     isVIP: boolean;

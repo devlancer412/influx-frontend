@@ -37,7 +37,7 @@ interface FilterProps {
 interface Props {
   filterProps: FilterProps;
   influences: Influence[];
-  users: User[];
+  users: string[];
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -126,6 +126,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         tiktok: data?.account?.tiktok?.socialUrl,
         followers: followers,
         engagement: data?.engagementRate,
+        language: data?.account?.language,
         topPrice: data?.priceRange[1],
         bottomPrice: data?.priceRange[0],
         isVIP: data?.isVIP,
@@ -365,7 +366,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   styles={mobileSelectStyle}
                   placeholder='Search by user name'
                   options={users.map((item) => {
-                    return { value: item.name, label: item.name };
+                    return { value: item, label: item };
                   })}
                   value={{
                     value: userNameFilter,
@@ -579,7 +580,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                         styles={desktopSelectStyle}
                         placeholder='Search by user name'
                         options={users.map((item) => {
-                          return { value: item.name, label: item.name };
+                          return { value: item, label: item };
                         })}
                         value={{
                           value: userNameFilter,
