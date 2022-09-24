@@ -6,7 +6,7 @@ declare global {
     id: number;
     name: string;
     influencers: number;
-    averageEngagementRate: EngagementFilter;
+    avgER: EngagementFilter;
     price: number;
     followers: number;
   }
@@ -51,6 +51,7 @@ declare global {
   }
 
   interface BrandProfile {
+    id: number;
     account: UserProfile;
     website: string;
     description: string;

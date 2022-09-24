@@ -6,7 +6,7 @@ const CampaignCard: React.FC<Campaign> = ({
   id,
   name,
   influencers,
-  averageEngagementRate,
+  avgER,
   price,
   followers,
 }) => {
@@ -36,7 +36,7 @@ const CampaignCard: React.FC<Campaign> = ({
                 Avarage Engagement Rate
               </h5>
               <h5 className='text-[15px] leading-[22px] text-[#10E98C] py-[14px] lg:py-0'>
-                {averageEngagementRate}
+                {avgER}
               </h5>
             </div>
             <div className='flex flex-col justify-between text-center border-b lg:border-b-0 lg:border-r border-[#FFFFFF14] pt-[48px] lg:pt-0'>

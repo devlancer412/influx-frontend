@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import client from '../../../services/HttpClient';
 import useDialog from '../../../hooks/useDialog';
 import { Engagements } from '../../../constant';
 import SelectInput from './../../pages/profile/SelectInput';
 import { RootState } from '../../../store';
+import { addCampaign } from '../../../store/slices/profileSlice';
 
 const CreateCampaign = () => {
+  const dispatch = useDispatch();
   const { hideDialog } = useDialog();
-  const account = useSelector((store: RootState) => store.brandProfile.account);
+  const profile = useSelector((store: RootState) => store.brandProfile);
 
   const [name, setName] = useState<string>('');
   // const [averageER, setAverageER] = useState<EngagementFilter>(Engagements[0]);
@@ -19,11 +21,20 @@ const CreateCampaign = () => {
     const body = {
       name: name,
       avgER: 'None',
-      creator: account.id,
+      creator: profile.id,
     };
 
     let response = await client.post('campaigns', body);
-    console.log(response);
+    const newCampaign: Campaign = {
+      id: response.data.data.id,
+      name: response.data.data.name,
+      influencers: 0,
+      avgER: response.data.data.avgER,
+      price: response.data.data.negoBudget,
+      followers: 0,
+    };
+    dispatch(addCampaign(newCampaign));
+    hideDialog();
   };
 
   return (

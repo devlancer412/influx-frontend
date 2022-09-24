@@ -5,6 +5,7 @@ import { Languages } from './../../constant/index';
 type BrandState = BrandProfile;
 
 const initialState: BrandState = {
+  id: -1,
   account: {
     id: 0,
     name: '',
@@ -70,10 +71,16 @@ const brandSlice = createSlice({
     ): BrandState => {
       return { ...state, account: action.payload };
     },
+    addCampaign: (
+      state: BrandState,
+      action: PayloadAction<Campaign>
+    ): BrandState => {
+      return { ...state, campaigns: [...state.campaigns, action.payload] };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setBrand } = brandSlice.actions;
+export const { setBrand, setUser, addCampaign } = brandSlice.actions;
 
 export default brandSlice.reducer;

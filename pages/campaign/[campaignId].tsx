@@ -42,7 +42,7 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
                   Avarage ER
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  {campaign?.averageEngagementRate}
+                  {campaign?.avgER}
                 </h3>
               </div>
               <div className='flex flex-col max-w-[220px]'>
@@ -113,7 +113,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: response.data.id,
       name: response.data.name,
       influencers: response.data.influencers.length,
-      averageEngagementRate: response.data.avgER,
+      avgER: response.data.avgER,
       price: response.data.negoBudget,
       followers: response.data.totalFollowers,
     };
