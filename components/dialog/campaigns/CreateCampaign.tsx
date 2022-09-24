@@ -12,13 +12,13 @@ const CreateCampaign = () => {
   const account = useSelector((store: RootState) => store.brandProfile.account);
 
   const [name, setName] = useState<string>('');
-  const [averageER, setAverageER] = useState<EngagementFilter>(Engagements[0]);
+  // const [averageER, setAverageER] = useState<EngagementFilter>(Engagements[0]);
   // const [esBudget, setEsBudget] = useState<number>(0);
 
   const createCampaign = async () => {
     const body = {
       name: name,
-      avgER: averageER,
+      avgER: 'None',
       creator: account.id,
     };
 
@@ -52,7 +52,7 @@ const CreateCampaign = () => {
                   placeholder='Type new campaign name'
                 />
               </div>
-              <div className='w-full flex-col items-start mb-3'>
+              {/* <div className='w-full flex-col items-start mb-3'>
                 <h5 className='pl-[7px] text-[16px] leading-[24px] text-[#CCCCCC] mb-[9px]'>
                   Average Engagement Rate
                 </h5>
@@ -62,7 +62,7 @@ const CreateCampaign = () => {
                   placeholder='Choose average engagement budget'
                   onChange={(value) => setAverageER(value as EngagementFilter)}
                 />
-              </div>
+              </div> */}
               {/* <div className='w-full flex-col items-start mb-5'>
                 <h5 className='pl-[7px] text-[16px] leading-[24px] text-[#CCCCCC] mb-[9px]'>
                   Estimate Compaign budget

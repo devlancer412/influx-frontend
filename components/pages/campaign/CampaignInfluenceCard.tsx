@@ -114,7 +114,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
           <div className='flex flex-col items-center'>
             <h3 className='text-white mb-3'>Engagement</h3>
             <h3 className='text-[#10E98C] text-[13px] leading-[20px]'>
-              {influence?.engagement}K
+              {influence?.engagement}
             </h3>
           </div>
           <div className='flex flex-col items-center'>

@@ -121,7 +121,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   </h3>
                 </div>
               </div>
-              <div className='w-full max-w-[400px] grid-cols-3 gap-[6px] text-black font-semibold text-[8px] leading-[16px] mt-5 text-center hidden md:grid'>
+              <div className='w-full max-w-[400px] grid-cols-3 gap-[6px] text-black font-semibold text-[12px] leading-[16px] mt-5 text-center hidden md:grid'>
                 <div className='py-2 bg-[#8DD7CF] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
                   VIP Perks
                 </div>
