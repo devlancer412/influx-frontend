@@ -88,7 +88,7 @@ const CreateCampaign = () => {
               </div> */}
             </div>
             <div
-              className='w-[250px] text-center bg-[#10E98C] py-2 text-[#243034] text-[20px] leading-[30px] font-medium hover:cursor-pointer rounded-lg'
+              className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] font-bold'
               onClick={createCampaign}
             >
               Create
