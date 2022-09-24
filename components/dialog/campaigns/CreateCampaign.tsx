@@ -40,7 +40,7 @@ const CreateCampaign = () => {
   return (
     <div className='fixed top-0 left-0 w-[100vw] h-screen overflow-y-auto'>
       <div className='w-full h-full min-h-[800px] flex flex-row items-center'>
-        <div className='relative w-screen md:w-[550px] px-[10px] py-[40px] md:p-[40px] !pb-[20px] bg-[#082129] mx-auto my-[40px]'>
+        <div className='relative w-screen md:w-[550px] px-[10px] py-[40px] md:p-[40px] bg-[#082129] mx-auto my-[40px]'>
           <div
             className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
             onClick={hideDialog}
@@ -48,11 +48,11 @@ const CreateCampaign = () => {
             <FaTimes />
           </div>
           <div className='flex flex-col items-center font-poppins'>
-            <h1 className='font-bold text-[16px] leading-[28px] text-white mb-[10px] text-center md:text-left'>
-              Create Profile
+            <h1 className='font-bold text-[16px] leading-[28px] text-white mb-[20px] text-center md:text-left'>
+              Create Campaign
             </h1>
             <div className='w-full relative flex flex-col items-center rounded-[5px]'>
-              <div className='w-full flex-col items-start mb-3'>
+              <div className='w-full flex-col items-start mb-10'>
                 <h5 className='pl-[7px] text-[16px] leading-[24px] text-[#CCCCCC] mb-[9px]'>
                   Campagin Name
                 </h5>

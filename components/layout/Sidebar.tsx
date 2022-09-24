@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
     if (user) {
       (async () => {
         let response = await client.get(`/brands/brandId/${user.email}`);
-        if (response.data == 'Brand does not exist') {
+        if (!response.success) {
           const body = {
             name: user.name,
             email: user.email,
@@ -91,10 +91,9 @@ const Sidebar: React.FC = () => {
             console.log(response.message);
             return;
           }
-
-          response = await client.get(`/brands/brandId/${user.email}`);
+        } else {
+          response = await client.get(`/brands/${response.data}`);
         }
-        response = await client.get(`/brands/${response.data}`);
         const brandData: BrandProfile = {
           id: response.data.id,
           account: {
