@@ -41,6 +41,30 @@ const Profile: React.FC = () => {
     dispatch(setBrand({ ...profile, isListed: true }));
   };
 
+  const updateBrandProfile = async () => {
+    const body = {
+      acountId: profile.account.id,
+      name: profile.account.name,
+      email: profile.account.email,
+      logo: profile.account.avatar,
+      region: profile.region,
+      language: profile.account.language,
+      desc: profile.description,
+      salesPhase: 'Launched',
+      budget: profile.esBudget,
+      isVetted: false,
+      pdfAudit: true,
+      pdfReview: true,
+      profileLive: true,
+    };
+    let response = await client.post('/brands', body);
+    if (!response.success) {
+      console.log(response.message);
+      return;
+    }
+
+    dispatch(setBrand(profile));
+  };
   return (
     <div className='w-full px-[40px] lg:px-[70px] py-[23px] flex justify-center items-center font-poppins'>
       <div className='w-full max-w-[980px] flex flex-col items-center overflow-hidden'>
@@ -351,7 +375,7 @@ const Profile: React.FC = () => {
           <div className='w-[90%] max-w-[368px] grid grid-cols-1 gap-[30px] mb-[29px]'>
             <div
               className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer'
-              onClick={() => dispatch(setBrand(profile))}
+              onClick={updateBrandProfile}
             >
               Save
             </div>

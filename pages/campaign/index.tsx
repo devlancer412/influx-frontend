@@ -2,16 +2,26 @@ import { NextPage, GetServerSideProps } from 'next';
 import CampaignCard from '../../components/pages/campaign/CampaignCard';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import useDialog from '../../hooks/useDialog';
+import CreateCampaign from '../../components/dialog/campaigns/CreateCampaign';
 
 const CampaignList: NextPage = () => {
+  const { showDialog } = useDialog();
+
   const campaigns = useSelector(
     (store: RootState) => store.brandProfile.campaigns
   );
 
   return (
     <div className='px-[30px] md:pl-[48px] md:pr-[33px] py-[75px] flex flex-col font-poppins'>
-      <ul className='font-semibold text-[20px] leading-[30px] md:text-[24px] md:leading-[36px] text-white capitalize md:list-disc list-inside mb-[43px]'>
-        <li>Manage your Campaigns</li>
+      <ul className='font-semibold text-[20px] leading-[30px] md:text-[24px] md:leading-[36px] text-white capitalize md:list-disc list-inside mb-[43px] flex flex-row justify-between items-center'>
+        <li className='flex-1'>Manage your Campaigns</li>
+        <div
+          className='w-[250px] text-center bg-[#10E98C] py-2 text-[#243034] text-[20px] leading-[30px] font-medium hover:cursor-pointer rounded-lg'
+          onClick={() => showDialog(<CreateCampaign />)}
+        >
+          Create Campaign
+        </div>
       </ul>
       <div className='w-full md:hidden flex flex-row justify-start items-center mb-[46px]'>
         <div className='w-2 h-2 rounded-full bg-[#D9D9D964]' />

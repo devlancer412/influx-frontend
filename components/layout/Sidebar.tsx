@@ -97,7 +97,7 @@ const Sidebar: React.FC = () => {
         response = await client.get(`/brands/${response.data}`);
         const brandData: BrandProfile = {
           account: {
-            id: 0,
+            id: response.data?.accountId,
             language: Languages[0],
             name: user.name,
             avatar: user.picture,
