@@ -1,4 +1,11 @@
-import { Categories, Regions, Chains, Attributes, Sorters } from '../constant';
+import {
+  Categories,
+  Regions,
+  Chains,
+  Attributes,
+  Sorters,
+  CampaignStates,
+} from '../constant';
 export {};
 
 declare global {
@@ -114,7 +121,5 @@ declare global {
 
   type SortFilter = typeof Sorters[number];
 
-  type User = {
-    name: string;
-  };
+  type CampaignStatus = typeof CampaignStates[number];
 }

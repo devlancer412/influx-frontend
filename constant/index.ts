@@ -14,7 +14,19 @@ export const PriceRanges = [
 
 export const Engagements = ['None', 'Great', 'Good', 'OK', 'Poor'] as const;
 
-export const Languages = ['None', 'English', 'German', 'Russian'] as const;
+export const Languages = ['English', 'German', 'Russian'] as const;
+
+export const CampaignStates = [
+  'Not Outreached (DEFAULT VALUE)',
+  'Outreached',
+  'In negotiation',
+  'Waiting for payment',
+  'Payment complete',
+  'Promotion materials sent',
+  'Promotion complete',
+  'Canceled',
+  'No Reply',
+];
 
 export const AudienceSizes = [
   '0 - 1000',
