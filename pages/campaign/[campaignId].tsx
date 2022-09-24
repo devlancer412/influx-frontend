@@ -18,7 +18,6 @@ type Props = {
 const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const [current, setCurrent] = useState<SubMenu>('Actions');
 
-  console.log(campaign, influencers);
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
       <div className='w-full flex justify-center items-center px-[29px] lg:px-[110px]'>

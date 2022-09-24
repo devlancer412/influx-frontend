@@ -8,6 +8,7 @@ import { FaTimes } from 'react-icons/fa';
 
 import EngagementChart from './EngagementChart';
 import useDialog from '../../../hooks/useDialog';
+import AddInfluenceToCampaign from '../campaigns/AddInfluenceToCampaign';
 
 const chartData = [
   {
@@ -37,6 +38,8 @@ const chartData = [
 ];
 
 type InfluenceProps = {
+  id: number;
+  accountId: number;
   name: string;
   nickName: string;
   imageUrl: string;
@@ -52,6 +55,8 @@ type InfluenceProps = {
 };
 
 const InfluenceProfile: React.FC<InfluenceProps> = ({
+  id,
+  accountId,
   name,
   nickName,
   imageUrl,
@@ -62,10 +67,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   engagement,
   topPrice,
   bottomPrice,
-  isVIP,
-  niches,
 }) => {
-  const { hideDialog } = useDialog();
+  const { hideDialog, showDialog } = useDialog();
 
   return (
     <div className='fixed top-0 left-0 w-[100vw] h-screen overflow-y-auto'>
@@ -108,7 +111,17 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 </div>
               </div>
               <div className='w-[90%] grid grid-cols-1 gap-2 md:absolute right-[45px] top-[45px] py-[20px] border-b border-[#10E98C48] md:border-b-0 md:w-[120px]'>
-                <div className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto'>
+                <div
+                  className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto'
+                  onClick={() =>
+                    showDialog(
+                      <AddInfluenceToCampaign
+                        influenceId={id}
+                        accountId={accountId}
+                      />
+                    )
+                  }
+                >
                   <BsPlusCircle size={10} />
                   <h3 className='text-[8px] font-semibold uppercase ml-[9px]'>
                     ADD TO CAMPAIGN

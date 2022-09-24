@@ -4,7 +4,7 @@ import {
   Chains,
   Attributes,
   Sorters,
-  CampaignStates,
+  InfluenceStates,
 } from '../constant';
 export {};
 
@@ -20,6 +20,7 @@ declare global {
 
   interface Influence {
     id: number;
+    accountId: number;
     name: string;
     nickName: string;
     imageUrl: string;
@@ -35,6 +36,7 @@ declare global {
     bottomPrice: number;
     isVIP: boolean;
     niches: string[];
+    status?: InfluenceStatus;
   }
 
   type Category = typeof Categories[number];
@@ -122,5 +124,5 @@ declare global {
 
   type SortFilter = typeof Sorters[number];
 
-  type CampaignStatus = typeof CampaignStates[number];
+  type InfluenceStatus = typeof InfluenceStates[number];
 }
