@@ -98,7 +98,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 </div>
                 <div className='flex flex-col items-center'>
                   <h3 className='text-white mb-2'>Engagement</h3>
-                  <h3 className='text-[#10E98C]'>{engagement}K</h3>
+                  <h3 className='text-[#10E98C]'>{engagement}</h3>
                 </div>
                 <div className='flex flex-col items-end md:items-center'>
                   <h3 className='text-white mb-2'>Price Range</h3>
