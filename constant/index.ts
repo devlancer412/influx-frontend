@@ -26,7 +26,7 @@ export const AudienceSizes = [
 ] as const;
 
 export const AudienceLocations = [
-  'United State',
+  'United States',
   'Canada',
   'Mexico',
   'Singapore',
