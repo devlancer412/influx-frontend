@@ -57,7 +57,7 @@ const BillingCard: React.FC<Billing> = ({
           </div>
         ))}
       </div>
-      <div className='mx-auto bg-[#10E98C] rounded-[5px] py-2 px-[30px] flex flex-row items-center text-black hover:cursor-pointer'>
+      <div className='mx-auto bg-[#10E98C] rounded-[5px] py-2 px-[30px] flex flex-row items-center text-black hover:cursor-pointer hover:bg-[#11C176] transition-all'>
         <h3 className='text-[15px] leading-[22px] mr-[13px]'>
           Select the Plan
         </h3>

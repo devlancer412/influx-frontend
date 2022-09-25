@@ -374,7 +374,7 @@ const Profile: React.FC = () => {
           </div>
           <div className='w-[90%] max-w-[368px] grid grid-cols-1 gap-[30px] mb-[29px]'>
             <div
-              className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer'
+              className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer hover:bg-[#11C176] transition-all'
               onClick={updateBrandProfile}
             >
               Save

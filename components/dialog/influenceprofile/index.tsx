@@ -112,7 +112,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               </div>
               <div className='w-[90%] grid grid-cols-1 gap-2 md:absolute right-[45px] top-[45px] py-[20px] border-b border-[#10E98C48] md:border-b-0 md:w-[120px]'>
                 <div
-                  className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto'
+                  className='flex w-full max-w-[120px] flex-row justify-center items-center bg-[#10E98C] rounded-[5px] h-[25px] text-black hover:cursor-pointer mx-auto hover:bg-[#11C176] transition-all'
                   onClick={() =>
                     showDialog(
                       <AddInfluenceToCampaign

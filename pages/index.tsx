@@ -110,11 +110,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
   }
-  if (props.filterProps.audienceLocationFilter != '') {
-    url += `&location=${props.filterProps.audienceLocationFilter}`;
-  }
+  // if (props.filterProps.audienceLocationFilter != '') {
+  //   url += `&location=${props.filterProps.audienceLocationFilter}`;
+  // }
 
   const response = await client.get(url);
+  console.log(response.data);
   if (response.success) {
     props.influences = response.data.map((data) => {
       let followers =
@@ -439,7 +440,7 @@ export default function Home({ filterProps, influences, users }: Props) {
               </div> */}
             </div>
             <div
-              className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
+              className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer hover:bg-[#11C176] transition-all'
               onClick={updateUrl}
             >
               Find Now
@@ -682,7 +683,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='w-full mt-4'>
                     <div
-                      className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
+                      className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer hover:bg-[#11C176] transition-all'
                       onClick={updateUrl}
                     >
                       Find now

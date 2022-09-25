@@ -17,7 +17,7 @@ const CampaignList: NextPage = () => {
       <ul className='font-semibold text-[20px] leading-[30px] md:text-[24px] md:leading-[36px] text-white capitalize md:list-disc list-inside mb-[43px] flex flex-row justify-between items-center'>
         <li className='flex-1'>Manage your Campaigns</li>
         <div
-          className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px]'
+          className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] hover:bg-[#11C176] transition-all'
           onClick={() => showDialog(<CreateCampaign />)}
         >
           Create Campaign

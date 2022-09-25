@@ -14,6 +14,11 @@ export const desktopSelectStyle: StylesConfig = {
     borderWidth: 0,
     padding: '4px 16px',
     fontSize: 14,
+
+    '&hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -128,6 +133,11 @@ export const influenceStatusSelectStyle: StylesConfig = {
     padding: '4px 8px',
     fontSize: 12,
     minHeight: 20,
+
+    '&hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -190,6 +200,11 @@ export const influencesSortSelectStyle: StylesConfig = {
     padding: '4px 8px',
     fontSize: 12,
     minHeight: 20,
+    
+    '&hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,

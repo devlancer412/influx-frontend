@@ -128,7 +128,7 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
               </div>
             </div>
             <div
-              className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] font-bold'
+              className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] font-bold hover:bg-[#11C176] transition-all'
               onClick={addInfluenceToCampaign}
             >
               Add To Campaign

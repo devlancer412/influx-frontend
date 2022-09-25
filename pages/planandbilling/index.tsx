@@ -110,7 +110,7 @@ const PlanAndBilling: NextPage = () => {
           ))}
         </div>
         <div className='grid grid-cols-2 gap-[25px]'>
-          <div className='bg-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-black text-[15px] leading-[22px] text-center'>
+          <div className='bg-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-black text-[15px] leading-[22px] text-center hover:bg-[#11C176] transition-all'>
             Get Listed
           </div>
           <div className='border border-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-white text-[15px] leading-[22px] text-center'>
@@ -145,7 +145,7 @@ const PlanAndBilling: NextPage = () => {
             ))}
           </div>
           <div className='grid grid-cols-1 gap-[15px] mb-[23px]'>
-            <div className='bg-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-black text-[15px] leading-[22px] text-center'>
+            <div className='bg-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-black text-[15px] leading-[22px] text-center hover:bg-[#11C176] transition-all'>
               Get Listed
             </div>
             <div className='border border-[#10E98C] rounded-[5px] w-52 hover:cursor-pointer py-2 text-white text-[15px] leading-[22px] text-center'>

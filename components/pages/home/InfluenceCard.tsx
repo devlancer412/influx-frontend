@@ -15,7 +15,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
 
   return (
     <div
-      className={`relative flex flex-col items-center bg-[#243034] hover:cursor-pointer`}
+      className={`relative flex flex-col items-center bg-[#243034] hover:cursor-pointer hover:scale-105 transition-all`}
       onClick={() => showDialog(<InfluenceProfile {...influence} />)}
     >
       <h3 className='w-full text-center text-[white]  text-4 leading-6 py-[7px] bg-[#D9D9D966]'>
