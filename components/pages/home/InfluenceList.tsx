@@ -61,7 +61,7 @@ const InfluenceList: React.FC<Props> = ({
               ADD TO CAMPAIGN
             </p>
           </div>
-          <div className='flex flex-row items-center py-[2px] px-[18px] bg-[#04434D] rounded-[5px] hover:bg-[#075E6C] hover:cursor-pointer transition-all'>
+          <div className='flex flex-row items-center py-[2px] px-[18px] bg-[#04434D] rounded-[5px]'>
             <p className='text-[14px] mr-5 text-[#CCCCCC]'>
               Returned influencers :
             </p>

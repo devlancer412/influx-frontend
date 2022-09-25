@@ -15,7 +15,7 @@ export const desktopSelectStyle: StylesConfig = {
     padding: '4px 16px',
     fontSize: 14,
 
-    '&hover': {
+    '&:hover': {
       cursor: 'pointer',
       backgroundColor: '#075E6C80',
     },
@@ -134,7 +134,7 @@ export const influenceStatusSelectStyle: StylesConfig = {
     fontSize: 12,
     minHeight: 20,
 
-    '&hover': {
+    '&:hover': {
       cursor: 'pointer',
       backgroundColor: '#075E6C80',
     },
@@ -200,8 +200,8 @@ export const influencesSortSelectStyle: StylesConfig = {
     padding: '4px 8px',
     fontSize: 12,
     minHeight: 20,
-    
-    '&hover': {
+
+    '&:hover': {
       cursor: 'pointer',
       backgroundColor: '#075E6C80',
     },
