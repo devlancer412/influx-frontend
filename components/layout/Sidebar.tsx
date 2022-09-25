@@ -186,7 +186,7 @@ const Sidebar: React.FC = () => {
             <div
               className={`w-full pl-[30px] py-[1vh] ${
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
-              } flex flex-row justify-start items-center hover:cursor-pointer`}
+              } flex flex-row justify-start items-center hover:cursor-pointer hover:bg-[#D9D9D924] transition-all`}
             >
               <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
               <h3 className='text-white font-poppins text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] ml-[20px]'>
@@ -204,7 +204,7 @@ const Sidebar: React.FC = () => {
                 router.pathname === '/comingsoon'
                   ? 'bg-[#D9D9D9] bg-opacity-30'
                   : ''
-              } flex flex-row justify-start items-center hover:cursor-pointer`}
+              } flex flex-row justify-start items-center hover:cursor-pointer hover:bg-[#D9D9D924] transition-all`}
             >
               <Image
                 src='/icons/comingsoon.png'
@@ -219,7 +219,7 @@ const Sidebar: React.FC = () => {
               {comingsoons.map((title: string) => (
                 <h3
                   key={title}
-                  className='text-white font-poppins font-semibold hover:cursor-pointe text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh]'
+                  className='text-white font-poppins font-semibold hover:cursor-pointe text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh] hover:bg-[#D9D9D924] transition-all'
                 >
                   {title}
                 </h3>
@@ -234,7 +234,7 @@ const Sidebar: React.FC = () => {
             <div
               className={`w-full pl-[30px] py-[10px] ${
                 router.pathname === page.url ? 'bg-[#D9D9D9] bg-opacity-30' : ''
-              } flex flex-row justify-start items-center hover:cursor-pointer`}
+              } flex flex-row justify-start items-center hover:cursor-pointer hover:bg-[#D9D9D924] transition-all`}
             >
               <Image src={page.iconUrl} width={'17vh'} height={'17vh'} />
               <h3 className='text-white font-poppins ml-[20px] text-[1.6vh] leading-[3vh] custom:text-[1.3vh] custom:leading-[2.5vh]'>
