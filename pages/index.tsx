@@ -99,6 +99,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.userNameFilter != '') {
     url += `&userName=${props.filterProps.userNameFilter}`;
   }
+  if (props.filterProps.audienceSizeFilter != '') {
+    let sizes = props.filterProps.audienceSizeFilter.split(' - ');
+    if (sizes.length == 2) {
+      url += `&minAudienceSize=${sizes[0]}&maxAudienceSize=${sizes[1]}`;
+    } else {
+      sizes = props.filterProps.audienceSizeFilter.split('+');
+      if (sizes.length == 1) {
+        url += `&minAudienceSize=${sizes[0].trim()}`;
+      }
+    }
+  }
+  if (props.filterProps.audienceLocationFilter != '') {
+    url += `&location=${props.filterProps.audienceLocationFilter}`;
+  }
+
+  console.log(url);
 
   const response = await client.get(url);
   if (response.success) {
