@@ -58,6 +58,11 @@ export const desktopSelectStyle: StylesConfig = {
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -115,6 +120,11 @@ export const mobileSelectStyle: StylesConfig = {
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -183,6 +193,11 @@ export const influenceStatusSelectStyle: StylesConfig = {
     fontSize: 12,
     color: '#FFFFFF80',
     backgroundColor: '#243034',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -250,5 +265,10 @@ export const influencesSortSelectStyle: StylesConfig = {
     fontSize: 12,
     color: '#FFFFFF64',
     backgroundColor: '#04434D',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
