@@ -110,11 +110,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
   }
-  if (props.filterProps.audienceLocationFilter != '') {
-    url += `&location=${props.filterProps.audienceLocationFilter}`;
-  }
-
-  console.log(url);
+  // if (props.filterProps.audienceLocationFilter != '') {
+  //   url += `&location=${props.filterProps.audienceLocationFilter}`;
+  // }
 
   const response = await client.get(url);
   if (response.success) {
