@@ -156,6 +156,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function Home({ filterProps, influences, users }: Props) {
   const router = useRouter();
 
+  const [timerId, setTimerId] = useState<NodeJS.Timeout>(null);
+
   const [socialFilters, setSocialFilter] = useState<SocialFilterProps[]>(
     filterProps.socialFilters
   );
@@ -192,7 +194,13 @@ export default function Home({ filterProps, influences, users }: Props) {
   };
 
   useEffect(() => {
-    updateUrl();
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    const timeout = setTimeout(() => {
+      updateUrl();
+    }, 500);
+    setTimerId(timeout)
   }, [
     socialFilters,
     priceFilter,
