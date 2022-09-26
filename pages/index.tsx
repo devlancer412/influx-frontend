@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filterProps: {
       socialFilters: [],
       priceFilter: {
-        top: parseInt(top as string) || 10000,
+        top: parseInt(top as string) || 50000,
         bottom: parseInt(bottom as string) || 0,
       },
       engagementFilter: (engagement as string) || Engagements[0],
@@ -113,9 +113,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.audienceLocationFilter != '') {
     url += `&location=${props.filterProps.audienceLocationFilter}`;
   }
+  console.log(url);
 
   const response = await client.get(url);
-  console.log(response.data);
   if (response.success) {
     props.influences = response.data.map((data) => {
       let followers =
@@ -271,7 +271,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <RangeSelect
                   value0={priceFilter.bottom}
                   value1={priceFilter.top}
-                  top={10000}
+                  top={50000}
                   onChange={(top, bottom) => {
                     setPriceFilter({ top, bottom });
                   }}
@@ -496,7 +496,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                     <RangeSelect
                       value0={priceFilter.bottom}
                       value1={priceFilter.top}
-                      top={10000}
+                      top={50000}
                       onChange={(top, bottom) => {
                         setPriceFilter({ top, bottom });
                       }}
