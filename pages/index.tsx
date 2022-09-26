@@ -113,9 +113,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.audienceLocationFilter != '') {
     url += `&location=${props.filterProps.audienceLocationFilter}`;
   }
-  console.log(url);
 
   const response = await client.get(url);
+  console.log(response.data);
   if (response.success) {
     props.influences = response.data.map((data) => {
       let followers =
@@ -134,6 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         name: data?.account?.name,
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
+        mainChannel: data?.mainChannel ?? 'telegram',
         instagram: data?.account?.instagram?.socialUrl,
         youtube: data?.account?.youtube?.socialUrl,
         telegram: data?.account?.telegram?.socialUrl,
