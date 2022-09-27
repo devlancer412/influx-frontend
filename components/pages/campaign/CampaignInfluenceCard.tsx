@@ -12,8 +12,8 @@ type Props = {
 
 const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
   return (
-    <div className='relative flex flex-col xl:flex-row items-center bg-[#314146] xl:h-[120px]'>
-      <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-center'>
+    <div className='relative flex flex-col xl:flex-row items-stretch bg-[#314146] xl:h-[120px]'>
+      <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-stretch'>
         <div className='relative flex flex-row w-full lg:w-1/2 items-center justify-around py-[29px] px-[23px] overflow-hidden'>
           <Image
             src={influence?.imageUrl}
@@ -114,7 +114,7 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
           <div className='flex flex-col items-center'>
             <h3 className='text-white mb-3'>Engagement</h3>
             <h3 className='text-[#10E98C] text-[13px] leading-[20px]'>
-              {influence?.engagement}K
+              {influence?.engagement}
             </h3>
           </div>
           <div className='flex flex-col items-center'>

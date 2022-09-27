@@ -6,8 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import SelectInput from '../../components/pages/profile/SelectInput';
 import { RootState } from '../../store';
 import { Attributes, Categories, Regions } from '../../constant';
-import { Chains, EsBudgets } from './../../constant/index';
+import { Chains } from './../../constant/index';
 import { setBrand } from '../../store/slices/profileSlice';
+import client from '../../services/HttpClient';
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,52 @@ const Profile: React.FC = () => {
     setProfile(_profile);
   }, [_profile]);
 
+  const listBrandProfile = async () => {
+    const body = {
+      name: profile.account.name,
+      email: profile.account.email,
+      logo: profile.account.avatar,
+      region: profile.region,
+      language: profile.account.language,
+      desc: profile.description,
+      salesPhase: 'Launched',
+      budget: profile.esBudget,
+      isVetted: false,
+      pdfAudit: true,
+      pdfReview: true,
+      profileLive: true,
+    };
+    const response = await client.post('/brands', body);
+    if (!response.success) {
+      console.log(response.message);
+    }
+    dispatch(setBrand({ ...profile, isListed: true }));
+  };
+
+  const updateBrandProfile = async () => {
+    const body = {
+      acountId: profile.account.id,
+      name: profile.account.name,
+      email: profile.account.email,
+      logo: profile.account.avatar,
+      region: profile.region,
+      language: profile.account.language,
+      desc: profile.description,
+      salesPhase: 'Launched',
+      budget: profile.esBudget,
+      isVetted: false,
+      pdfAudit: true,
+      pdfReview: true,
+      profileLive: true,
+    };
+    let response = await client.post('/brands', body);
+    if (!response.success) {
+      console.log(response.message);
+      return;
+    }
+
+    dispatch(setBrand(profile));
+  };
   return (
     <div className='w-full px-[40px] lg:px-[70px] py-[23px] flex justify-center items-center font-poppins'>
       <div className='w-full max-w-[980px] flex flex-col items-center overflow-hidden'>
@@ -25,7 +72,12 @@ const Profile: React.FC = () => {
           Brand Profile
         </h1>
         <div className='flex flex-col w-full items-center bg-[url("/images/profileback.svg")] bg-cover bg-center'>
-          <Image src={profile?.avatar} width={170} height={170} />
+          <Image
+            className='rounded-full'
+            src={profile?.account.avatar}
+            width={170}
+            height={170}
+          />
           <div className='w-[90%] max-w-[640px] mt-7 grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-5 mb-[18px]'>
             <div className='flex flex-col items-start'>
               <p className='text-[15px] leading-[22px] pl-[5px] text-[#CCCCCC] mb-[10px]'>
@@ -33,9 +85,12 @@ const Profile: React.FC = () => {
               </p>
               <input
                 className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#CCCCCCB3] text-[11px] leading-[16px] py-5 px-4'
-                value={profile?.name}
+                value={profile?.account.name}
                 onChange={(e) =>
-                  setProfile({ ...profile, name: e.target.value })
+                  setProfile({
+                    ...profile,
+                    account: { ...profile.account, name: e.target.value },
+                  })
                 }
                 placeholder='Type your brand name'
               />
@@ -194,13 +249,13 @@ const Profile: React.FC = () => {
               <h5 className='pl-[7px] text-[16px] leading-[24px] text-[#CCCCCC] mb-[9px]'>
                 Estimate Compaign budget
               </h5>
-              <SelectInput
-                items={EsBudgets}
+              <input
+                className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#CCCCCCB3] text-[11px] leading-[16px] py-5 px-4'
                 value={profile?.esBudget}
-                placeholder='Determine your budget'
-                onChange={(value) =>
-                  setProfile({ ...profile, esBudget: value as EsBudget })
+                onChange={(e) =>
+                  setProfile({ ...profile, esBudget: parseInt(e.target.value) })
                 }
+                placeholder='Type your estimate budget($)'
               />
             </div>
           </div>
@@ -319,14 +374,21 @@ const Profile: React.FC = () => {
           </div>
           <div className='w-[90%] max-w-[368px] grid grid-cols-1 gap-[30px] mb-[29px]'>
             <div
-              className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer'
-              onClick={() => dispatch(setBrand(profile))}
+              className='w-full text-center bg-[#10E98C] py-[12px] text-[#243034] text-[22px] leading-[33px] font-medium hover:cursor-pointer hover:bg-[#11C176] transition-all'
+              onClick={updateBrandProfile}
             >
               Save
             </div>
-            <div className='w-full text-center border border-[#10E98C] py-[12px] text-white text-[22px] leading-[33px] font-medium hover:cursor-pointer'>
-              List your Brand
-            </div>
+            {profile?.isListed ? (
+              <div
+                className='w-full text-center border border-[#10E98C] py-[12px] text-white text-[22px] leading-[33px] font-medium hover:cursor-pointer'
+                onClick={listBrandProfile}
+              >
+                List your Brand
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

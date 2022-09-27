@@ -19,7 +19,7 @@ const FoundByInfl: React.FC = () => {
           <h1 className='flex-1 text-center text-[24px] md:text-[32px] xl:text-[64px] font-extrabold text-white'>
             Complete Your Profile
           </h1>
-          <div className='absolute -bottom-full md:-bottom-2/3 xl:bottom-0 right-[30%] w-[111px] xl:w-[184px] text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer'>
+          <div className='absolute -bottom-full md:-bottom-2/3 xl:bottom-0 right-[30%] w-[111px] xl:w-[184px] text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer hover:bg-[#11C176] transition-all'>
             Brand Profile
           </div>
         </div>
@@ -36,7 +36,7 @@ const FoundByInfl: React.FC = () => {
               manual review
             </p>
           </div>
-          <div className='absolute -bottom-full md:-bottom-2/3 xl:bottom-0 right-[30%] w-[111px] xl:w-[184px] text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer'>
+          <div className='absolute -bottom-full md:-bottom-2/3 xl:bottom-0 right-[30%] w-[111px] xl:w-[184px] text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer hover:bg-[#11C176] transition-all'>
             Request Listing
           </div>
         </div>
@@ -56,7 +56,7 @@ const FoundByInfl: React.FC = () => {
             </p>
           </div>
           <div className='absolute -bottom-full md:-bottom-2/3 xl:bottom-0 right-[10%] flex flex-row items-center'>
-            <div className='text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer mr-[22px] px-5'>
+            <div className='text-center py-[12px] bg-[#10E98C] text-black font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer mr-[22px] px-5 hover:bg-[#11C176] transition-all'>
               Requested Vetted badge
             </div>
             <div className='text-center py-[12px] border border-[#10E98C] text-white font-medium text-[12px] leading-[18px] xl:text-[20px] xl:leading-[30px] hover:cursor-pointer px-5 min-w-[111px] xl:min-w-[184px]'>

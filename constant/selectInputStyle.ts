@@ -14,6 +14,11 @@ export const desktopSelectStyle: StylesConfig = {
     borderWidth: 0,
     padding: '4px 16px',
     fontSize: 14,
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -47,12 +52,19 @@ export const desktopSelectStyle: StylesConfig = {
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+    zIndex: 10,
   }),
   option: (provided, state) => ({
     ...provided,
+    zIndex: 10,
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -104,12 +116,19 @@ export const mobileSelectStyle: StylesConfig = {
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+    zIndex: 10,
   }),
   option: (provided, state) => ({
     ...provided,
+    zIndex: 10,
     fontSize: 14,
     color: '#FFFFFF66',
     backgroundColor: '#124B52',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -128,6 +147,11 @@ export const influenceStatusSelectStyle: StylesConfig = {
     padding: '4px 8px',
     fontSize: 12,
     minHeight: 20,
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -167,12 +191,19 @@ export const influenceStatusSelectStyle: StylesConfig = {
     fontSize: 12,
     color: '#FFFFFF80',
     backgroundColor: '#243034',
+    zIndex: 10,
   }),
   option: (provided, state) => ({
     ...provided,
+    zIndex: 10,
     fontSize: 12,
     color: '#FFFFFF80',
     backgroundColor: '#243034',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };
 
@@ -190,6 +221,11 @@ export const influencesSortSelectStyle: StylesConfig = {
     padding: '4px 8px',
     fontSize: 12,
     minHeight: 20,
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C80',
+    },
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -229,11 +265,18 @@ export const influencesSortSelectStyle: StylesConfig = {
     fontSize: 12,
     color: '#FFFFFF64',
     backgroundColor: '#04434D',
+    zIndex: 10,
   }),
   option: (provided, state) => ({
     ...provided,
+    zIndex: 10,
     fontSize: 12,
     color: '#FFFFFF64',
     backgroundColor: '#04434D',
+
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#075E6C',
+    },
   }),
 };

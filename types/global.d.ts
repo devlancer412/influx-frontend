@@ -3,8 +3,8 @@ import {
   Regions,
   Chains,
   Attributes,
-  EsBudgets,
   Sorters,
+  InfluenceStates,
 } from '../constant';
 export {};
 
@@ -13,32 +13,37 @@ declare global {
     id: number;
     name: string;
     influencers: number;
-    averageEngagementRate: EngagementFilter;
+    avgER: EngagementFilter;
     price: number;
     followers: number;
   }
 
   interface Influence {
     id: number;
+    accountId: number;
     name: string;
     nickName: string;
     imageUrl: string;
-    youtube?: string;
-    telegram?: string;
-    twitter?: string;
+    mainChannel: string;
+    instagram?: any;
+    youtube?: any;
+    telegram?: any;
+    twitter?: any;
+    tiktok?: any;
     followers: number;
     engagement: EngagementFilter;
+    language: LanguageFilter;
     topPrice: number;
     bottomPrice: number;
     isVIP: boolean;
     niches: string[];
+    status?: InfluenceStatus;
   }
 
   type Category = typeof Categories[number];
   type Region = typeof Regions[number];
   type Chain = typeof Chains[number];
   type Attribute = typeof Attributes[number];
-  type EsBudget = typeof EsBudgets[number];
 
   interface LaunchSetting {
     name: string;
@@ -47,9 +52,18 @@ declare global {
     placeholder: string;
   }
 
-  interface BrandProfile {
+  interface UserProfile {
+    id: number;
     name: string;
+    email: string;
     avatar: string;
+    verified: boolean;
+    language: LanguageFilter;
+  }
+
+  interface BrandProfile {
+    id: number;
+    account: UserProfile;
     website: string;
     description: string;
     channels: {
@@ -57,18 +71,21 @@ declare global {
       instagram?: string;
       discord?: string;
       youtube?: string;
+      tiktok?: string;
     };
     mainTgChannel: string;
     category: Category | '';
     region: Region | '';
     chain: Chain | '';
     attribute: Attribute | '';
-    esBudget: EsBudget | '';
+    esBudget: number;
     launchSettings: LaunchSetting[];
     isWL: boolean;
     isAirdrop: boolean;
     isPremint: boolean;
     loggedin?: boolean;
+    isListed?: boolean;
+    campaigns?: Campaign[];
   }
 
   type Billing = {
@@ -108,7 +125,5 @@ declare global {
 
   type SortFilter = typeof Sorters[number];
 
-  type User = {
-    name: string;
-  };
+  type InfluenceStatus = typeof InfluenceStates[number];
 }

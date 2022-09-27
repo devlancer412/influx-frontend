@@ -73,6 +73,7 @@ export const DialogContextProvider: React.FC<PropsWithChildren> = ({
 
   const hideDialog = () => {
     setIsBrowser(false);
+    setDialog(<></>);
   };
 
   const values: DialogContextProps = useMemo(

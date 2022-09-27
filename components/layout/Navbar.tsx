@@ -18,7 +18,7 @@ const Navbar: React.FC<Props> = ({ toggleSidebar }) => {
           />
         </div>
       </Link>
-      <div className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] hidden md:block'>
+      <div className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] hidden md:block hover:bg-[#11C176] transition-all'>
         List your influencers
       </div>
       <div className='absolute left-[33px] md:hidden' onClick={toggleSidebar}>

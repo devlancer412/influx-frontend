@@ -55,7 +55,7 @@ const InfluenceList: React.FC<Props> = ({
           />
         </div>
         <div className='flex flex-row items-center gap-[30px]'>
-          <div className='flex flex-row items-center py-[7px] px-[18px] bg-[#04434D] rounded-[5px] hover:cursor-pointer'>
+          <div className='flex flex-row items-center py-[7px] px-[18px] bg-[#04434D] rounded-[5px] hover:cursor-pointer hover:bg-[#075E6C] transition-all'>
             <FaPlusCircle size={20} color='#10E98C' className='mx-2' />
             <p className='text-[15px] leading-[22px] text-white font-semibold'>
               ADD TO CAMPAIGN
@@ -69,7 +69,7 @@ const InfluenceList: React.FC<Props> = ({
           </div>
         </div>
         <div
-          className='flex flex-row items-center py-[2px] px-[10px] bg-[#04434D] rounded-[5px] hover:cursor-pointer min-w-[110px] ml-[25px] absolute top-0 right-10'
+          className='flex flex-row items-center py-[2px] px-[10px] bg-[#04434D] rounded-[5px] hover:cursor-pointer min-w-[110px] ml-[25px] absolute top-0 right-10 hover:bg-[#075E6C] transition-all'
           onClick={() => setSelectAll(!selectAll)}
         >
           <div className='w-[8px] h-[8px] flex justify-center items-center border border-[#10E98C]'>
@@ -81,7 +81,7 @@ const InfluenceList: React.FC<Props> = ({
         </div>
       </div>
       <div className='pl-5 md:pl-10 w-full overflow-x-hidden mt-8 mb-[30px]'>
-        <div className='float-left w-[calc(100%-20px)] md:w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10'>
+        <div className='float-left w-[calc(100%-20px)] md:w-[calc(100%-40px)] grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-10 py-5'>
           {influences
             .sort((a, b) =>
               sortFilter === 'Audience size'

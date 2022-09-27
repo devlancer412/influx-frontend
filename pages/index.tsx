@@ -37,7 +37,7 @@ interface FilterProps {
 interface Props {
   filterProps: FilterProps;
   influences: Influence[];
-  users: User[];
+  users: string[];
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filterProps: {
       socialFilters: [],
       priceFilter: {
-        top: parseInt(top as string) || 10000,
+        top: parseInt(top as string) || 50000,
         bottom: parseInt(bottom as string) || 0,
       },
       engagementFilter: (engagement as string) || Engagements[0],
@@ -99,23 +99,55 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.userNameFilter != '') {
     url += `&userName=${props.filterProps.userNameFilter}`;
   }
+  if (props.filterProps.audienceSizeFilter != 'All audience sizes') {
+    let sizes = props.filterProps.audienceSizeFilter.split(' - ');
+    if (sizes.length == 2 && sizes[0] && sizes[1]) {
+      url += `&minAudienceSize=${sizes[0].replace(
+        /,/g,
+        ''
+      )}&maxAudienceSize=${sizes[1].replace(/,/g, '')}`;
+    } else {
+      sizes = props.filterProps.audienceSizeFilter.split('+');
+      if (sizes.length == 1 && sizes[0]) {
+        url += `&minAudienceSize=${sizes[0].replace(/,/g, '').trim()}`;
+      }
+    }
+  }
+  if (props.filterProps.audienceLocationFilter != '') {
+    url += `&location=${props.filterProps.audienceLocationFilter}`;
+  }
 
+  console.log(url);
   const response = await client.get(url);
-  console.log(url, response);
   if (response.success) {
     props.influences = response.data.map((data) => {
+      let followers =
+        data?.account?.instagram?.followers > data?.account?.twitter?.followers
+          ? data?.account?.instagram?.followers
+          : data?.account?.twitter?.followers;
+
+      followers =
+        followers > data?.account?.tiktok?.followers
+          ? followers
+          : data?.account?.tiktok?.followers;
+
       return {
         id: data?.id,
+        accountId: data?.account?.id,
         name: data?.account?.name,
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
-        youtube: '#',
-        telegram: '#',
-        twitter: '#',
-        followers: 0,
+        mainChannel: data?.mainChannel ?? 'twitter',
+        instagram: data?.account?.instagram,
+        youtube: data?.account?.youtube,
+        telegram: data?.account?.telegram,
+        twitter: data?.account?.twitter,
+        tiktok: data?.account?.tiktok,
+        followers: followers,
         engagement: data?.engagementRate,
-        topPrice: data?.priceRange?.at(1),
-        bottomPrice: data?.priceRange?.at(0),
+        language: data?.account?.language,
+        topPrice: data?.priceRange[1],
+        bottomPrice: data?.priceRange[0],
         isVIP: data?.isVIP,
         niches: data?.niche || [],
       };
@@ -127,6 +159,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function Home({ filterProps, influences, users }: Props) {
   const router = useRouter();
+
+  const [timerId, setTimerId] = useState<NodeJS.Timeout>(null);
 
   const [socialFilters, setSocialFilter] = useState<SocialFilterProps[]>(
     filterProps.socialFilters
@@ -164,7 +198,13 @@ export default function Home({ filterProps, influences, users }: Props) {
   };
 
   useEffect(() => {
-    updateUrl();
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    const timeout = setTimeout(() => {
+      updateUrl();
+    }, 500);
+    setTimerId(timeout);
   }, [
     socialFilters,
     priceFilter,
@@ -231,6 +271,30 @@ export default function Home({ filterProps, influences, users }: Props) {
               </div>
               <div className='w-full flex flex-col items-start'>
                 <div className='flex flex-row justify-start items-center mb-[9px]'>
+                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
+                    Niche
+                  </p>
+                  <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
+                    #
+                  </div>
+                </div>
+                <Select
+                  styles={desktopSelectStyle}
+                  placeholder='Choose some key words'
+                  options={Niches.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  value={nichesFilter.map((item) => {
+                    return { value: item, label: item };
+                  })}
+                  isMulti
+                  onChange={(item: any) => {
+                    setNichesFilter(item.map((subitem) => subitem.value));
+                  }}
+                />
+              </div>
+              <div className='w-full flex flex-col items-start'>
+                <div className='flex flex-row justify-start items-center mb-[9px]'>
                   <p className='w-fpl text-white font-bold text-[12px] leading-[18px]'>
                     Price Range For promo
                   </p>
@@ -243,7 +307,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <RangeSelect
                   value0={priceFilter.bottom}
                   value1={priceFilter.top}
-                  top={10000}
+                  top={50000}
                   onChange={(top, bottom) => {
                     setPriceFilter({ top, bottom });
                   }}
@@ -353,7 +417,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   styles={mobileSelectStyle}
                   placeholder='Search by user name'
                   options={users.map((item) => {
-                    return { value: item.name, label: item.name };
+                    return { value: item, label: item };
                   })}
                   value={{
                     value: userNameFilter,
@@ -361,30 +425,6 @@ export default function Home({ filterProps, influences, users }: Props) {
                   }}
                   onChange={(item: any) => {
                     setUserNameFilter(item.value);
-                  }}
-                />
-              </div>
-              <div className='w-full flex flex-col items-start'>
-                <div className='flex flex-row justify-start items-center mb-[9px]'>
-                  <p className='w-full text-white font-bold text-[12px] leading-[18px]'>
-                    Niche
-                  </p>
-                  <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
-                    #
-                  </div>
-                </div>
-                <Select
-                  styles={desktopSelectStyle}
-                  placeholder='Choose some key words'
-                  options={Niches.map((item) => {
-                    return { value: item, label: item };
-                  })}
-                  value={nichesFilter.map((item) => {
-                    return { value: item, label: item };
-                  })}
-                  isMulti
-                  onChange={(item: any) => {
-                    setNichesFilter(item.map((subitem) => subitem.value));
                   }}
                 />
               </div>
@@ -412,7 +452,7 @@ export default function Home({ filterProps, influences, users }: Props) {
               </div> */}
             </div>
             <div
-              className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer'
+              className='w-[280px] max-w-full rounded-[5px] bg-[#10E98C] py-[7px] text-center text-[14px] leading-[21px] text-black hover:cursor-pointer hover:bg-[#11C176] transition-all'
               onClick={updateUrl}
             >
               Find Now
@@ -455,6 +495,31 @@ export default function Home({ filterProps, influences, users }: Props) {
                 <div className='flex flex-col w-[35%] justify-around'>
                   <div className='flex flex-col items-start'>
                     <div className='flex flex-row justify-start items-center'>
+                      <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
+                        #
+                      </div>
+                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                        Niche
+                      </h3>
+                      <Image src='/icons/info.png' width={10} height={10} />
+                    </div>
+                    <Select
+                      styles={desktopSelectStyle}
+                      placeholder='Choose some key words'
+                      options={Niches.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      value={nichesFilter.map((item) => {
+                        return { value: item, label: item };
+                      })}
+                      isMulti
+                      onChange={(item: any) => {
+                        setNichesFilter(item.map((subitem) => subitem.value));
+                      }}
+                    />
+                  </div>
+                  <div className='flex flex-col items-start mt-[10px]'>
+                    <div className='flex flex-row justify-start items-center'>
                       <MdOutlinePriceCheck
                         size={15}
                         color='#FFFFFFB3'
@@ -468,7 +533,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                     <RangeSelect
                       value0={priceFilter.bottom}
                       value1={priceFilter.top}
-                      top={10000}
+                      top={50000}
                       onChange={(top, bottom) => {
                         setPriceFilter({ top, bottom });
                       }}
@@ -522,36 +587,36 @@ export default function Home({ filterProps, influences, users }: Props) {
                       }}
                     />
                   </div>
-                  <div className='flex flex-col items-start mt-[10px]'>
-                    <div className='flex flex-row justify-start items-center'>
-                      <BsPeopleFill
-                        size={15}
-                        color='#FFFFFFB3'
-                        className='mx-1'
-                      />
-                      <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
-                        Audience Size
-                      </h3>
-                      <Image src='/icons/info.png' width={10} height={10} />
-                    </div>
-                    <Select
-                      styles={desktopSelectStyle}
-                      options={AudienceSizes.map((item) => {
-                        return { value: item, label: item };
-                      })}
-                      value={{
-                        value: audienceSizeFilter,
-                        label: audienceSizeFilter,
-                      }}
-                      onChange={(item: any) => {
-                        setAudienceSizeFilter(item.value);
-                      }}
-                    />
-                  </div>
                 </div>
                 <div className='w-[50%] flex flex-col justify-between'>
                   <div className='flex flex-col w-[70%] justify-around'>
                     <div className='flex flex-col items-start'>
+                      <div className='flex flex-row justify-start items-center'>
+                        <BsPeopleFill
+                          size={15}
+                          color='#FFFFFFB3'
+                          className='mx-1'
+                        />
+                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
+                          Audience Size
+                        </h3>
+                        <Image src='/icons/info.png' width={10} height={10} />
+                      </div>
+                      <Select
+                        styles={desktopSelectStyle}
+                        options={AudienceSizes.map((item) => {
+                          return { value: item, label: item };
+                        })}
+                        value={{
+                          value: audienceSizeFilter,
+                          label: audienceSizeFilter,
+                        }}
+                        onChange={(item: any) => {
+                          setAudienceSizeFilter(item.value);
+                        }}
+                      />
+                    </div>
+                    <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
                         <BsFillPersonFill
                           size={15}
@@ -567,7 +632,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                         styles={desktopSelectStyle}
                         placeholder='Search by user name'
                         options={users.map((item) => {
-                          return { value: item.name, label: item.name };
+                          return { value: item, label: item };
                         })}
                         value={{
                           value: userNameFilter,
@@ -605,31 +670,6 @@ export default function Home({ filterProps, influences, users }: Props) {
                         }}
                       />
                     </div>
-                    <div className='flex flex-col items-start mt-[10px]'>
-                      <div className='flex flex-row justify-start items-center'>
-                        <div className='mx-1 text-[#FFFFFFB3] text-[15px] font-bold'>
-                          #
-                        </div>
-                        <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
-                          Niche
-                        </h3>
-                        <Image src='/icons/info.png' width={10} height={10} />
-                      </div>
-                      <Select
-                        styles={desktopSelectStyle}
-                        placeholder='Choose some key words'
-                        options={Niches.map((item) => {
-                          return { value: item, label: item };
-                        })}
-                        value={nichesFilter.map((item) => {
-                          return { value: item, label: item };
-                        })}
-                        isMulti
-                        onChange={(item: any) => {
-                          setNichesFilter(item.map((subitem) => subitem.value));
-                        }}
-                      />
-                    </div>
                     {/* <div className='flex flex-col items-start mt-[10px]'>
                       <div className='flex flex-row justify-start items-center'>
                         <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
@@ -655,7 +695,7 @@ export default function Home({ filterProps, influences, users }: Props) {
                   </div>
                   <div className='w-full mt-4'>
                     <div
-                      className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer'
+                      className='bg-[#10E98C] py-[7px] px-[46px] text-black text-[14px] float-right hover:cursor-pointer hover:bg-[#11C176] transition-all'
                       onClick={updateUrl}
                     >
                       Find now

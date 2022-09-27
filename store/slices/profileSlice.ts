@@ -1,11 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { Languages } from './../../constant/index';
 
 type BrandState = BrandProfile;
 
 const initialState: BrandState = {
-  name: '',
-  avatar: '/img/user_1.png',
+  id: -1,
+  account: {
+    id: 0,
+    name: '',
+    avatar: '',
+    email: '',
+    verified: false,
+    language: Languages[0],
+  },
   website: '',
   description: '',
   channels: {
@@ -19,7 +27,7 @@ const initialState: BrandState = {
   region: '',
   chain: '',
   attribute: '',
-  esBudget: '',
+  esBudget: 0,
   launchSettings: [
     {
       name: 'Pre-Launch',
@@ -44,6 +52,7 @@ const initialState: BrandState = {
   isAirdrop: false,
   isPremint: false,
   loggedin: false,
+  isListed: false,
 };
 
 const brandSlice = createSlice({
@@ -56,10 +65,22 @@ const brandSlice = createSlice({
     ): BrandState => {
       return action.payload;
     },
+    setUser: (
+      state: BrandState,
+      action: PayloadAction<UserProfile>
+    ): BrandState => {
+      return { ...state, account: action.payload };
+    },
+    addCampaign: (
+      state: BrandState,
+      action: PayloadAction<Campaign>
+    ): BrandState => {
+      return { ...state, campaigns: [...state.campaigns, action.payload] };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setBrand } = brandSlice.actions;
+export const { setBrand, setUser, addCampaign } = brandSlice.actions;
 
 export default brandSlice.reducer;

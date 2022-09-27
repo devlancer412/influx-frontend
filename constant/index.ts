@@ -1,10 +1,9 @@
 export * from './selectInputStyle';
 
 export const Categories = ['AAA', 'BBB'] as const;
-export const Regions = ['AAA', 'BBB'] as const;
-export const Chains = ['AAA', 'BBB'] as const;
+export const Regions = ['United States'] as const;
+export const Chains = ['ETH', 'BNB', 'SOL', 'MATIC'] as const;
 export const Attributes = ['AAA', 'BBB'] as const;
-export const EsBudgets = ['AAA', 'BBB'] as const;
 
 export const PriceRanges = [
   '$0 - $250',
@@ -15,19 +14,22 @@ export const PriceRanges = [
 
 export const Engagements = ['None', 'Great', 'Good', 'OK', 'Poor'] as const;
 
-export const Languages = ['None', 'English', 'German', 'Russian'] as const;
+export const Languages = ['English', 'German', 'Russian'] as const;
 
 export const AudienceSizes = [
-  '0 - 1000',
-  '1000 - 2000',
-  '2000 - 3000',
-  '3000 - 4000',
-  '4000 - 5000',
-  '5000 +',
+  'All audience sizes',
+  '0 - 10',
+  '10 - 100',
+  '100 - 1000',
+  '1000 - 10,000',
+  '10,000 - 100,000',
+  '100,000 - 1,000,000',
+  '1,000,000 - 10,000,000',
+  '10,000,000 - 100,000,000',
 ] as const;
 
 export const AudienceLocations = [
-  'United State',
+  'United States',
   'Canada',
   'Mexico',
   'Singapore',
@@ -40,15 +42,11 @@ export const AudienceLocations = [
 ] as const;
 
 export const Niches = [
-  'Lorem ipsum0',
-  'Lorem ipsum1',
-  'Lorem ipsum2',
-  'Lorem ipsum3',
-  'Lorem ipsum4',
-  'Lorem ipsum5',
-  'Lorem ipsum6',
-  'Lorem ipsum7',
-  'Lorem ipsum8',
+  'NFTs',
+  'DeFi',
+  'Memecoins',
+  'Tokenized assets',
+  'Gambling',
 ] as const;
 
 export const Sorters = [
@@ -58,15 +56,13 @@ export const Sorters = [
 ] as const;
 
 export const InfluenceStates = [
-  'Not Outreached (DEFAULT VALUE)',
+  'Not Contacted',
   'Outreached',
-  'In negotiation',
-  'Waiting for payment',
-  'Payment complete',
-  'Promotion materials sent',
-  'Promotion complete',
-  'Canceled',
-  'No Reply',
+  'In Negotiation',
+  'Waiting For PostDetails',
+  'Payment Done',
+  'Post Done',
+  'Cancelled',
 ];
 
 export const initSocialFilters: SocialFilterProps[] = [
