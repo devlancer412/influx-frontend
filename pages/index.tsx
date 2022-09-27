@@ -102,11 +102,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.audienceSizeFilter != '') {
     let sizes = props.filterProps.audienceSizeFilter.split(' - ');
     if (sizes.length == 2) {
-      url += `&minAudienceSize=${sizes[0]}&maxAudienceSize=${sizes[1]}`;
+      url += `&minAudienceSize=${sizes[0].replaceAll(
+        ',',
+        ''
+      )}&maxAudienceSize=${sizes[1].replaceAll(',', '')}`;
     } else {
       sizes = props.filterProps.audienceSizeFilter.split('+');
       if (sizes.length == 1) {
-        url += `&minAudienceSize=${sizes[0].trim()}`;
+        url += `&minAudienceSize=${sizes[0].replaceAll(',', '').trim()}`;
       }
     }
   }

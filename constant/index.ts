@@ -17,12 +17,14 @@ export const Engagements = ['None', 'Great', 'Good', 'OK', 'Poor'] as const;
 export const Languages = ['English', 'German', 'Russian'] as const;
 
 export const AudienceSizes = [
-  '0 - 1000',
-  '1000 - 2000',
-  '2000 - 3000',
-  '3000 - 4000',
-  '4000 - 5000',
-  '5000 +',
+  '0 - 10',
+  '10 - 100',
+  '100 - 1000',
+  '1000 - 10,000',
+  '10,000 - 100,000',
+  '100,000 - 1,000,000',
+  '1,000,000 - 10,000,000',
+  '10,000,000 - 100,000,000',
 ] as const;
 
 export const AudienceLocations = [
