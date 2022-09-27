@@ -186,14 +186,14 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
         </div>
       </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
-        <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
+        {/* <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>Audience Size</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 right-0'>
             {influence?.followers > 1000
               ? `${influence?.followers / 1000}K`
               : influence?.followers}
           </p>
-        </div>
+        </div> */}
         <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>
           <>Engagement</>
           <p className='absolute text-[#10E98C] top-1/2 -translate-y-1/2 right-0'>
