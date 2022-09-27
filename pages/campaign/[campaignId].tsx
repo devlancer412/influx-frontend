@@ -1,6 +1,6 @@
 import { NextPage, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { RootState } from '../../store';
@@ -16,8 +16,18 @@ type Props = {
 };
 
 const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
+  const subMenuRef = useRef(null);
   const [current, setCurrent] = useState<SubMenu>('Actions');
   const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!subMenuRef?.current?.contains(event.target)) {
+        setShowSubMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+  }, [subMenuRef]);
 
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
@@ -81,10 +91,12 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
                 setCurrent('Actions');
                 setShowSubMenu('Actions' === current ? !showSubMenu : true);
               }}
+              onBlur={() => setShowSubMenu(false)}
             >
               Actions
               {showSubMenu && 'Actions' === current ? (
                 <ul
+                  ref={subMenuRef}
                   className='absolute top-full bg-[#243034] border border-[#CCCCCC80] py-2 z-10 w-[200px] text-center left-1/2 -translate-x-1/2 translate-y-1'
                   onClick={(e) => {
                     e.preventDefault();
