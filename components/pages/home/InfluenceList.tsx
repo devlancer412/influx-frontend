@@ -65,7 +65,9 @@ const InfluenceList: React.FC<Props> = ({
             <p className='text-[14px] mr-5 text-[#CCCCCC]'>
               Returned influencers :
             </p>
-            <p className='text-white font-extrabold text-[20px] w-20'>24</p>
+            <p className='text-white font-extrabold text-[20px] w-20'>
+              {influences.length}
+            </p>
           </div>
         </div>
         <div
