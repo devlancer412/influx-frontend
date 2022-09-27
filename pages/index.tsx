@@ -185,6 +185,7 @@ export default function Home({ filterProps, influences, users }: Props) {
     filterProps.nichesFilter
   );
   const [sortFilter, setSortFilter] = useState<SortFilter>(filterProps.sort);
+  const [vipFilter, setVipFilter] = useState<boolean>(false);
 
   const updateUrl = () => {
     let url = `/?top=${priceFilter.top}&bottom=${priceFilter.bottom}&engagement=${engagementFilter}&language=${languageFilter}&audienceSize=${audienceSizeFilter}&userName=${userNameFilter}&audienceLocation=${audienceLocationFilter}&sort=${sortFilter}`;
@@ -670,28 +671,23 @@ export default function Home({ filterProps, influences, users }: Props) {
                         }}
                       />
                     </div>
-                    {/* <div className='flex flex-col items-start mt-[10px]'>
-                      <div className='flex flex-row justify-start items-center'>
-                        <FaSort size={15} color='#FFFFFFB3' className='mx-1' />
+                    <div className='flex flex-col items-start mt-[10px]'>
+                      <div
+                        className='flex flex-row justify-start items-center hover:cursor-pointer'
+                        onClick={() => setVipFilter(!vipFilter)}
+                      >
+                        <div className='w-[12px] h-[12px] flex justify-center items-center border-2 border-[#10E98C] mx-1'>
+                          {vipFilter ? (
+                            <div className='w-1 h-1 bg-[#10E98C]' />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                         <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
-                          Sort
+                          Only show VIP
                         </h3>
-                        <Image src='/icons/info.png' width={10} height={10} />
                       </div>
-                      <Select
-                        styles={desktopSelectStyle}
-                        options={Sorters.map((item) => {
-                          return { value: item, label: item };
-                        })}
-                        value={{
-                          value: sortFilter,
-                          label: sortFilter,
-                        }}
-                        onChange={(item: any) => {
-                          setSortFilter(item.value);
-                        }}
-                      />
-                    </div> */}
+                    </div>
                   </div>
                   <div className='w-full mt-4'>
                     <div
@@ -719,7 +715,11 @@ export default function Home({ filterProps, influences, users }: Props) {
       </div>
       <div className='flex flex-col px-[23px]'>
         <InfluenceList
-          influences={influences}
+          influences={
+            vipFilter
+              ? influences.filter((influence) => influence.isVIP)
+              : influences
+          }
           sortFilter={sortFilter}
           setSortFilter={setSortFilter}
         />
