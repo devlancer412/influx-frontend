@@ -25,11 +25,11 @@ declare global {
     nickName: string;
     imageUrl: string;
     mainChannel: string;
-    instagram?: string;
-    youtube?: string;
-    telegram?: string;
-    twitter?: string;
-    tiktok?: string;
+    instagram?: any;
+    youtube?: any;
+    telegram?: any;
+    twitter?: any;
+    tiktok?: any;
     followers: number;
     engagement: EngagementFilter;
     language: LanguageFilter;

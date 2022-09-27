@@ -39,15 +39,11 @@ export const AudienceLocations = [
 ] as const;
 
 export const Niches = [
-  'Lorem ipsum0',
-  'Lorem ipsum1',
-  'Lorem ipsum2',
-  'Lorem ipsum3',
-  'Lorem ipsum4',
-  'Lorem ipsum5',
-  'Lorem ipsum6',
-  'Lorem ipsum7',
-  'Lorem ipsum8',
+  'NFTs',
+  'DeFi',
+  'Memecoins',
+  'Tokenized assets',
+  'Gambling',
 ] as const;
 
 export const Sorters = [
