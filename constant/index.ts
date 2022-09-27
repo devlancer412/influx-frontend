@@ -17,6 +17,7 @@ export const Engagements = ['None', 'Great', 'Good', 'OK', 'Poor'] as const;
 export const Languages = ['English', 'German', 'Russian'] as const;
 
 export const AudienceSizes = [
+  'All audience sizes',
   '0 - 10',
   '10 - 100',
   '100 - 1000',

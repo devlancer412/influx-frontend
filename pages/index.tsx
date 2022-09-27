@@ -99,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.userNameFilter != '') {
     url += `&userName=${props.filterProps.userNameFilter}`;
   }
-  if (props.filterProps.audienceSizeFilter != '') {
+  if (props.filterProps.audienceSizeFilter != 'All audience sizes') {
     let sizes = props.filterProps.audienceSizeFilter.split(' - ');
     if (sizes.length == 2) {
       url += `&minAudienceSize=${sizes[0].replaceAll(
