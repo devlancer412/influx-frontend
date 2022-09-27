@@ -102,14 +102,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (props.filterProps.audienceSizeFilter != 'All audience sizes') {
     let sizes = props.filterProps.audienceSizeFilter.split(' - ');
     if (sizes.length == 2 && sizes[0] && sizes[1]) {
-      url += `&minAudienceSize=${sizes[0].replaceAll(
-        ',',
+      url += `&minAudienceSize=${sizes[0].replace(
+        /,/g,
         ''
-      )}&maxAudienceSize=${sizes[1].replaceAll(',', '')}`;
+      )}&maxAudienceSize=${sizes[1].replace(/,/g, '')}`;
     } else {
       sizes = props.filterProps.audienceSizeFilter.split('+');
       if (sizes.length == 1 && sizes[0]) {
-        url += `&minAudienceSize=${sizes[0].replaceAll(',', '').trim()}`;
+        url += `&minAudienceSize=${sizes[0].replace(/,/g, '').trim()}`;
       }
     }
   }
@@ -117,6 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     url += `&location=${props.filterProps.audienceLocationFilter}`;
   }
 
+  console.log(url);
   const response = await client.get(url);
   if (response.success) {
     props.influences = response.data.map((data) => {
