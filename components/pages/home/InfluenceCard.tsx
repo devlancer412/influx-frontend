@@ -4,17 +4,10 @@ import Link from 'next/link';
 import useDialog from '../../../hooks/useDialog';
 import InfluenceProfile from '../../dialog/influenceprofile';
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
+import { formatNumber } from '../../../services/utils';
 
 type Props = {
   influence: Influence;
-};
-
-const formatNumber = (value: number) => {
-  return value > 1000000
-    ? `${value / 1000000}M`
-    : value > 1000
-    ? `${value / 1000}K`
-    : `${value}`;
 };
 
 const InfluenceCard: React.FC<Props> = ({ influence }) => {
@@ -184,6 +177,9 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
         <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#96C3EC]'>
           Vetted Projects Only
         </div>
+        {/* <div className='p-1 min-w-[60px] rounded-[5px] border-[0.5] border-[#000000B2] bg-[#96C3EC]'>
+          May do Paid Promo
+        </div> */}
       </div>
       <div className='flex flex-col px-[35px] py-[14px] w-full'>
         {/* <div className='relative pt-[19px] pb-[16px] text-start text-[14px] font-semibold text-white border-b border-[#FFFFFF4D]'>

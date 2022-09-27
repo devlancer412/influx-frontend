@@ -17,6 +17,7 @@ type Props = {
 
 const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const [current, setCurrent] = useState<SubMenu>('Actions');
+  const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
 
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
@@ -69,26 +70,62 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
       </div>
       <div className='w-full flex flex-col py-[35px] px-[29px] md:px-[68px]'>
         <div className='w-full py-[64px] lg:px-[22px]'>
-          <div className='w-full bg-[#243034] border border-[#CCCCCC80] py-3 flex flex-row justify-around lg:justify-center items-center rounded-[10px] lg:rounded-none'>
-            {subMenus.map((menu: SubMenu) => (
-              <h3
-                className={`text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
-                  menu === current
-                    ? 'text-[#10E98C] border-[#10E98C]'
-                    : 'text-white border-transparent'
-                } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
-                key={menu}
-                onClick={() => setCurrent(menu)}
-              >
-                {menu}
-              </h3>
+          <div className='w-full bg-[#243034] border border-[#CCCCCC80] py-3 flex flex-row justify-around lg:justify-center items-center rounded-[10px] lg:rounded-none mb-[64px]'>
+            <h3
+              className={`relative text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
+                'Actions' === current
+                  ? 'text-[#10E98C] border-[#10E98C]'
+                  : 'text-white border-transparent'
+              } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
+              onClick={() => {
+                setCurrent('Actions');
+                setShowSubMenu('Actions' === current ? !showSubMenu : true);
+              }}
+            >
+              Actions
+              {showSubMenu && 'Actions' === current ? (
+                <ul
+                  className='absolute top-full bg-[#243034] border border-[#CCCCCC80] py-2 z-10 w-[200px] text-center left-1/2 -translate-x-1/2 translate-y-1'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowSubMenu(false);
+                  }}
+                >
+                  <li>Select All</li>
+                  <li>Delete</li>
+                  <li>Add to Campaign</li>
+                </ul>
+              ) : (
+                <></>
+              )}
+            </h3>
+            <h3
+              className={`text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
+                'Change status' === current
+                  ? 'text-[#10E98C] border-[#10E98C]'
+                  : 'text-white border-transparent'
+              } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
+              onClick={() => setCurrent('Change status')}
+            >
+              Change Status
+            </h3>
+            <h3
+              className={`text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
+                'Template' === current
+                  ? 'text-[#10E98C] border-[#10E98C]'
+                  : 'text-white border-transparent'
+              } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
+              onClick={() => setCurrent('Template')}
+            >
+              Template
+            </h3>
+          </div>
+          <div className='w-full grid grid-cols-1 gap-16'>
+            {influencers.map((influence) => (
+              <CampaignInfluenceCard influence={influence} />
             ))}
           </div>
-        </div>
-        <div className='w-full grid grid-cols-1 gap-16'>
-          {influencers.map((influence) => (
-            <CampaignInfluenceCard influence={influence} />
-          ))}
         </div>
       </div>
     </div>
@@ -123,11 +160,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         name: data.influencer.account.name,
         nickName: data.influencer.account.name,
         imageUrl: data.influencer.account.logo,
-        instagram: data.influencer.account.instagram.socialUrl,
-        youtube: data.influencer.account.youtube.socialUrl,
-        telegram: data.influencer.account.telegram.socialUrl,
-        twitter: data.influencer.account.twitter.socialUrl,
-        tiktok: data.influencer.account.tiktok.socialUrl,
+        mainChannel: data.influencer.mainChannel ?? 'twitter',
+        instagram: data.influencer.account.instagram,
+        youtube: data.influencer.account.youtube,
+        telegram: data.influencer.account.telegram,
+        twitter: data.influencer.account.twitter,
+        tiktok: data.influencer.account.tiktok,
         followers: 0,
         engagement: data.influencer.engagementRate,
         topPrice: data.negotiatedBudget,

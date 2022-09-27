@@ -117,8 +117,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     url += `&location=${props.filterProps.audienceLocationFilter}`;
   }
 
-  console.log(url);
   const response = await client.get(url);
+  console.log(response.data);
   if (response.success) {
     props.influences = response.data.map((data) => {
       let followers =
