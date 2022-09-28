@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.9.1",
+    "@ckeditor/ckeditor5-build-classic": "^35.1.0",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "date-fns": "^2.11.1",

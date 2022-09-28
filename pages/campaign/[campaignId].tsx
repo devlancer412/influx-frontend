@@ -1,10 +1,15 @@
 import { NextPage, GetServerSideProps } from 'next';
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInfluenceCard';
 import client from '../../services/HttpClient';
-import NoteViewer from '../../components/pages/campaign/NoteViewer';
 import useDialog from '../../hooks/useDialog';
+
+const RichEditor = dynamic(
+  () => import('../../components/pages/campaign/RichEditor'),
+  { ssr: false }
+);
 
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
@@ -130,7 +135,7 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
               } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
               onClick={() => {
                 setCurrent('Template');
-                showDialog(<NoteViewer />);
+                showDialog(<RichEditor />);
               }}
             >
               Template
