@@ -1,11 +1,10 @@
 import { NextPage, GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import { RootState } from '../../store';
 import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInfluenceCard';
 import client from '../../services/HttpClient';
+import NoteViewer from '../../components/pages/campaign/NoteViewer';
+import useDialog from '../../hooks/useDialog';
 
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
@@ -17,6 +16,7 @@ type Props = {
 
 const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const subMenuRef = useRef(null);
+  const { showDialog } = useDialog();
   const [current, setCurrent] = useState<SubMenu>('Actions');
   const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
 
@@ -123,19 +123,22 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
               Change Status
             </h3>
             <h3
-              className={`text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
+              className={`relative text-[13px] leading-[20px] md:text-[16px] md:leading-[24px] lg:mx-[20px] px-[5px] lg:px-[10px] hover:cursor-pointer ${
                 'Template' === current
                   ? 'text-[#10E98C] border-[#10E98C]'
                   : 'text-white border-transparent'
               } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
-              onClick={() => setCurrent('Template')}
+              onClick={() => {
+                setCurrent('Template');
+                showDialog(<NoteViewer />);
+              }}
             >
               Template
             </h3>
           </div>
           <div className='w-full grid grid-cols-1 gap-16'>
-            {influencers.map((influence) => (
-              <CampaignInfluenceCard influence={influence} />
+            {influencers.map((influence, index) => (
+              <CampaignInfluenceCard key={index} influence={influence} />
             ))}
           </div>
         </div>
