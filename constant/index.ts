@@ -42,11 +42,20 @@ export const AudienceLocations = [
 ] as const;
 
 export const Niches = [
-  'NFTs',
-  'DeFi',
-  'Memecoins',
-  'Tokenized assets',
+  'NFT',
+  'GameFi',
   'Gambling',
+  'Memecoin',
+  'Metaverse',
+  'DeFi',
+  'Web3 Technology',
+  'Launchpads',
+  'Blockchain',
+  'Music Platform',
+  'Dex Swap',
+  'Exchange',
+  'Staking Pools',
+  'Farming',
 ] as const;
 
 export const Sorters = [
@@ -65,7 +74,7 @@ export const InfluenceStates = [
   'Cancelled',
 ];
 
-export const PromotionTypes = ["Paid Promo", "May do Paid Promo"] as const;
+export const PromotionTypes = ['Paid Promo', 'May do Paid Promo'] as const;
 
 export const initSocialFilters: SocialFilterProps[] = [
   {
