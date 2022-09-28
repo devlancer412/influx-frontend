@@ -43,6 +43,7 @@ type InfluenceProps = {
   name: string;
   nickName: string;
   imageUrl: string;
+  contactLink: string;
   youtube?: string;
   telegram?: string;
   twitter?: string;
@@ -60,6 +61,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   name,
   nickName,
   imageUrl,
+  contactLink,
   youtube,
   telegram,
   twitter,
@@ -129,7 +131,10 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 </div>
                 <div className='flex w-full max-w-[120px] flex-row justify-center items-center border border-[#10E98C] rounded-[5px] h-[25px] text-white hover:cursor-pointer mx-auto'>
                   <BsChat size={10} />
-                  <h3 className='text-[8px] font-semibold uppercase ml-[9px]'>
+                  <h3
+                    className='text-[8px] font-semibold uppercase ml-[9px]'
+                    onClick={() => window.open(contactLink, '_blank')}
+                  >
                     Contact
                   </h3>
                 </div>

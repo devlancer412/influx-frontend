@@ -24,6 +24,7 @@ declare global {
     name: string;
     nickName: string;
     imageUrl: string;
+    contactLink: string;
     mainChannel: string;
     instagram?: any;
     youtube?: any;

@@ -118,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const response = await client.get(url);
-  console.log(response.data);
+  // console.dir(response.data, { depth: 3 });
   if (response.success) {
     props.influences = response.data.map((data) => {
       let followers =
@@ -137,6 +137,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         name: data?.account?.name,
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
+        contactLink: data?.contactLink ?? '/#',
         mainChannel: data?.mainChannel ?? 'twitter',
         instagram: data?.account?.instagram,
         youtube: data?.account?.youtube,
