@@ -5,6 +5,7 @@ import {
   Attributes,
   Sorters,
   InfluenceStates,
+  PromotionTypes,
 } from '../constant';
 export {};
 
@@ -18,6 +19,8 @@ declare global {
     followers: number;
   }
 
+  type PromotionType = typeof PromotionTypes[number];
+
   interface Influence {
     id: number;
     accountId: number;
@@ -26,6 +29,7 @@ declare global {
     imageUrl: string;
     contactLink: string;
     mainChannel: string;
+    promotionType: PromotionType;
     instagram?: any;
     youtube?: any;
     telegram?: any;

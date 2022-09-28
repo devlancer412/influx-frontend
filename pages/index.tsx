@@ -138,6 +138,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
         contactLink: data?.contactLink ?? '/#',
+        promotionType:
+          data?.promotionType === 'PaidPromo'
+            ? 'Paid Promo'
+            : 'May do Paid Promo',
         mainChannel: data?.mainChannel ?? 'twitter',
         instagram: data?.account?.instagram,
         youtube: data?.account?.youtube,

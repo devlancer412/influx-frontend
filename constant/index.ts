@@ -65,6 +65,8 @@ export const InfluenceStates = [
   'Cancelled',
 ];
 
+export const PromotionTypes = ["Paid Promo", "May do Paid Promo"] as const;
+
 export const initSocialFilters: SocialFilterProps[] = [
   {
     iconUrl: '/icons/twitter.png',

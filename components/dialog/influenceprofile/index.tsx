@@ -43,6 +43,7 @@ type InfluenceProps = {
   name: string;
   nickName: string;
   imageUrl: string;
+  promotionType: PromotionType;
   contactLink: string;
   youtube?: string;
   telegram?: string;
@@ -61,6 +62,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   name,
   nickName,
   imageUrl,
+  promotionType,
   contactLink,
   youtube,
   telegram,
@@ -144,7 +146,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   VIP Perks
                 </div>
                 <div className='py-2 bg-[#FBE192] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
-                  Paid Promo
+                  {promotionType}
                 </div>
                 <div className='py-2 bg-[#96C3EC] border-[0.5] border-[#000000B2] rounded-[5px] hover:cursor-pointer'>
                   Vetted Projects Only
