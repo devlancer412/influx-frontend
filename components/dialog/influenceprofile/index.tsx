@@ -4,11 +4,12 @@ import NicheSlideShow from './NicheSlideShow';
 import Link from 'next/link';
 
 import { BsPlusCircle, BsChat } from 'react-icons/bs';
-import { FaTimes } from 'react-icons/fa';
+import { FaInstagram, FaTimes, FaTiktok } from 'react-icons/fa';
 
 import EngagementChart from './EngagementChart';
 import useDialog from '../../../hooks/useDialog';
 import AddInfluenceToCampaign from '../campaigns/AddInfluenceToCampaign';
+import { formatNumber } from './../../../services/utils';
 
 const chartData = [
   {
@@ -45,9 +46,11 @@ type InfluenceProps = {
   imageUrl: string;
   promotionType: PromotionType;
   contactLink: string;
-  youtube?: string;
-  telegram?: string;
-  twitter?: string;
+  youtube?: any;
+  telegram?: any;
+  twitter?: any;
+  instagram?: any;
+  tiktok?: any;
   followers: number;
   engagement: 'Good' | 'Normal' | 'Bad';
   topPrice: number;
@@ -67,6 +70,8 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   youtube,
   telegram,
   twitter,
+  instagram,
+  tiktok,
   followers,
   engagement,
   topPrice,
@@ -168,21 +173,21 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 <h5 className='text-[12px] font-semibold text-white'>
                   Influencer’s Channels
                 </h5>
-                <div className='w-[90%] max-w-[200px] md:max-w-[400px] grid grid-cols-1 md:grid-cols-3 gap-[10px] mt-2'>
+                <div className='w-[90%] max-w-[200px] md:max-w-[400px] flex flex-row justify-center flex-wrap gap-[10px] mt-2'>
                   {youtube ? (
-                    <Link href={youtube}>
-                      <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                    <Link href={youtube?.socialUrl}>
+                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/youtube.png'
-                          width={8}
-                          height={8}
+                          width={12}
+                          height={12}
                           objectFit='contain'
                         />
                         <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                           youtube
                         </h3>
                         <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
-                          2M
+                          {formatNumber(youtube?.subscribers ?? 0)}
                         </h3>
                       </div>
                     </Link>
@@ -190,19 +195,19 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <></>
                   )}
                   {telegram ? (
-                    <Link href={telegram}>
-                      <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                    <Link href={telegram.socialUrl}>
+                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/telegram.png'
-                          width={8}
-                          height={8}
+                          width={12}
+                          height={12}
                           objectFit='contain'
                         />
                         <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                           telegram
                         </h3>
                         <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
-                          119K
+                          {formatNumber(telegram?.channelMembers ?? 0)}
                         </h3>
                       </div>
                     </Link>
@@ -210,19 +215,49 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                     <></>
                   )}
                   {twitter ? (
-                    <Link href={twitter}>
-                      <div className='py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                    <Link href={twitter.socialUrl}>
+                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/twitter.png'
-                          width={8}
-                          height={8}
+                          width={12}
+                          height={12}
                           objectFit='contain'
                         />
                         <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                           twitter
                         </h3>
                         <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
-                          119K
+                          {formatNumber(twitter?.followers ?? 0)}
+                        </h3>
+                      </div>
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
+                  {instagram ? (
+                    <Link href={instagram.socialUrl}>
+                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                        <FaInstagram size={12} color='white' />
+                        <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
+                          instagram
+                        </h3>
+                        <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
+                          {formatNumber(instagram?.followers ?? 0)}
+                        </h3>
+                      </div>
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
+                  {tiktok ? (
+                    <Link href={tiktok.socialUrl}>
+                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                        <FaTiktok size={12} color='white' />
+                        <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
+                          tiktok
+                        </h3>
+                        <h3 className='text-[#CCCCCC] text-[12px] leading-[18px]'>
+                          {formatNumber(tiktok?.followers ?? 0)}
                         </h3>
                       </div>
                     </Link>
