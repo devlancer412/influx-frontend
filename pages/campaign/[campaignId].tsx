@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInfluenceCard';
 import client from '../../services/HttpClient';
 import useDialog from '../../hooks/useDialog';
+import AddInfluence from '../../components/dialog/campaigns/AddInfluence';
 
 const RichEditor = dynamic(
   () => import('../../components/pages/campaign/RichEditor'),
@@ -13,6 +14,10 @@ const RichEditor = dynamic(
 
 const subMenus = ['Actions', 'Change status', 'Template'] as const;
 type SubMenu = typeof subMenus[number];
+
+type InfluenceState = Influence & {
+  selected: boolean;
+};
 
 type Props = {
   campaign: Campaign;
@@ -24,6 +29,11 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const { showDialog } = useDialog();
   const [current, setCurrent] = useState<SubMenu>('Actions');
   const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
+  const [influenceStates, setInfluenceStates] = useState<InfluenceState[]>(
+    influencers.map((influence) => {
+      return { ...influence, selected: false };
+    })
+  );
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,6 +43,31 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
     };
     document.addEventListener('mousedown', handleClickOutside);
   }, [subMenuRef]);
+
+  const toggleSelection = (index: number) => {
+    setInfluenceStates(
+      influenceStates.map((state, i) =>
+        i === index ? { ...state, selected: !state.selected } : state
+      )
+    );
+  };
+
+  const selectAll = () => {
+    setInfluenceStates(
+      influenceStates.map((influenceState) => {
+        return {
+          ...influenceState,
+          selected: true,
+        };
+      })
+    );
+  };
+
+  const deleteSelected = () => {
+    setInfluenceStates(
+      influenceStates.filter((influenceState) => !influenceState.selected)
+    );
+  };
 
   return (
     <div className='py-[34px] lg:py-[68px] flex flex-col font-poppins'>
@@ -109,9 +144,17 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
                     setShowSubMenu(false);
                   }}
                 >
-                  <li>Select All</li>
-                  <li>Delete</li>
-                  <li>Add to Campaign</li>
+                  <li onClick={selectAll}>Select All</li>
+                  <li onClick={deleteSelected}>Delete</li>
+                  <li
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      showDialog(<AddInfluence campaignId={campaign.id} />);
+                    }}
+                  >
+                    Add to Campaign
+                  </li>
                 </ul>
               ) : (
                 <></>
@@ -142,8 +185,12 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
             </h3>
           </div>
           <div className='w-full grid grid-cols-1 gap-16'>
-            {influencers.map((influence, index) => (
-              <CampaignInfluenceCard key={index} influence={influence} />
+            {influenceStates.map((influence, index) => (
+              <CampaignInfluenceCard
+                key={index}
+                influence={influence}
+                onToggle={() => toggleSelection(index)}
+              />
             ))}
           </div>
         </div>

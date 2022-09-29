@@ -1,59 +1,54 @@
 import { FC, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 import Select from 'react-select';
 import client from '../../../services/HttpClient';
 import useDialog from '../../../hooks/useDialog';
-import {
-  desktopSelectStyle,
-  Engagements,
-  InfluenceStates,
-} from '../../../constant';
-import SelectInput from '../../pages/profile/SelectInput';
-import { RootState } from '../../../store';
-import { addCampaign } from '../../../store/slices/profileSlice';
+import { desktopSelectStyle, InfluenceStates } from '../../../constant';
 
 type Props = {
-  influenceId: number;
-  accountId: number;
+  campaignId: number;
 };
-const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
+
+const AddInfluence: FC<Props> = ({ campaignId }) => {
   const dispatch = useDispatch();
   const { hideDialog } = useDialog();
-  const campaigns = useSelector(
-    (store: RootState) => store.brandProfile.campaigns
-  );
 
-  const [campaignList, setCampaignList] = useState<any[]>([]);
-  const [campaign, setCampaign] = useState<any>();
+  const [influenceList, setInfluenceList] = useState<any[]>([]);
+  const [influence, setInfluence] = useState<any>();
   const [status, setStatus] = useState<InfluenceStatus>(InfluenceStates[0]);
   const [negoBudget, setNegoBudget] = useState<number>(0);
 
   useEffect(() => {
     (async () => {
-      const response = await client.get(`/campaigns/account/${accountId}`);
-      const addedCampaignIds = response.data.map(
-        (campaign) => campaign?.campaignId
-      );
+      const response = await client.get(`/influencers`);
 
-      setCampaignList(
-        campaigns
-          .filter((campaign) => addedCampaignIds.indexOf(campaign.id) < 0)
-          .map((campaign) => {
-            return {
-              value: campaign.id,
-              label: campaign.name,
-            };
-          })
-      );
+      if (!response.success) {
+        return;
+      }
+
+      const influencers = response.data
+        .filter(
+          (data) =>
+            data?.campaigns.filter((campaign) => campaign?.id == campaignId)
+              .length == 0
+        )
+        .map((data) => {
+          return {
+            value: data?.id,
+            label: data?.account?.name,
+          };
+        });
+
+      setInfluenceList(influencers);
     })();
   }, []);
 
-  const addInfluenceToCampaign = async () => {
+  const addInfluence = async () => {
     console.log(status, typeof status, status.replace(/ /g, ''));
     const body = {
-      campaignId: campaign?.value,
-      influencerId: influenceId,
+      campaignId: campaignId,
+      influencerId: influence?.value,
       status: status.replace(/ /g, ''),
       negotiatedBudget: negoBudget,
     };
@@ -63,7 +58,7 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
       return;
     }
 
-    hideDialog();
+    window.location.reload();
   };
 
   return (
@@ -78,21 +73,21 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
           </div>
           <div className='flex flex-col items-center font-poppins'>
             <h1 className='font-bold text-[16px] leading-[28px] text-white mb-[20px] text-center md:text-left'>
-              Add To Campaign
+              Add Influencer
             </h1>
             <div className='w-full relative flex flex-col items-center rounded-[5px]'>
               <div className='w-full flex flex-col items-start mb-5'>
                 <div className='flex flex-row justify-start items-center'>
                   <h3 className='font-semibold text-[12px] text-white capitalize mx-1'>
-                    Select Campaign
+                    Select Influencer
                   </h3>
                 </div>
                 <Select
                   styles={desktopSelectStyle}
-                  options={campaignList}
-                  value={campaign}
+                  options={influenceList}
+                  value={influence}
                   onChange={(item: any) => {
-                    setCampaign(item);
+                    setInfluence(item);
                   }}
                 />
               </div>
@@ -129,9 +124,9 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
             </div>
             <div
               className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] font-bold hover:bg-[#11C176] transition-all'
-              onClick={addInfluenceToCampaign}
+              onClick={addInfluence}
             >
-              Add To Campaign
+              Add Influence
             </div>
           </div>
         </div>
@@ -140,4 +135,4 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
   );
 };
 
-export default AddInfluenceToCampaign;
+export default AddInfluence;

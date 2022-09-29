@@ -106,7 +106,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
               <div className='w-[90%] max-w-[400px] grid grid-cols-3 gap-0 font-semibold mt-2 text-[12px] leading-[16px]'>
                 <div className='flex flex-col items-center'>
                   <h3 className='text-white mb-2'>Audience Size</h3>
-                  <h3 className='text-[#10E98C]'>{followers}K</h3>
+                  <h3 className='text-[#10E98C]'>{formatNumber(followers)}</h3>
                 </div>
                 <div className='flex flex-col items-center'>
                   <h3 className='text-white mb-2'>Engagement</h3>

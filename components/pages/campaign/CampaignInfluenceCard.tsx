@@ -8,12 +8,18 @@ import { InfluenceStates } from './../../../constant/index';
 import { formatNumber } from '../../../services/utils';
 
 type Props = {
-  influence: Influence;
+  influence: Influence & {
+    selected: boolean;
+  };
+  onToggle?: () => void;
 };
 
-const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
+const CampaignInfluenceCard: React.FC<Props> = ({ influence, onToggle }) => {
   return (
-    <div className='relative flex flex-col xl:flex-row items-stretch bg-[#314146] xl:h-[120px]'>
+    <div
+      className='relative flex flex-col xl:flex-row items-stretch bg-[#314146] xl:h-[120px] hover:scale-105 hover:cursor-pointer'
+      onClick={onToggle}
+    >
       <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-stretch'>
         <div className='relative flex flex-row w-full lg:w-1/2 items-center justify-around py-[29px] px-[23px] overflow-hidden'>
           <Image
@@ -31,73 +37,79 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
                 @{influence?.nickName}
               </p>
               <div className='flex flex-row w-full justify-around items-center'>
-                <Link href={influence[influence.mainChannel].socialUrl}>
-                  <div className='relative flex flex-col justify-center items-center mr-1'>
-                    {influence.mainChannel == 'telegram' ? (
-                      <>
-                        <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
-                          <Image
-                            src='/icons/telegram.png'
-                            width={18}
-                            height={18}
-                            objectFit='contain'
-                          />
-                        </div>
-                        {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
+                {influence[influence.mainChannel] ? (
+                  <Link
+                    href={influence[influence.mainChannel]?.socialUrl && '/#'}
+                  >
+                    <div className='relative flex flex-col justify-center items-center mr-1'>
+                      {influence.mainChannel == 'telegram' ? (
+                        <>
+                          <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
+                            <Image
+                              src='/icons/telegram.png'
+                              width={18}
+                              height={18}
+                              objectFit='contain'
+                            />
+                          </div>
+                          {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
                           {formatNumber(influence.telegram.channelMembers)}
                         </p> */}
-                      </>
-                    ) : influence.mainChannel == 'instagram' ? (
-                      <>
-                        <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
-                          <FaInstagram size={18} color='black' />
-                        </div>
-                        {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
+                        </>
+                      ) : influence.mainChannel == 'instagram' ? (
+                        <>
+                          <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
+                            <FaInstagram size={18} color='black' />
+                          </div>
+                          {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
                           {formatNumber(influence.instagram.followers)}
                         </p> */}
-                      </>
-                    ) : influence.mainChannel == 'youtube' ? (
-                      <>
-                        <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
-                          <Image
-                            src='/icons/youtube.png'
-                            width={18}
-                            height={18}
-                            objectFit='contain'
-                          />
-                        </div>
-                        {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
+                        </>
+                      ) : influence.mainChannel == 'youtube' ? (
+                        <>
+                          <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
+                            <Image
+                              src='/icons/youtube.png'
+                              width={18}
+                              height={18}
+                              objectFit='contain'
+                            />
+                          </div>
+                          {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
                           {formatNumber(influence.youtube.subscribers)}
                         </p> */}
-                      </>
-                    ) : influence.mainChannel == 'twitter' ? (
-                      <>
-                        <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
-                          <Image
-                            src='/icons/twitter.png'
-                            width={18}
-                            height={18}
-                            objectFit='contain'
-                          />
-                        </div>
-                        {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
+                        </>
+                      ) : influence.mainChannel == 'twitter' ? (
+                        <>
+                          <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
+                            <Image
+                              src='/icons/twitter.png'
+                              width={18}
+                              height={18}
+                              objectFit='contain'
+                            />
+                          </div>
+                          {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
                           {formatNumber(influence.instagram.followers)}
                         </p> */}
-                      </>
-                    ) : influence.mainChannel == 'tiktok' ? (
-                      <>
-                        <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
-                          <FaTiktok size={18} color='black' />
-                        </div>
-                        {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
+                        </>
+                      ) : influence.mainChannel == 'tiktok' ? (
+                        <>
+                          <div className='w-[30px] h-[30px] bg-white  rounded-full hover:scale-110 flex justify-center items-center'>
+                            <FaTiktok size={18} color='black' />
+                          </div>
+                          {/* <p className='text-[12px] absolute -bottom-5 -transalate-y-full text-white'>
                           {formatNumber(influence.instagram.followers)}
                         </p> */}
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                </Link>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </Link>
+                ) : (
+                  <></>
+                )}
                 {influence?.instagram &&
                 influence.mainChannel != 'instagram' ? (
                   <Link href={influence?.instagram?.socialUrl}>
@@ -259,6 +271,13 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence }) => {
       </div>
       <div className='absolute w-5 h-5 flex justify-center items-center bg-[#41666FB3] top-[14px] right-8 rounded-full hover:cursor-pointer'>
         <FaEllipsisV size={12} color='white' />
+      </div>
+      <div className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-3 top-4 hover:cursor-pointer'>
+        {influence.selected ? (
+          <div className='w-1 h-1 rounded-full bg-white'></div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
