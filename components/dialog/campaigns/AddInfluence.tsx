@@ -27,11 +27,13 @@ const AddInfluence: FC<Props> = ({ campaignId }) => {
         return;
       }
 
+      console.dir(response.data, { depth: 3 });
       const influencers = response.data
         .filter(
           (data) =>
-            data?.campaigns.filter((campaign) => campaign?.id == campaignId)
-              .length == 0
+            data?.campaigns.filter(
+              (campaign) => campaign?.campaignId == campaignId
+            ).length == 0
         )
         .map((data) => {
           return {
