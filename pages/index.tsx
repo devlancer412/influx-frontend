@@ -142,7 +142,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           data?.promotionType === 'PaidPromo'
             ? 'Paid Promo'
             : 'May do Paid Promo',
-        mainChannel: data?.mainChannel ?? 'twitter',
+        mainChannel: data?.mainChannel ?data?.mainChannel.toLowerCase(): 'twitter',
         instagram: data?.account?.instagram,
         youtube: data?.account?.youtube,
         telegram: data?.account?.telegram,
