@@ -94,6 +94,8 @@ const Sidebar: React.FC = () => {
         } else {
           response = await client.get(`/brands/${response.data}`);
         }
+
+        console.log(response.data);
         const brandData: BrandProfile = {
           id: response.data.id,
           account: {

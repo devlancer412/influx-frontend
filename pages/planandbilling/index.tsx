@@ -1,6 +1,10 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
-import BillingCard from './../../components/pages/planandbilling/BillingCard';
+import dynamic from 'next/dynamic';
+const BillingCard = dynamic(
+  () => import('./../../components/pages/planandbilling/BillingCard'),
+  { ssr: false }
+);
 
 const plans: Billing[] = [
   {
@@ -8,6 +12,7 @@ const plans: Billing[] = [
     price: 0,
     per: 'per month',
     benifits: ['Limited Platform access', 'Management Module'],
+    onPay: () => {},
   },
   {
     name: 'Pro',
@@ -23,6 +28,8 @@ const plans: Billing[] = [
       'Advanced Targeting',
       'Recommended Lists for yourProject & budget',
     ],
+    onPay: () =>
+      window.open(`https://buy.depay.com/2AuycbpzBDZLzJBKMBGVsb`, '_blank'),
   },
   {
     name: 'Pro',
@@ -38,6 +45,8 @@ const plans: Billing[] = [
       'Advanced Targeting',
       'Recommended Lists for yourProject & budget',
     ],
+    onPay: () =>
+      window.open(`https://buy.depay.com/1kXNYPwNdfAzoWqRusRWEW`, '_blank'),
   },
 ];
 

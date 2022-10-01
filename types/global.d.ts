@@ -99,6 +99,7 @@ declare global {
     per: string;
     discounted?: number;
     benifits: string[];
+    onPay: () => void;
   };
 
   type SocialFilterProps = {

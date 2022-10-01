@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import useDialog from '../../../hooks/useDialog';
 
 const BillingCard: React.FC<Billing> = ({
   name,
@@ -8,7 +9,9 @@ const BillingCard: React.FC<Billing> = ({
   discounted,
   per,
   benifits,
+  onPay,
 }) => {
+  const { showDialog } = useDialog();
   return (
     <div className='w-full lg:border border-white bg-[#304146] py-[23px] flex flex-col items-start rounded-[10px] lg:rounded-none'>
       <div className='w-full flex-col justify-start hidden lg:flex px-[31px]'>
@@ -57,7 +60,10 @@ const BillingCard: React.FC<Billing> = ({
           </div>
         ))}
       </div>
-      <div className='mx-auto bg-[#10E98C] rounded-[5px] py-2 px-[30px] flex flex-row items-center text-black hover:cursor-pointer hover:bg-[#11C176] transition-all'>
+      <div
+        className='mx-auto bg-[#10E98C] rounded-[5px] py-2 px-[30px] flex flex-row items-center text-black hover:cursor-pointer hover:bg-[#11C176] transition-all'
+        onClick={onPay}
+      >
         <h3 className='text-[15px] leading-[22px] mr-[13px]'>
           Select the Plan
         </h3>
