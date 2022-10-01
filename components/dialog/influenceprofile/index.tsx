@@ -176,7 +176,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 <div className='w-[90%] max-w-[200px] md:max-w-[400px] flex flex-row justify-center flex-wrap gap-[10px] mt-2'>
                   {youtube ? (
                     <Link href={youtube?.socialUrl}>
-                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                      <div className='w-[160px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/youtube.png'
                           width={12}
@@ -196,7 +196,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   )}
                   {telegram ? (
                     <Link href={telegram.socialUrl}>
-                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                      <div className='w-[160px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/telegram.png'
                           width={12}
@@ -216,7 +216,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   )}
                   {twitter ? (
                     <Link href={twitter.socialUrl}>
-                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                      <div className='w-[160px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <Image
                           src='/icons/twitter.png'
                           width={12}
@@ -236,7 +236,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   )}
                   {instagram ? (
                     <Link href={instagram.socialUrl}>
-                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                      <div className='w-[160px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <FaInstagram size={12} color='white' />
                         <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                           instagram
@@ -251,7 +251,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                   )}
                   {tiktok ? (
                     <Link href={tiktok.socialUrl}>
-                      <div className='w-[126px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
+                      <div className='w-[160px] py-1 bg-[#324951] rounded-[5px] border border-transparent flex flex-row justify-between px-[7px] items-center hover:cursor-pointer hover:border-[#10E98C]'>
                         <FaTiktok size={12} color='white' />
                         <h3 className='flex-1 text-center text-white font-semibold capitalize ml-[7px] text-[12px] leading-[18px]'>
                           tiktok
