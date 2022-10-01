@@ -71,6 +71,7 @@ const Sidebar: React.FC = () => {
     if (user) {
       (async () => {
         let response = await client.get(`/brands/brandId/${user.email}`);
+        console.log(response);
         if (!response.success) {
           const body = {
             name: user.name,
