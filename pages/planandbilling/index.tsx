@@ -1,10 +1,7 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-const BillingCard = dynamic(
-  () => import('./../../components/pages/planandbilling/BillingCard'),
-  { ssr: false }
-);
+import BillingCard from './../../components/pages/planandbilling/BillingCard';
 
 const plans: Billing[] = [
   {

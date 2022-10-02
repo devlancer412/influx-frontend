@@ -25,6 +25,12 @@ const CreateCampaign = () => {
     };
 
     let response = await client.post('campaigns', body);
+
+    if (!response.success) {
+      console.log(response.message);
+      return;
+    }
+
     const newCampaign: Campaign = {
       id: response.data.data.id,
       name: response.data.data.name,
