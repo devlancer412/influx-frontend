@@ -157,6 +157,35 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         bottomPrice: data?.priceRange[0],
         isVIP: data?.isVIP,
         niches: data?.niche || [],
+        history: data?.account[data?.mainChannel.toLowerCase()][
+          `${data?.mainChannel.toLowerCase()}History`
+        ]
+          .map((historyData) => {
+            const dateData = new Date(historyData?.date);
+            const ye = new Intl.DateTimeFormat('en', {
+              year: 'numeric',
+            }).format(dateData);
+            const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(
+              dateData
+            );
+            const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(
+              dateData
+            );
+            return {
+              date: `${da} ${mo}`,
+              data:
+                data?.mainChannel.toLowerCase() == 'instagram'
+                  ? historyData?.interactions
+                  : data?.mainChannel.toLowerCase() == 'tiktok'
+                  ? historyData?.likes
+                  : data?.mainChannel.toLowerCase() == 'twitter'
+                  ? historyData?.impressions
+                  : data?.mainChannel.toLowerCase() == 'youtube'
+                  ? historyData?.views
+                  : 0,
+            };
+          })
+          .reverse(),
       };
     });
   }

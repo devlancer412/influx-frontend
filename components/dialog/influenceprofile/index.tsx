@@ -11,55 +11,7 @@ import useDialog from '../../../hooks/useDialog';
 import AddInfluenceToCampaign from '../campaigns/AddInfluenceToCampaign';
 import { formatNumber } from './../../../services/utils';
 
-const chartData = [
-  {
-    month: '1 June',
-    engagement: 0.8,
-  },
-  {
-    month: '5 June',
-    engagement: 1.9,
-  },
-  {
-    month: '7 June',
-    engagement: 2.1,
-  },
-  {
-    month: '9 June',
-    engagement: 1.2,
-  },
-  {
-    month: '13 June',
-    engagement: 5,
-  },
-  {
-    month: '30 June',
-    engagement: 1,
-  },
-];
-
-type InfluenceProps = {
-  id: number;
-  accountId: number;
-  name: string;
-  nickName: string;
-  imageUrl: string;
-  promotionType: PromotionType;
-  contactLink: string;
-  youtube?: any;
-  telegram?: any;
-  twitter?: any;
-  instagram?: any;
-  tiktok?: any;
-  followers: number;
-  engagement: 'Good' | 'Normal' | 'Bad';
-  topPrice: number;
-  bottomPrice: number;
-  isVIP: boolean;
-  niches: string[];
-};
-
-const InfluenceProfile: React.FC<InfluenceProps> = ({
+const InfluenceProfile: React.FC<Influence> = ({
   id,
   accountId,
   name,
@@ -76,7 +28,9 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
   engagement,
   topPrice,
   bottomPrice,
+  history,
 }) => {
+  console.log(history);
   const { hideDialog, showDialog } = useDialog();
 
   return (
@@ -286,7 +240,7 @@ const InfluenceProfile: React.FC<InfluenceProps> = ({
                 <h5 className='text-[12px] font-extrabold md:font-semibold text-white mb-[11px] text-center'>
                   Influencer’s Statistics ( Last Updated 1-8-2022 )
                 </h5>
-                <EngagementChart data={chartData} />
+                <EngagementChart data={history} />
               </div>
               <Link href={'#'}>
                 <h5 className='text-[12px] leading-[18px] text-[#10E98C] underline hover:cursor-pointer mb-[21px]'>

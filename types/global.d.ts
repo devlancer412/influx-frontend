@@ -43,6 +43,10 @@ declare global {
     isVIP: boolean;
     niches: string[];
     status?: InfluenceStatus;
+    history?: {
+      date: string;
+      data: number;
+    }[];
   }
 
   type Category = typeof Categories[number];
