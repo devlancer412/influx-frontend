@@ -1,7 +1,9 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { formatNumber } from './../../../services/utils';
-import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 type EngagementData = {
   date: string;
@@ -40,12 +42,19 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
       },
     },
     stroke: {
+      width: 2,
       curve: 'smooth',
     },
     markers: {
       size: 0,
     },
     xaxis: {
+      title: {
+        style: {
+          color: 'white',
+        },
+        text: 'Date',
+      },
       labels: {
         style: {
           colors: 'white',
@@ -61,6 +70,12 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
       categories: data.map((item) => item.date),
     },
     yaxis: {
+      title: {
+        text: 'Engagement',
+        style: {
+          color: 'white',
+        },
+      },
       labels: {
         style: {
           colors: 'white',
