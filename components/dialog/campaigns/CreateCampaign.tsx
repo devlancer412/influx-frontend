@@ -38,6 +38,7 @@ const CreateCampaign = () => {
       avgER: response.data.data.avgER,
       price: response.data.data.negoBudget,
       followers: 0,
+      template: response.data.template,
     };
     dispatch(addCampaign(newCampaign));
     hideDialog();
