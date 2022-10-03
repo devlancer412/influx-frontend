@@ -36,6 +36,22 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
       return { ...influence, selected: false };
     })
   );
+  const [timerId, setTimerId] = useState<NodeJS.Timeout>(null);
+
+  useEffect(() => {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    const timeout = setTimeout(async () => {
+      await client.post('/campaigns', {
+        campaignId: campaign.id,
+        template: template,
+        name: campaign.name,
+        avgER: campaign.avgER,
+      });
+    }, 500);
+    setTimerId(timeout);
+  }, [template]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
