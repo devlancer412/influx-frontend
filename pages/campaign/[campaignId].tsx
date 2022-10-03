@@ -134,7 +134,7 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
                   Total Followers
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  {campaign.followers}
+                  {formatNumber(campaign.followers)}
                 </h3>
               </div>
             </div>

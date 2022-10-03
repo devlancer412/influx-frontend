@@ -1,16 +1,43 @@
+import { useState, useEffect } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 import CampaignCard from '../../components/pages/campaign/CampaignCard';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import useDialog from '../../hooks/useDialog';
 import CreateCampaign from '../../components/dialog/campaigns/CreateCampaign';
+import client from '../../services/HttpClient';
 
 const CampaignList: NextPage = () => {
   const { showDialog } = useDialog();
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
 
-  const campaigns = useSelector(
-    (store: RootState) => store.brandProfile.campaigns
+  const accountId = useSelector(
+    (store: RootState) => store.brandProfile.account.id
   );
+
+  useEffect(() => {
+    (async () => {
+      const response = await client.get(`/campaigns/account/${accountId}`);
+
+      if (!response.success) {
+        console.log(response.message);
+        return;
+      }
+
+      setCampaigns(
+        response.data.map((data) => {
+          return {
+            id: data.id,
+            name: data.name,
+            influencers: data.influencers.length,
+            avgER: data.avgER,
+            price: data.negoBudget,
+            followers: 0,
+          };
+        })
+      );
+    })();
+  }, [accountId]);
 
   return (
     <div className='px-[30px] md:pl-[48px] md:pr-[33px] py-[75px] flex flex-col font-poppins'>
