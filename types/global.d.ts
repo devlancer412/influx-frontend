@@ -6,6 +6,11 @@ import {
   Sorters,
   InfluenceStates,
   PromotionTypes,
+  AudienceLocations,
+  AudienceSizes,
+  Niches,
+  Languages,
+  Engagements,
 } from '../constant';
 export {};
 
@@ -28,6 +33,7 @@ declare global {
     name: string;
     nickName: string;
     imageUrl: string;
+    location: AudienceLocationFilter;
     contactLink: string;
     mainChannel: string;
     promotionType: PromotionType;

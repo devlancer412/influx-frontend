@@ -60,12 +60,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         top: parseInt(top as string) || 50000,
         bottom: parseInt(bottom as string) || 0,
       },
-      engagementFilter: (engagement as string) || Engagements[0],
-      languageFilter: (language as string) || Languages[0],
-      audienceSizeFilter: (audienceSize as string) || AudienceSizes[0],
+      engagementFilter: (engagement as EngagementFilter) || Engagements[0],
+      languageFilter: (language as LanguageFilter) || Languages[0],
+      audienceSizeFilter:
+        (audienceSize as AudienceSizeFilter) || AudienceSizes[0],
       userNameFilter: (userName as string) || '',
       audienceLocationFilter:
-        (audienceLocation as string) || AudienceLocations[0],
+        (audienceLocation as AudienceLocationFilter) || AudienceLocations[0],
       nichesFilter: [],
       sort: (sort as SortFilter) || Sorters[0],
     },
@@ -80,16 +81,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 
   if (typeof niches === 'string') {
-    props.filterProps.nichesFilter = [niches];
+    props.filterProps.nichesFilter = [niches as NicheFilter];
   } else if (typeof niches === 'object') {
-    props.filterProps.nichesFilter = niches as string[];
+    props.filterProps.nichesFilter = niches as NicheFilter[];
   }
 
   let url = `/influencers?minPrice=${props.filterProps.priceFilter.bottom}&maxPrice=${props.filterProps.priceFilter.top}`;
 
-  if (props.filterProps.languageFilter != 'None') {
-    url += `&language=${props.filterProps.languageFilter}`;
-  }
+  url += `&language=${props.filterProps.languageFilter}`;
+  url += `&location=${props.filterProps.audienceLocationFilter}`;
   if (props.filterProps.engagementFilter != 'None') {
     url += `&ER=${props.filterProps.engagementFilter}`;
   }
@@ -113,9 +113,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
   }
-  if (props.filterProps.audienceLocationFilter != '') {
-    url += `&location=${props.filterProps.audienceLocationFilter}`;
-  }
 
   const response = await client.get(url);
   // console.dir(response.data, { depth: 3 });
@@ -137,6 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         name: data?.account?.name,
         nickName: data?.account?.name,
         imageUrl: data?.account?.logo,
+        location: data?.account?.region ?? '',
         contactLink: data?.contactLink ?? '/#',
         promotionType:
           data?.promotionType === 'PaidPromo'
@@ -217,7 +215,7 @@ export default function Home({ filterProps, influences, users }: Props) {
   );
   const [audienceLocationFilter, setAudienceLocationFilter] =
     useState<AudienceLocationFilter>(filterProps.audienceLocationFilter);
-  const [nichesFilter, setNichesFilter] = useState<NicheFilter>(
+  const [nichesFilter, setNichesFilter] = useState<NicheFilter[]>(
     filterProps.nichesFilter
   );
   const [sortFilter, setSortFilter] = useState<SortFilter>(filterProps.sort);
