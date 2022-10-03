@@ -14,23 +14,6 @@ type Props = {
   data: EngagementData[];
 };
 
-const dollarUSLocale = Intl.NumberFormat('en-US');
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className='custom-tooltip bg-white p-2 rounded text-xs'>
-        <p className='intro'>Avg. Engagement</p>
-        <p className='label'>{`${label} : ${dollarUSLocale.format(
-          payload[0].value
-        )}`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
-
 const EngagementChart: React.FC<Props> = ({ data }) => {
   const max = data.reduce((a, b) => (a <= b.data ? b.data : a), 0);
   const min = data.reduce((a, b) => (a >= b.data ? b.data : a), max);
@@ -50,6 +33,7 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
     },
     xaxis: {
       title: {
+        offsetY: -30,
         style: {
           color: 'white',
         },
@@ -85,6 +69,9 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
         },
       },
     },
+    dataLabels: {
+      enabled: false,
+    },
   };
   const series = [
     {
@@ -95,7 +82,7 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
 
   return (
     <div className='mb-[15px] bg-[#324951] rounded-[10px] pt-[16px] px-[2px] flex flex-col items-center'>
-      <div className='flex flex-row justify-center items-center w-full'>
+      <div className='flex flex-row justify-center items-center w-full my-[10px]'>
         <h3 className='text-white text-[11px] mx-1 capitalize'>
           Average Engagements per Post
         </h3>
@@ -123,16 +110,16 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
         <Chart
           options={options}
           series={series}
-          type='line'
+          type='area'
           width={400}
-          height={250}
+          height={225}
         />
       </div>
       <div className='md:hidden'>
         <Chart
           options={options}
           series={series}
-          type='line'
+          type='area'
           width={300}
           height={200}
         />
