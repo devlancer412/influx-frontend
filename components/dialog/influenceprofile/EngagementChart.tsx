@@ -94,8 +94,8 @@ const EngagementChart: React.FC<Props> = ({ data }) => {
   ];
 
   return (
-    <div className='mb-[15px] bg-[#324951] rounded-[10px] pt-[16px] px-[2px] pb-[21px] flex flex-col items-center'>
-      <div className='flex flex-row justify-center items-center w-full nb-[15px]'>
+    <div className='mb-[15px] bg-[#324951] rounded-[10px] pt-[16px] px-[2px] flex flex-col items-center'>
+      <div className='flex flex-row justify-center items-center w-full'>
         <h3 className='text-white text-[11px] mx-1 capitalize'>
           Average Engagements per Post
         </h3>
