@@ -34,7 +34,7 @@ const InfluenceProfile: React.FC<Influence> = ({
 
   return (
     <div className='fixed top-0 left-0 w-[100vw] h-screen overflow-y-auto'>
-      <div className='w-full h-full min-h-[900px] flex flex-row items-center'>
+      <div className='w-full h-full min-h-[900px] flex flex-row items-center my-4'>
         <div className='relative w-screen md:w-[550px] px-[10px] py-[35px] md:p-[40px] !pb-[20px] bg-[#082129] mx-auto my-0 md:my-[40px] rounded-xl'>
           <div
             className='absolute rounded-[5px] bg-[#15171B] p-2 text-white right-[25px] top-[25px] hover:cursor-pointer'
