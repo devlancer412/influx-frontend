@@ -17,10 +17,10 @@ type Props = {
 const CampaignInfluenceCard: React.FC<Props> = ({ influence, onToggle }) => {
   return (
     <div
-      className='relative flex flex-col xl:flex-row items-stretch bg-[#314146] xl:h-[120px] hover:scale-105 hover:cursor-pointer'
+      className='relative flex flex-col xl:flex-row items-center bg-[#314146] xl:h-[120px] hover:scale-105 hover:cursor-pointer'
       onClick={onToggle}
     >
-      <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-stretch'>
+      <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-center'>
         <div className='relative flex flex-row w-full lg:w-1/2 items-center justify-around py-[29px] px-[23px] overflow-hidden'>
           <Image
             src={influence?.imageUrl}
@@ -256,9 +256,15 @@ const CampaignInfluenceCard: React.FC<Props> = ({ influence, onToggle }) => {
         </div>
       </div>
       <div className='w-[80%] grid grid-cols-1 gap-[19px] lg:hidden py-10'>
-        <input
-          className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-2 px-3'
-          placeholder='Status'
+        <Select
+          styles={influenceStatusSelectStyle}
+          options={InfluenceStates.map((item) => {
+            return { value: item, label: item };
+          })}
+          defaultValue={{
+            value: InfluenceStates[0],
+            label: InfluenceStates[0],
+          }}
         />
         <input
           className='w-full rounded-[3px] border-[0.5px] border-[#CCCCCC80] bg-[#243034] text-[#FFFFFF80] text-[12px] py-2 px-3'
