@@ -17,6 +17,7 @@ declare global {
     avgER: EngagementFilter;
     price: number;
     followers: number;
+    template: string;
   }
 
   type PromotionType = typeof PromotionTypes[number];

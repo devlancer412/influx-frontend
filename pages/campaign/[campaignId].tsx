@@ -6,6 +6,7 @@ import CampaignInfluenceCard from '../../components/pages/campaign/CampaignInflu
 import client from '../../services/HttpClient';
 import useDialog from '../../hooks/useDialog';
 import AddInfluence from '../../components/dialog/campaigns/AddInfluence';
+import { formatNumber } from './../../services/utils';
 
 const RichEditor = dynamic(
   () => import('../../components/pages/campaign/RichEditor'),
@@ -28,6 +29,7 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
   const subMenuRef = useRef(null);
   const { showDialog } = useDialog();
   const [current, setCurrent] = useState<SubMenu>('Actions');
+  const [template, setTemplate] = useState<string>(campaign.template);
   const [showSubMenu, setShowSubMenu] = useState<boolean>(false);
   const [influenceStates, setInfluenceStates] = useState<InfluenceState[]>(
     influencers.map((influence) => {
@@ -63,7 +65,15 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
     );
   };
 
-  const deleteSelected = () => {
+  const deleteSelected = async () => {
+    for (const influence of influenceStates.filter(
+      (influenceState) => influenceState.selected
+    )) {
+      await client.post('/campaigns/removeInfluencer', {
+        campaignId: campaign.id,
+        influenceId: influence.id,
+      });
+    }
     setInfluenceStates(
       influenceStates.filter((influenceState) => !influenceState.selected)
     );
@@ -100,10 +110,7 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
                   Negotiated Price
                 </h5>
                 <h3 className='w-full pb-[25px] font-bold text-[11px] leading-[16px] md:text-[24px] md:leading-[36px] text-center text-[#10E98C] py-[18px]'>
-                  $
-                  {campaign?.price > 1000
-                    ? `${campaign?.price / 100}K`
-                    : `${campaign?.price}`}
+                  ${formatNumber(campaign?.price)}
                 </h3>
               </div>
               <div className='flex flex-col max-w-[220px]'>
@@ -178,7 +185,9 @@ const CampaignProfile: NextPage = ({ campaign, influencers }: Props) => {
               } rounded-[10px] lg:rounded-none border lg:border-0 lg:border-b`}
               onClick={() => {
                 setCurrent('Template');
-                showDialog(<RichEditor />);
+                showDialog(
+                  <RichEditor text={template} onChange={setTemplate} />
+                );
               }}
             >
               Template
@@ -219,11 +228,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       avgER: response.data.avgER,
       price: response.data.negoBudget,
       followers: response.data.totalFollowers,
+      template: response.data.template,
     };
 
     props.influencers = response.data.influencers.map((data) => {
       return {
-        id: data.id,
+        id: data.influencerId,
         name: data.influencer.account.name,
         nickName: data.influencer.account.name,
         imageUrl: data.influencer.account.logo,
