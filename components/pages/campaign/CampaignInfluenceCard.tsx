@@ -17,7 +17,7 @@ type Props = {
 const CampaignInfluenceCard: React.FC<Props> = ({ influence, onToggle }) => {
   return (
     <div
-      className='relative flex flex-col xl:flex-row items-center bg-[#314146] xl:h-[120px] hover:scale-105 hover:cursor-pointer'
+      className='relative flex flex-col xl:flex-row items-center bg-[#314146] hover:scale-105 hover:cursor-pointer'
       onClick={onToggle}
     >
       <div className='flex flex-col lg:flex-row w-full xl:w-1/2 justify-around items-center'>

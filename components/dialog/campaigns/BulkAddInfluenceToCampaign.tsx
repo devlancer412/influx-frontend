@@ -8,55 +8,34 @@ import { desktopSelectStyle, InfluenceStates } from '../../../constant';
 import { RootState } from '../../../store';
 
 type Props = {
-  influenceId: number;
-  accountId: number;
+  influenceIds: number[];
 };
 
-const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
+const BulkAddInfluenceToCampaign: FC<Props> = ({ influenceIds }) => {
   const dispatch = useDispatch();
   const { hideDialog } = useDialog();
   const campaigns = useSelector(
     (store: RootState) => store.brandProfile.campaigns
   );
 
-  const [campaignList, setCampaignList] = useState<any[]>([]);
   const [campaign, setCampaign] = useState<any>();
   const [status, setStatus] = useState<InfluenceStatus>(InfluenceStates[0]);
   const [negoBudget, setNegoBudget] = useState<number>(0);
 
-  useEffect(() => {
-    (async () => {
-      const response = await client.get(`/campaigns/account/${accountId}`);
-      const addedCampaignIds = response.data.map(
-        (campaign) => campaign?.campaignId
-      );
-
-      setCampaignList(
-        campaigns
-          .filter((campaign) => addedCampaignIds.indexOf(campaign.id) < 0)
-          .map((campaign) => {
-            return {
-              value: campaign.id,
-              label: campaign.name,
-            };
-          })
-      );
-    })();
-  }, []);
-
-  const addInfluenceToCampaign = async () => {
-    console.log(status, typeof status, status.replace(/ /g, ''));
-    const body = {
-      campaignId: campaign?.value,
-      influencerId: influenceId,
-      status: status.replace(/ /g, ''),
-      negotiatedBudget: negoBudget,
-    };
-    const response = await client.post('/campaigns/addInfluencer', body);
-    if (!response.success) {
-      console.log(response);
-      return;
-    }
+  const bulkAddInfluenceToCampaign = async () => {
+    influenceIds.forEach(async (influenceId) => {
+      const body = {
+        campaignId: campaign?.value,
+        influencerId: influenceId,
+        status: status.replace(/ /g, ''),
+        negotiatedBudget: negoBudget,
+      };
+      const response = await client.post('/campaigns/addInfluencer', body);
+      if (!response.success) {
+        console.log(response);
+        return;
+      }
+    });
 
     hideDialog();
   };
@@ -84,7 +63,9 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
                 </div>
                 <Select
                   styles={desktopSelectStyle}
-                  options={campaignList}
+                  options={campaigns.map((campaign) => {
+                    return { value: campaign.id, label: campaign.name };
+                  })}
                   value={campaign}
                   onChange={(item: any) => {
                     setCampaign(item);
@@ -124,7 +105,7 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
             </div>
             <div
               className='py-[8px] px-7 border border-black bg-[#10E98C] hover:cursor-pointer text-[#082129] font-poppins text-[12px] leading-[22px] font-bold hover:bg-[#11C176] transition-all'
-              onClick={addInfluenceToCampaign}
+              onClick={bulkAddInfluenceToCampaign}
             >
               Add To Campaign
             </div>
@@ -135,4 +116,4 @@ const AddInfluenceToCampaign: FC<Props> = ({ influenceId, accountId }) => {
   );
 };
 
-export default AddInfluenceToCampaign;
+export default BulkAddInfluenceToCampaign;

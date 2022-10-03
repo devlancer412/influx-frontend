@@ -8,11 +8,16 @@ import { formatNumber } from '../../../services/utils';
 
 type Props = {
   influence: Influence;
+  selected: boolean;
+  toggleSelect: () => void;
 };
 
-const InfluenceCard: React.FC<Props> = ({ influence }) => {
+const InfluenceCard: React.FC<Props> = ({
+  influence,
+  selected,
+  toggleSelect,
+}) => {
   const { showDialog } = useDialog();
-  const [selected, select] = useState<boolean>(false);
 
   console.log(influence.tiktok);
   return (
@@ -212,7 +217,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       <div
         className='w-full hover:cursor-pointer'
         onClick={(e) => {
-          select(!selected);
+          toggleSelect();
           e.preventDefault();
           e.stopPropagation();
         }}
@@ -240,7 +245,7 @@ const InfluenceCard: React.FC<Props> = ({ influence }) => {
       <div
         className='absolute w-[15px] h-[15px] rounded-[5px] border-2 border-[#10E98C] flex justify-center items-center right-4 top-[54px] hover:cursor-pointer'
         onClick={(e) => {
-          select(!selected);
+          toggleSelect();
           e.preventDefault();
           e.stopPropagation();
         }}

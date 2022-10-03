@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import InfluenceCard from './InfluenceCard';
 import { FaPlusCircle } from 'react-icons/fa';
 import Select, { components } from 'react-select';
 import { influencesSortSelectStyle, Sorters } from '../../../constant';
 import { Engagements } from './../../../constant/index';
+import BulkAddInfluenceToCampaign from './../../dialog/campaigns/BulkAddInfluenceToCampaign';
+import useDialog from '../../../hooks/useDialog';
 
 type Props = {
   influences: Influence[];
@@ -25,7 +27,44 @@ const InfluenceList: React.FC<Props> = ({
   sortFilter,
   setSortFilter,
 }) => {
+  const { showDialog } = useDialog();
   const [selectAll, setSelectAll] = useState<Boolean>(false);
+  const [influeceStates, setInfluenceStates] = useState<boolean[]>(
+    influences.map((influence) => false)
+  );
+
+  const toggleInfluenceState = (index: number) => {
+    setInfluenceStates(
+      influeceStates.map((state, i) => (index == i ? !state : state))
+    );
+  };
+
+  useEffect(() => {
+    const newSelectAll = influeceStates.reduce((a, b) => a && b, true);
+    if (newSelectAll != selectAll) {
+      setSelectAll(newSelectAll);
+    }
+  }, [influeceStates]);
+
+  useEffect(() => {
+    if (selectAll) {
+      setInfluenceStates(influeceStates.map(() => true));
+    } else {
+      setInfluenceStates(influeceStates.map(() => false));
+    }
+  }, [selectAll]);
+
+  const bulkAdd = () => {
+    console.log('cliecked');
+    showDialog(
+      <BulkAddInfluenceToCampaign
+        influenceIds={influences
+          .filter((influence, index) => influeceStates[index])
+          .map((influence) => influence.accountId)}
+      />
+    );
+  };
+
   return (
     <>
       <div className='relative flex-row px-10 items-start w-full justify-center hidden lg:flex'>
@@ -55,7 +94,10 @@ const InfluenceList: React.FC<Props> = ({
           />
         </div>
         <div className='flex flex-row items-center gap-[30px]'>
-          <div className='flex flex-row items-center py-[7px] px-[18px] bg-[#04434D] rounded-[5px] hover:cursor-pointer hover:bg-[#075E6C] transition-all'>
+          <div
+            className='flex flex-row items-center py-[7px] px-[18px] bg-[#04434D] rounded-[5px] hover:cursor-pointer hover:bg-[#075E6C] transition-all'
+            onClick={bulkAdd}
+          >
             <FaPlusCircle size={20} color='#10E98C' className='mx-2' />
             <p className='text-[15px] leading-[22px] text-white font-semibold'>
               ADD TO CAMPAIGN
@@ -94,7 +136,12 @@ const InfluenceList: React.FC<Props> = ({
                   Engagements.indexOf(b.engagement)
             )
             .map((influence, index) => (
-              <InfluenceCard key={index} influence={influence} />
+              <InfluenceCard
+                key={index}
+                influence={influence}
+                selected={influeceStates[index]}
+                toggleSelect={() => toggleInfluenceState(index)}
+              />
             ))}
         </div>
       </div>

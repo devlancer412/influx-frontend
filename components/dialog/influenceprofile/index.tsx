@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import NicheSlideShow from './NicheSlideShow';
 import Link from 'next/link';
 
 import { BsPlusCircle, BsChat } from 'react-icons/bs';
